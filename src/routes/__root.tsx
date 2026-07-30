@@ -77,8 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PetVan — عيادة بيطرية متنقلة" },
-      { name: "description", content: "خدمات بيطرية وعناية متنقلة للحيوانات الأليفة في الأردن." },
+      { title: "PetVan — Mobile Vet Clinic" },
+      {
+        name: "description",
+        content: "Mobile veterinary care, grooming and pet shop in Jordan.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -91,11 +94,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
+
 
   shellComponent: RootShell,
   component: RootComponent,
