@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useAppStore } from "../lib/store";
 import { useEffect, useState } from "react";
 import {
   Stethoscope,
@@ -85,6 +86,8 @@ function Logo() {
 }
 
 function Index() {
+  const userId = useAppStore((state) => state.userId);
+  const cart = useAppStore((state) => state.cart);
   const [lang, setLang] = useState<Lang>("en");
   const t = copy[lang];
 
@@ -134,15 +137,17 @@ function Index() {
             <Languages className="size-4" />
             {t.toggle}
           </button>
-          <button className="relative" aria-label={t.cart}>
+          <Link to="/shop/cart" className="relative" aria-label={t.cart}>
             <ShoppingCart className="size-5" />
-            <span className="absolute -right-2 -top-2 grid size-4 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-              5
-            </span>
-          </button>
-          <button className="hidden rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:block">
-            {t.login}
-          </button>
+            {cart.length > 0 && (
+              <span className="absolute -right-2 -top-2 grid size-4 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                {cart.reduce((sum, item) => sum + item.quantity, 0)}
+              </span>
+            )}
+          </Link>
+          <Link to={userId ? "/profile" : "/login"} className="hidden rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:block">
+            {userId ? "Profile" : t.login}
+          </Link>
         </div>
       </header>
 
@@ -176,20 +181,22 @@ function Index() {
             </h1>
             <p className="mt-5 max-w-md text-muted-foreground">{t.heroDesc}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <button className="rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105">
-                {t.loginBig}
-              </button>
-              <button className="rounded-full border border-primary px-8 py-3 text-sm font-bold tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
-                {t.register}
-              </button>
+              <Link to={userId ? "/profile" : "/login"} className="rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105">
+                {userId ? "Go to Profile" : t.loginBig}
+              </Link>
+              {!userId && (
+                <Link to="/register" className="rounded-full border border-primary px-8 py-3 text-sm font-bold tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
+                  {t.register}
+                </Link>
+              )}
             </div>
             <p className="mt-10 max-w-sm text-sm text-muted-foreground">{t.adoptLead}</p>
-            <a
-              href="#adopt"
+            <Link
+              to="/adopt"
               className="mt-4 inline-block rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground transition-transform hover:scale-105"
             >
               {t.findFriend}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -229,9 +236,9 @@ function Index() {
                     <p className="mt-2 max-w-[15rem] text-xs leading-relaxed text-muted-foreground">
                       {s.desc}
                     </p>
-                    <button className="mt-5 rounded-full border border-border px-5 py-1.5 text-xs font-bold transition-colors hover:border-primary hover:text-primary">
+                    <Link to="/services/book" className="mt-5 rounded-full border border-border px-5 py-1.5 text-xs font-bold transition-colors hover:border-primary hover:text-primary">
                       {t.request}
-                    </button>
+                    </Link>
                   </article>
                 );
               })}
@@ -282,7 +289,9 @@ function Index() {
       {/* Shop */}
       <section id="shop" className="px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-6xl text-center">
-          <h2 className="font-display text-4xl font-extrabold text-primary">{t.shop}</h2>
+          <h2 className="font-display text-4xl font-extrabold text-primary">
+            <Link to="/shop" className="hover:underline">{t.shop}</Link>
+          </h2>
           <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">{t.shopSub}</p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-6">
@@ -353,9 +362,9 @@ function Index() {
             ))}
           </div>
 
-          <button className="mt-10 rounded-full bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105">
+          <Link to="/adopt" className="mt-10 inline-block rounded-full bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105">
             {t.viewMore}
-          </button>
+          </Link>
         </div>
       </section>
 

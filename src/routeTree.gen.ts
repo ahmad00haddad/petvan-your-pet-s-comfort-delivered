@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as AdoptIndexRouteImport } from './routes/adopt/index'
+import { Route as PetsAddRouteImport } from './routes/pets/add'
+import { Route as ServicesBookRouteImport } from './routes/services/book'
+import { Route as ShopIndexRouteImport } from './routes/shop/index'
+import { Route as ShopCartRouteImport } from './routes/shop/cart'
+import { Route as ServicesTrackingOrderIdRouteImport } from './routes/services/tracking.$orderId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdoptIndexRoute = AdoptIndexRouteImport.update({
+  id: '/adopt/',
+  path: '/adopt/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PetsAddRoute = PetsAddRouteImport.update({
+  id: '/pets/add',
+  path: '/pets/add',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesBookRoute = ServicesBookRouteImport.update({
+  id: '/services/book',
+  path: '/services/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopIndexRoute = ShopIndexRouteImport.update({
+  id: '/shop/',
+  path: '/shop/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopCartRoute = ShopCartRouteImport.update({
+  id: '/shop/cart',
+  path: '/shop/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesTrackingOrderIdRoute = ServicesTrackingOrderIdRouteImport.update({
+  id: '/services/tracking/$orderId',
+  path: '/services/tracking/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
+  '/pets/add': typeof PetsAddRoute
+  '/services/book': typeof ServicesBookRoute
+  '/shop/cart': typeof ShopCartRoute
+  '/adopt/': typeof AdoptIndexRoute
+  '/shop/': typeof ShopIndexRoute
+  '/services/tracking/$orderId': typeof ServicesTrackingOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
+  '/pets/add': typeof PetsAddRoute
+  '/services/book': typeof ServicesBookRoute
+  '/shop/cart': typeof ShopCartRoute
+  '/adopt': typeof AdoptIndexRoute
+  '/shop': typeof ShopIndexRoute
+  '/services/tracking/$orderId': typeof ServicesTrackingOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
+  '/pets/add': typeof PetsAddRoute
+  '/services/book': typeof ServicesBookRoute
+  '/shop/cart': typeof ShopCartRoute
+  '/adopt/': typeof AdoptIndexRoute
+  '/shop/': typeof ShopIndexRoute
+  '/services/tracking/$orderId': typeof ServicesTrackingOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/pets/add'
+    | '/services/book'
+    | '/shop/cart'
+    | '/adopt/'
+    | '/shop/'
+    | '/services/tracking/$orderId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/pets/add'
+    | '/services/book'
+    | '/shop/cart'
+    | '/adopt'
+    | '/shop'
+    | '/services/tracking/$orderId'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/pets/add'
+    | '/services/book'
+    | '/shop/cart'
+    | '/adopt/'
+    | '/shop/'
+    | '/services/tracking/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
+  PetsAddRoute: typeof PetsAddRoute
+  ServicesBookRoute: typeof ServicesBookRoute
+  ShopCartRoute: typeof ShopCartRoute
+  AdoptIndexRoute: typeof AdoptIndexRoute
+  ShopIndexRoute: typeof ShopIndexRoute
+  ServicesTrackingOrderIdRoute: typeof ServicesTrackingOrderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adopt/': {
+      id: '/adopt/'
+      path: '/adopt'
+      fullPath: '/adopt/'
+      preLoaderRoute: typeof AdoptIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pets/add': {
+      id: '/pets/add'
+      path: '/pets/add'
+      fullPath: '/pets/add'
+      preLoaderRoute: typeof PetsAddRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/book': {
+      id: '/services/book'
+      path: '/services/book'
+      fullPath: '/services/book'
+      preLoaderRoute: typeof ServicesBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/': {
+      id: '/shop/'
+      path: '/shop'
+      fullPath: '/shop/'
+      preLoaderRoute: typeof ShopIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop/cart': {
+      id: '/shop/cart'
+      path: '/shop/cart'
+      fullPath: '/shop/cart'
+      preLoaderRoute: typeof ShopCartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/tracking/$orderId': {
+      id: '/services/tracking/$orderId'
+      path: '/services/tracking/$orderId'
+      fullPath: '/services/tracking/$orderId'
+      preLoaderRoute: typeof ServicesTrackingOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
+  PetsAddRoute: PetsAddRoute,
+  ServicesBookRoute: ServicesBookRoute,
+  ShopCartRoute: ShopCartRoute,
+  AdoptIndexRoute: AdoptIndexRoute,
+  ShopIndexRoute: ShopIndexRoute,
+  ServicesTrackingOrderIdRoute: ServicesTrackingOrderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
