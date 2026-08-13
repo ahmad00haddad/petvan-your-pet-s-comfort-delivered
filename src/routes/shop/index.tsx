@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { getProductsFn } from "../../server/shop";
+import { getProductsFn } from "../../api/shop";
 import { useAppStore } from "../../lib/store";
 import { ShoppingCart, Utensils, Wrench, Gamepad2, Plus } from "lucide-react";
 

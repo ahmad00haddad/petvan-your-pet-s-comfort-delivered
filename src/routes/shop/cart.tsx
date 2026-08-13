@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAppStore } from "../../lib/store";
-import { checkoutFn } from "../../server/shop";
+import { checkoutFn } from "../../api/shop";
 import { useState } from "react";
 import { Trash2, ArrowLeft, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";

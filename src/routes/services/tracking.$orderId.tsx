@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { getOrderFn } from "../../../server/services";
+import { getOrderFn } from "../../api/services";
 import { MapPin, Star, Clock, Home, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/services/tracking/$orderId")({

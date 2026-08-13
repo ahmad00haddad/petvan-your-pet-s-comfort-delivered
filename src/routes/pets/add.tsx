@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../../lib/store";
-import { addPetFn } from "../../server/pets";
+import { addPetFn } from "../../api/pets";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/pets/add")({

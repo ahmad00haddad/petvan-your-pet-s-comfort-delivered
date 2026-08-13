@@ -1,8 +1,8 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useAppStore } from "../lib/store";
-import { getUserFn } from "../server/auth";
-import { getMyPetsFn } from "../server/pets";
+import { getUserFn } from "../api/auth";
+import { getMyPetsFn } from "../api/pets";
 import { LogOut, Plus, PawPrint } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({

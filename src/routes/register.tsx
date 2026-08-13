@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../lib/store";
-import { registerUserFn } from "../server/auth";
+import { registerUserFn } from "../api/auth";
 
 export const Route = createFileRoute("/register")({
   component: Register,

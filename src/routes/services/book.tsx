@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../../lib/store";
-import { bookServiceFn } from "../../server/services";
+import { bookServiceFn } from "../../api/services";
 import { ArrowLeft, Stethoscope, Home, Scissors, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import * as Dialog from "@radix-ui/react-dialog";

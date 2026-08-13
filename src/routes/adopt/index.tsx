@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { getAdoptionsFn } from "../../server/adopt";
+import { getAdoptionsFn } from "../../api/adopt";
 import { ArrowLeft, Heart, Cat, Dog, Bird, Fish } from "lucide-react";
 
 export const Route = createFileRoute("/adopt/")({

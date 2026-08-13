@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../lib/store";
-import { loginUserFn } from "../server/auth";
+import { loginUserFn } from "../api/auth";
 
 export const Route = createFileRoute("/login")({
   component: Login,
