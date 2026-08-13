@@ -19,9 +19,10 @@ import {
   ShoppingCart,
   Instagram,
   Facebook,
-  Twitter,
-  Mail,
+  LogOut,
+  Calendar,
   Languages,
+  Smartphone,
 } from "lucide-react";
 import heroDog from "@/assets/hero-dog.jpg";
 import petCat from "@/assets/pet-cat.jpg";
@@ -144,6 +145,10 @@ function Index() {
                 {cart.reduce((sum, item) => sum + item.quantity, 0)}
               </span>
             )}
+          </Link>
+          <Link to="/install" className="hidden items-center gap-2 rounded-full border border-primary px-4 py-2 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:flex">
+            <Smartphone className="size-4" />
+            Install App
           </Link>
           <Link to={userId ? "/profile" : "/login"} className="hidden rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:block">
             {userId ? "Profile" : t.login}

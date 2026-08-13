@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { Toaster } from "sonner";
-import { Home, Search, Calendar, User } from "lucide-react";
+import { Home, Search, Calendar, User, Smartphone } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -100,6 +100,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "apple-touch-icon", href: "/favicon.ico" },
     ],
   }),
 
@@ -119,6 +121,15 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <Scripts />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW registration failed:', err));
+              });
+            }
+          `
+        }} />
       </body>
     </html>
   );
@@ -148,6 +159,10 @@ function RootComponent() {
         <Link to="/adopt" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <Calendar className="size-5" />
           <span className="text-[10px] font-bold">Adopt</span>
+        </Link>
+        <Link to="/install" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
+          <Smartphone className="size-5" />
+          <span className="text-[10px] font-bold">App</span>
         </Link>
         <Link to={userId ? "/profile" : "/login"} className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <User className="size-5" />
