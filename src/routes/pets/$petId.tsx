@@ -12,6 +12,7 @@ import {
   Weight,
   Stethoscope,
   FileText,
+  QrCode,
 } from "lucide-react";
 import { useAppStore } from "../../lib/store";
 
@@ -115,12 +116,20 @@ function PetProfile() {
           >
             <ArrowLeft className="size-5" />
           </Link>
-          <button
-            onClick={handleShare}
-            className="grid size-10 place-items-center rounded-full bg-background/50 backdrop-blur text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-          >
-            <Share2 className="size-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => alert("QR Code Modal opens here...")}
+              className="grid size-10 place-items-center rounded-full bg-background/50 backdrop-blur text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <QrCode className="size-5" />
+            </button>
+            <button
+              onClick={handleShare}
+              className="grid size-10 place-items-center rounded-full bg-background/50 backdrop-blur text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Share2 className="size-5" />
+            </button>
+          </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
@@ -191,30 +200,31 @@ function PetProfile() {
         {/* Tab Content */}
         <div className="min-h-[300px]">
           {activeTab === "medical" && (
-            <div className="space-y-4">
+            <div className="relative pl-6 sm:pl-8 py-4 space-y-8 before:absolute before:inset-0 before:left-[19px] sm:before:left-[27px] before:w-px before:bg-border">
               {pet.medicalReports && pet.medicalReports.length > 0 ? (
-                pet.medicalReports.map((report: any) => (
+                pet.medicalReports.map((report: any, idx: number) => (
                   <div
                     key={report.id}
-                    className="rounded-2xl glass-panel p-5 shadow-[var(--shadow-card)] flex gap-4 transition-all hover:bg-card/50"
+                    className="relative rounded-3xl glass-panel p-6 shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:glow-primary"
+                    style={{ animationDelay: `${idx * 100}ms` }}
                   >
-                    <div className="mt-1 grid size-10 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
-                      <Stethoscope className="size-5" />
+                    <div className="absolute top-6 -left-[2.1rem] sm:-left-[2.6rem] grid size-8 place-items-center rounded-full bg-background border-2 border-primary text-primary z-10 shadow-[0_0_10px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]">
+                      <Stethoscope className="size-4" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-base">{report.diagnosis}</h3>
-                      <p className="text-xs text-muted-foreground mb-3">
+                      <h3 className="font-bold text-lg font-display text-primary mb-1">{report.diagnosis}</h3>
+                      <p className="text-xs text-muted-foreground mb-4 uppercase tracking-wider font-bold">
                         {new Date(report.date).toLocaleDateString()} • {report.doctor}
                       </p>
 
                       {report.prescription && report.prescription !== "None" && (
-                        <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-xs font-medium text-foreground">
-                          <FileText className="size-3 text-primary" />
+                        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">
+                          <FileText className="size-4" />
                           {report.prescription}
                         </div>
                       )}
 
-                      <p className="text-sm text-muted-foreground">{report.notes}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{report.notes}</p>
                     </div>
                   </div>
                 ))

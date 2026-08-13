@@ -95,14 +95,38 @@ function Profile() {
 
         <Link
           to="/pets/add"
-          className="mt-6 inline-block rounded-full bg-primary px-8 py-2 text-xs font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-wider"
+          className="mt-6 inline-block rounded-full bg-primary px-8 py-2 text-xs font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-wider shadow-[var(--shadow-gold)]"
         >
           Add Pet
         </Link>
       </div>
 
+      {/* Stats Bar */}
+      <div className="mt-12 grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+        <div className="rounded-3xl glass-panel p-4 flex flex-col items-center justify-center transition-transform hover:-translate-y-1">
+          <PawPrint className="size-6 text-primary mb-2" />
+          <p className="text-2xl font-black font-display">{pets.length}</p>
+          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest mt-1">Pets</p>
+        </div>
+        <div className="rounded-3xl glass-panel p-4 flex flex-col items-center justify-center transition-transform hover:-translate-y-1">
+          <Package className="size-6 text-primary mb-2" />
+          <p className="text-2xl font-black font-display">{orders.length}</p>
+          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest mt-1">Orders</p>
+        </div>
+        <div className="rounded-3xl glass-panel p-4 flex flex-col items-center justify-center transition-transform hover:-translate-y-1 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+          <Star className="size-6 text-primary mb-2 fill-primary" />
+          <p className="text-2xl font-black font-display text-glow">350</p>
+          <p className="text-[10px] sm:text-xs text-primary uppercase tracking-widest mt-1 font-bold">Points</p>
+        </div>
+      </div>
+
       {/* Pets */}
-      <div className="mt-16 flex justify-center gap-8 sm:gap-12">
+      <div className="mt-16 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+        <h2 className="text-muted-foreground font-display mb-8 text-sm flex justify-center items-center gap-2">
+          Your Family <PawPrint className="size-4" />
+        </h2>
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
         {pets.length === 0 ? (
           <p className="text-muted-foreground text-sm">No pets added yet.</p>
         ) : (
@@ -126,9 +150,10 @@ function Profile() {
             </Link>
           ))
         )}
+        </div>
       </div>
 
-      <hr className="my-12 border-border max-w-xl mx-auto" />
+      <hr className="my-16 border-border max-w-xl mx-auto" />
 
       {/* Photo Section */}
       <div>
