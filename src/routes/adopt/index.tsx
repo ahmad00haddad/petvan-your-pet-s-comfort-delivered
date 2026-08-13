@@ -16,33 +16,39 @@ const kinds = [
 ];
 
 function Adopt() {
-  const globalPetType = useAppStore(state => state.globalPetType);
-  const setGlobalPetType = useAppStore(state => state.setGlobalPetType);
+  const globalPetType = useAppStore((state) => state.globalPetType);
+  const setGlobalPetType = useAppStore((state) => state.setGlobalPetType);
   const [listings, setListings] = useState<any[]>([]);
   const [filter, setFilter] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAdoptionsFn().then(data => {
+    getAdoptionsFn().then((data) => {
       setListings(data);
       setLoading(false);
     });
   }, []);
 
   const activeFilter = filter || globalPetType;
-  const filtered = activeFilter ? listings.filter(l => l.pet.type === activeFilter) : listings;
+  const filtered = activeFilter ? listings.filter((l) => l.pet.type === activeFilter) : listings;
 
   return (
     <div className="mx-auto max-w-5xl p-5 py-10 sm:p-8 min-h-screen">
-      <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+      <Link
+        to="/"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+      >
         <ArrowLeft className="size-4" />
         Back to Home
       </Link>
 
       <div className="text-center mb-12">
         <h1 className="font-display text-5xl font-extrabold text-primary mb-4">Find a Friend</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Open your home and your heart to a pet in need. Browse our community's adoption board to find your new best friend.</p>
-        
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Open your home and your heart to a pet in need. Browse our community's adoption board to
+          find your new best friend.
+        </p>
+
         <div className="mt-8 flex justify-center gap-6">
           {kinds.map((k) => {
             const isActive = activeFilter === k.key;
@@ -53,9 +59,11 @@ function Adopt() {
                   setFilter(isActive ? null : k.key);
                   setGlobalPetType(isActive ? null : k.key); // also update global context
                 }}
-                className={`group flex flex-col items-center gap-3 transition-colors ${isActive ? 'text-primary scale-110' : 'text-muted-foreground hover:text-primary'}`}
+                className={`group flex flex-col items-center gap-3 transition-colors ${isActive ? "text-primary scale-110" : "text-muted-foreground hover:text-primary"}`}
               >
-                <span className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
+                <span
+                  className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? "bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20" : "bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary"}`}
+                >
                   <k.icon className="size-8" />
                 </span>
                 <span className="text-xs font-bold">{k.key}s</span>
@@ -77,35 +85,54 @@ function Adopt() {
           <p className="text-muted-foreground">Check back later for new adoption listings.</p>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="text-center p-10 text-muted-foreground">No {filter}s available for adoption right now.</div>
+        <div className="text-center p-10 text-muted-foreground">
+          No {filter}s available for adoption right now.
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((listing) => (
-            <figure key={listing.id} className="group rounded-3xl border border-border bg-card overflow-hidden shadow-[var(--shadow-card)] transition-transform hover:-translate-y-2">
+            <figure
+              key={listing.id}
+              className="group rounded-3xl border border-border bg-card overflow-hidden shadow-[var(--shadow-card)] transition-transform hover:-translate-y-2"
+            >
               <div className="aspect-[4/3] bg-secondary relative">
                 {listing.pet.image ? (
-                  <img src={listing.pet.image} alt={listing.pet.name} className="w-full h-full object-cover" />
+                  <img
+                    src={listing.pet.image}
+                    alt={listing.pet.name}
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-6xl">
-                    {listing.pet.type === 'Cat' ? '🐱' : listing.pet.type === 'Dog' ? '🐶' : listing.pet.type === 'Bird' ? '🦜' : '🐟'}
+                    {listing.pet.type === "Cat"
+                      ? "🐱"
+                      : listing.pet.type === "Dog"
+                        ? "🐶"
+                        : listing.pet.type === "Bird"
+                          ? "🦜"
+                          : "🐟"}
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-md rounded-full px-3 py-1 text-xs font-bold">
-                  {listing.pet.gender === 'M' ? '♂ Male' : '♀ Female'}
+                  {listing.pet.gender === "M" ? "♂ Male" : "♀ Female"}
                 </div>
               </div>
               <figcaption className="p-6">
                 <h3 className="font-display text-2xl font-bold mb-1">{listing.pet.name}</h3>
                 <p className="text-sm font-medium text-primary mb-4">{listing.pet.type}</p>
-                <p className="text-sm text-muted-foreground mb-6 line-clamp-3">{listing.description}</p>
+                <p className="text-sm text-muted-foreground mb-6 line-clamp-3">
+                  {listing.description}
+                </p>
                 <div className="flex items-center justify-between border-t border-border pt-4">
                   <div className="flex items-center gap-2">
                     <div className="size-8 rounded-full bg-secondary flex items-center justify-center font-bold text-xs">
                       {listing.lister.name.charAt(0)}
                     </div>
-                    <span className="text-xs text-muted-foreground">Listed by {listing.lister.name}</span>
+                    <span className="text-xs text-muted-foreground">
+                      Listed by {listing.lister.name}
+                    </span>
                   </div>
-                  <a 
+                  <a
                     href={`mailto:${listing.lister.email}?subject=Regarding adopting ${listing.pet.name}`}
                     className="rounded-full bg-primary/10 text-primary px-4 py-2 text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
                   >

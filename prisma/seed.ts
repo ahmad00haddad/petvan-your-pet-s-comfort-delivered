@@ -1,4 +1,4 @@
-import { prisma } from '../src/lib/prisma'
+import { prisma } from "../src/lib/prisma";
 
 async function main() {
   const products = [
@@ -10,7 +10,8 @@ async function main() {
       stock: 50,
       brand: "Reflex",
       targetPet: "Cats",
-      image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=200",
+      image:
+        "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=200",
     },
     {
       name: "Whiskas Tasty Mix",
@@ -20,7 +21,8 @@ async function main() {
       stock: 100,
       brand: "Whiskas",
       targetPet: "Cats",
-      image: "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&q=80&w=200",
+      image:
+        "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&q=80&w=200",
     },
     {
       name: "Royal Canin Mini Adult",
@@ -30,7 +32,8 @@ async function main() {
       stock: 30,
       brand: "Royal Canin",
       targetPet: "Dogs",
-      image: "https://images.unsplash.com/photo-1584022880193-4a6c8b939fde?auto=format&fit=crop&q=80&w=200",
+      image:
+        "https://images.unsplash.com/photo-1584022880193-4a6c8b939fde?auto=format&fit=crop&q=80&w=200",
     },
     {
       name: "Grooming Brush",
@@ -40,17 +43,19 @@ async function main() {
       stock: 200,
       brand: "PetCare",
       targetPet: "All",
-      image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=200",
+      image:
+        "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=200",
     },
     {
       name: "Feather Wand Toy",
       description: "Interactive feather wand for cats.",
-      price: 6.50,
+      price: 6.5,
       category: "Games",
       stock: 150,
       brand: "PlayPet",
       targetPet: "Cats",
-      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=200",
+      image:
+        "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=200",
     },
     {
       name: "Chew Bone",
@@ -60,24 +65,25 @@ async function main() {
       stock: 80,
       brand: "DogJoy",
       targetPet: "Dogs",
-      image: "https://images.unsplash.com/photo-1605332616223-9599525c56c7?auto=format&fit=crop&q=80&w=200",
-    }
-  ]
+      image:
+        "https://images.unsplash.com/photo-1605332616223-9599525c56c7?auto=format&fit=crop&q=80&w=200",
+    },
+  ];
 
   for (const product of products) {
     await prisma.product.create({
-      data: product
-    })
+      data: product,
+    });
   }
 
-  console.log('Seeded products!')
+  console.log("Seeded products!");
 }
 
 main()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

@@ -33,7 +33,10 @@ function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 relative">
-      <Link to="/" className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold">
+      <Link
+        to="/"
+        className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold"
+      >
         <ArrowLeft className="size-5" />
         Home
       </Link>
@@ -42,12 +45,14 @@ function Login() {
           <h2 className="font-display text-3xl font-extrabold text-primary">Welcome back</h2>
           <p className="mt-2 text-sm text-muted-foreground">Sign in to your PetVan account</p>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           {error && <div className="text-sm text-red-500 text-center">{error}</div>}
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="email">Email</label>
+              <label className="text-sm font-medium leading-none" htmlFor="email">
+                Email
+              </label>
               <input
                 id="email"
                 type="email"
@@ -58,7 +63,9 @@ function Login() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="password">Password</label>
+              <label className="text-sm font-medium leading-none" htmlFor="password">
+                Password
+              </label>
               <input
                 id="password"
                 type="password"

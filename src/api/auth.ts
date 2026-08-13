@@ -8,7 +8,7 @@ export const registerUserFn = createServerFn({ method: "POST" })
     const existingUser = await prisma.user.findUnique({
       where: { email: data.email },
     });
-    
+
     if (existingUser) {
       throw new Error("User already exists");
     }

@@ -34,7 +34,10 @@ function InstallPage() {
 
   return (
     <div className="mx-auto max-w-lg p-5 py-10 sm:p-8 min-h-screen">
-      <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+      <Link
+        to="/"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+      >
         <ArrowLeft className="size-4" />
         Back to Home
       </Link>
@@ -45,7 +48,8 @@ function InstallPage() {
         </div>
         <h1 className="font-display text-4xl font-extrabold text-primary mb-4">Install PetVan</h1>
         <p className="text-muted-foreground">
-          Get the full app experience. Install PetVan on your home screen for faster access, offline mode, and push notifications.
+          Get the full app experience. Install PetVan on your home screen for faster access, offline
+          mode, and push notifications.
         </p>
       </div>
 
@@ -72,12 +76,16 @@ function InstallPage() {
             <p className="text-sm text-muted-foreground text-center mb-6">
               Safari doesn't support automatic installation. Follow these 2 easy steps:
             </p>
-            
+
             <div className="flex items-start gap-4">
-              <div className="grid size-10 shrink-0 place-items-center rounded-full bg-secondary font-bold">1</div>
+              <div className="grid size-10 shrink-0 place-items-center rounded-full bg-secondary font-bold">
+                1
+              </div>
               <div>
                 <p className="font-bold">Tap the Share button</p>
-                <p className="text-sm text-muted-foreground mt-1">Look for the share icon at the bottom of your Safari browser.</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Look for the share icon at the bottom of your Safari browser.
+                </p>
                 <div className="mt-3 inline-flex rounded-xl bg-background border border-border p-3">
                   <Share className="size-6 text-primary" />
                 </div>
@@ -85,10 +93,14 @@ function InstallPage() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="grid size-10 shrink-0 place-items-center rounded-full bg-secondary font-bold">2</div>
+              <div className="grid size-10 shrink-0 place-items-center rounded-full bg-secondary font-bold">
+                2
+              </div>
               <div>
                 <p className="font-bold">Tap "Add to Home Screen"</p>
-                <p className="text-sm text-muted-foreground mt-1">Scroll down the list of actions and tap this option.</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Scroll down the list of actions and tap this option.
+                </p>
                 <div className="mt-3 inline-flex items-center gap-3 rounded-xl bg-background border border-border p-3 px-5">
                   <PlusSquare className="size-5 text-foreground" />
                   <span className="font-medium">Add to Home Screen</span>
@@ -100,7 +112,10 @@ function InstallPage() {
 
         {!isIOS && !isAndroid && !deferredPrompt && (
           <div className="text-center text-muted-foreground text-sm">
-            <p>To install PetVan on your phone, open this website on your mobile device (Safari for iOS, Chrome for Android) and follow the prompts.</p>
+            <p>
+              To install PetVan on your phone, open this website on your mobile device (Safari for
+              iOS, Chrome for Android) and follow the prompts.
+            </p>
           </div>
         )}
       </div>

@@ -1,18 +1,17 @@
 import { createServerFn } from "@tanstack/react-start";
 import { prisma } from "../lib/prisma";
 
-export const getAdoptionsFn = createServerFn({ method: "GET" })
-  .handler(async () => {
-    return await prisma.adoptionListing.findMany({
-      where: { status: "AVAILABLE" },
-      include: {
-        pet: true,
-        lister: {
-          select: { name: true }
-        }
-      }
-    });
+export const getAdoptionsFn = createServerFn({ method: "GET" }).handler(async () => {
+  return await prisma.adoptionListing.findMany({
+    where: { status: "AVAILABLE" },
+    include: {
+      pet: true,
+      lister: {
+        select: { name: true },
+      },
+    },
   });
+});
 
 export const listForAdoptionFn = createServerFn({ method: "POST" })
   .validator((data: { userId: string; petId: string; description: string }) => data)
@@ -29,7 +28,7 @@ export const listForAdoptionFn = createServerFn({ method: "POST" })
       },
       update: {
         description: data.description,
-        status: "AVAILABLE"
-      }
+        status: "AVAILABLE",
+      },
     });
   });

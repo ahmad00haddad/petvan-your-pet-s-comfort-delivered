@@ -38,21 +38,28 @@ function AddPet() {
 
   return (
     <div className="mx-auto max-w-2xl p-5 py-10 sm:p-8 min-h-screen">
-      <Link to="/profile" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
+      <Link
+        to="/profile"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+      >
         <ArrowLeft className="size-4" />
         Back to Profile
       </Link>
-      
+
       <div className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
         <h1 className="font-display text-3xl font-extrabold text-primary">Add a New Pet</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Fill in the details to add your pet to your profile.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Fill in the details to add your pet to your profile.
+        </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           {error && <div className="text-sm text-red-500">{error}</div>}
-          
+
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium" htmlFor="name">Pet Name</label>
+              <label className="text-sm font-medium" htmlFor="name">
+                Pet Name
+              </label>
               <input
                 id="name"
                 type="text"
@@ -63,10 +70,12 @@ function AddPet() {
                 placeholder="e.g. Bella"
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium" htmlFor="type">Pet Type</label>
+                <label className="text-sm font-medium" htmlFor="type">
+                  Pet Type
+                </label>
                 <select
                   id="type"
                   value={type}
@@ -80,9 +89,11 @@ function AddPet() {
                   <option value="Other">Other</option>
                 </select>
               </div>
-              
+
               <div>
-                <label className="text-sm font-medium" htmlFor="gender">Gender</label>
+                <label className="text-sm font-medium" htmlFor="gender">
+                  Gender
+                </label>
                 <select
                   id="gender"
                   value={gender}

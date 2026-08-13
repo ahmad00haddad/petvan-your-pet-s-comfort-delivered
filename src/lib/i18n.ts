@@ -43,8 +43,14 @@ export const copy = {
         title: "Medical Care",
         desc: "If you feel your pet needs immediate medical attention, guidance from a doctor, or other care.",
       },
-      { title: "Hotel", desc: "If you need a temporary, safe and comfortable place to take care of your pet." },
-      { title: "Salon", desc: "If your pet needs cleaning, shaving, nail clipping and other grooming services." },
+      {
+        title: "Hotel",
+        desc: "If you need a temporary, safe and comfortable place to take care of your pet.",
+      },
+      {
+        title: "Salon",
+        desc: "If your pet needs cleaning, shaving, nail clipping and other grooming services.",
+      },
     ],
     salon: "Salon",
     salonDesc: "Cleaning, shaving, nail clipping and other services",
@@ -120,7 +126,10 @@ export const copy = {
         desc: "إذا احتاج حيوانك الأليف إلى رعاية طبية فورية أو استشارة من طبيب مختص.",
       },
       { title: "الفندق", desc: "إذا احتجت مكاناً مؤقتاً وآمناً ومريحاً للاعتناء بحيوانك الأليف." },
-      { title: "الصالون", desc: "إذا احتاج حيوانك إلى استحمام، قص شعر، تقليم أظافر وخدمات العناية." },
+      {
+        title: "الصالون",
+        desc: "إذا احتاج حيوانك إلى استحمام، قص شعر، تقليم أظافر وخدمات العناية.",
+      },
     ],
     salon: "الصالون",
     salonDesc: "استحمام، قص شعر، تقليم أظافر وخدمات أخرى",

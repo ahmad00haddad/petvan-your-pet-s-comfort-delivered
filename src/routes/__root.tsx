@@ -19,9 +19,12 @@ import { MapPin, ShoppingCart, Instagram, Facebook, Twitter, Mail } from "lucide
 
 function Logo() {
   return (
-    <Link to="/" className="shrink-0 flex items-center font-display text-2xl font-extrabold tracking-tight">
+    <Link
+      to="/"
+      className="shrink-0 flex items-center font-display text-2xl font-extrabold tracking-tight"
+    >
       <span className="text-foreground">Pet</span>
-      <span className="text-[#FFC107]">Van</span>
+      <span className="text-primary">Van</span>
     </Link>
   );
 }
@@ -116,7 +119,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
   }),
 
-
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -125,11 +127,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   const lang = useAppStore((state) => state.lang);
-  
+
   return (
-    <html 
-      lang={lang} 
-      dir={lang === "ar" ? "rtl" : "ltr"} 
+    <html
+      lang={lang}
+      dir={lang === "ar" ? "rtl" : "ltr"}
       className={`dark ${lang === "ar" ? "font-cairo" : "font-poppins"}`}
     >
       <head>
@@ -138,15 +140,17 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <Scripts />
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             if ('serviceWorker' in navigator) {
               window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW registration failed:', err));
               });
             }
-          `
-        }} />
+          `,
+          }}
+        />
       </body>
     </html>
   );
@@ -161,7 +165,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster position="top-center" richColors />
-      
+
       {/* Global Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur px-5 py-4 sm:px-12">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -169,25 +173,38 @@ function RootComponent() {
             <Logo />
             <div className="hidden items-center gap-1.5 text-sm sm:flex">
               <span className="font-bold">Location</span>
-              <MapPin className="size-4 text-[#FFC107]" />
+              <MapPin className="size-4 text-primary" />
               <span className="text-muted-foreground text-xs">Amman</span>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-8">
             {userId && (
               <Link to="/profile" className="hidden sm:block">
                 <div className="grid size-8 place-items-center rounded-full bg-secondary text-primary font-bold overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" alt="User" />
+                  <img
+                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
+                    alt="User"
+                  />
                 </div>
               </Link>
             )}
             <nav className="hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
-              <a className="transition-colors hover:text-[#FFC107]" href="/#about">ABOUT US</a>
-              <a className="transition-colors hover:text-[#FFC107]" href="/#services">OUR SERVICES</a>
-              <a className="transition-colors hover:text-[#FFC107]" href="/#help">HELP</a>
+              <a className="transition-colors hover:text-[#FFC107]" href="/#about">
+                ABOUT US
+              </a>
+              <a className="transition-colors hover:text-[#FFC107]" href="/#services">
+                OUR SERVICES
+              </a>
+              <a className="transition-colors hover:text-[#FFC107]" href="/#help">
+                HELP
+              </a>
             </nav>
-            <Link to="/shop/cart" className="relative transition-colors hover:text-[#FFC107]" aria-label="Cart">
+            <Link
+              to="/shop/cart"
+              className="relative transition-colors hover:text-[#FFC107]"
+              aria-label="Cart"
+            >
               <ShoppingCart className="size-5" />
             </Link>
           </div>
@@ -199,18 +216,22 @@ function RootComponent() {
       </main>
 
       {/* Global Footer */}
-      <footer id="about" className="bg-[#151515] px-5 py-16 mt-20">
+      <footer id="about" className="bg-background px-5 py-16 mt-20">
         <div className="mx-auto grid max-w-5xl gap-12 text-center sm:grid-cols-3">
           <div>
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">About Us</h2>
             <p className="text-xs leading-relaxed text-muted-foreground max-w-[250px] mx-auto">
-              The first mobile veterinary clinic in Jordan specialized in caring for domestic pets by ordering a caravan fully equipped with the latest tools and working hands from experienced doctors.
+              The first mobile veterinary clinic in Jordan specialized in caring for domestic pets
+              by ordering a caravan fully equipped with the latest tools and working hands from
+              experienced doctors.
             </p>
           </div>
           <div>
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">Contact Us</h2>
             <p className="text-xs text-muted-foreground mb-2">Ahmad000Haddad@gmail.com</p>
-            <p className="text-xs text-muted-foreground" dir="ltr">+962799256345</p>
+            <p className="text-xs text-muted-foreground" dir="ltr">
+              +962799256345
+            </p>
           </div>
           <div>
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">Social With Us</h2>
@@ -223,9 +244,10 @@ function RootComponent() {
             </div>
           </div>
         </div>
-        <p className="mt-16 text-center text-xs text-muted-foreground/40">Ahmad Haddad © All rights reserved.</p>
+        <p className="mt-16 text-center text-xs text-muted-foreground/40">
+          Ahmad Haddad © All rights reserved.
+        </p>
       </footer>
     </QueryClientProvider>
   );
 }
-

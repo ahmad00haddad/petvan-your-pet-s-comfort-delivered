@@ -19,7 +19,7 @@ export const bookServiceFn = createServerFn({ method: "POST" })
         status: "PENDING",
         driverName: driver,
         eta: eta,
-      }
+      },
     });
     return order;
   });
@@ -28,6 +28,6 @@ export const getOrderFn = createServerFn({ method: "GET" })
   .validator((orderId: string) => orderId)
   .handler(async ({ data: orderId }) => {
     return await prisma.order.findUnique({
-      where: { id: orderId }
+      where: { id: orderId },
     });
   });

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "../lib/store";
 import { useEffect, useState, useMemo } from "react";
 import { getProductsFn } from "../api/shop";
@@ -46,7 +46,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "PetVan — Be the hero your pet thinks you are" },
       {
         property: "og:description",
-        content: "Mobile veterinary care, salon, hotel, shop and adoption — delivered to your door.",
+        content:
+          "Mobile veterinary care, salon, hotel, shop and adoption — delivered to your door.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -125,8 +126,11 @@ function Index() {
   }, [lang, t.dir]);
 
   return (
-    <div id="top" dir={t.dir} className={`min-h-screen bg-background text-foreground pb-20 ${lang === "ar" ? "font-arabic" : "font-sans"}`}>
-      
+    <div
+      id="top"
+      dir={t.dir}
+      className={`min-h-screen bg-background text-foreground pb-20 ${lang === "ar" ? "font-arabic" : "font-sans"}`}
+    >
       {/* Hero */}
       <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center pt-8 px-5 sm:px-12">
         <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0">
@@ -144,14 +148,21 @@ function Index() {
             Hello, <br /> my friend!
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
-            The first mobile caravan specialized in pets in Jordan, specialized in providing treatment and care for them.
+            The first mobile caravan specialized in pets in Jordan, specialized in providing
+            treatment and care for them.
           </p>
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
-            <Link to={userId ? "/profile" : "/login"} className="rounded-full bg-[#FFC107] px-8 py-2 text-xs sm:text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-wider">
+            <Link
+              to={userId ? "/profile" : "/login"}
+              className="rounded-full bg-[#FFC107] px-8 py-2 text-xs sm:text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-wider"
+            >
               {userId ? "Profile" : "Login"}
             </Link>
             {!userId && (
-              <Link to="/register" className="rounded-full border border-foreground px-8 py-2 text-xs sm:text-sm font-bold text-foreground transition-colors hover:bg-foreground hover:text-background uppercase tracking-wider">
+              <Link
+                to="/register"
+                className="rounded-full border border-foreground px-8 py-2 text-xs sm:text-sm font-bold text-foreground transition-colors hover:bg-foreground hover:text-background uppercase tracking-wider"
+              >
                 Register
               </Link>
             )}
@@ -178,7 +189,7 @@ function Index() {
               <button
                 key={k.key}
                 onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                className={`transition-all hover:scale-110 ${isActive ? 'text-[#FFC107]' : 'text-foreground hover:text-[#FFC107]'}`}
+                className={`transition-all hover:scale-110 ${isActive ? "text-[#FFC107]" : "text-foreground hover:text-[#FFC107]"}`}
               >
                 <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
               </button>
@@ -186,8 +197,12 @@ function Index() {
           })}
         </div>
 
-        <h2 className="mt-20 font-display text-3xl font-extrabold text-[#FFC107]">Ask for services</h2>
-        <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">CHOOSE THE KIND OF SERVICES YOU NEED</p>
+        <h2 className="mt-20 font-display text-3xl font-extrabold text-[#FFC107]">
+          Ask for services
+        </h2>
+        <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
+          CHOOSE THE KIND OF SERVICES YOU NEED
+        </p>
 
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
           {t.services.map((s, i) => {
@@ -199,7 +214,8 @@ function Index() {
                 </span>
                 <h3 className="mt-6 font-display text-base font-bold">{s.title}</h3>
                 <p className="mt-3 text-[10px] leading-relaxed text-muted-foreground max-w-[200px] text-center">
-                  The first mobile caravan specialized in caring for domestic pets by ordering a caravan fully equipped...
+                  The first mobile caravan specialized in caring for domestic pets by ordering a
+                  caravan fully equipped...
                 </p>
               </article>
             );
@@ -208,11 +224,16 @@ function Index() {
       </section>
 
       {/* Shop */}
-      <section id="shop" className="px-5 py-20 sm:px-8 bg-[#1a1a1a] border-t border-b border-[#2a2a2a] relative overflow-hidden">
+      <section
+        id="shop"
+        className="px-5 py-20 sm:px-8 bg-[#1a1a1a] border-t border-b border-[#2a2a2a] relative overflow-hidden"
+      >
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFC107] via-transparent to-transparent"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="font-display text-3xl font-extrabold text-[#FFC107]">Shop</h2>
-          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">CHOOSE WHAT YOU NEED WHENEVER YOU NEED</p>
+          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
+            CHOOSE WHAT YOU NEED WHENEVER YOU NEED
+          </p>
 
           <div className="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10">
             {shopCats.map((c) => (
@@ -231,7 +252,9 @@ function Index() {
 
       {/* Adoption */}
       <section id="adopt" className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto">
-        <p className="text-sm text-muted-foreground mb-8">Choose the kind of pet you want to adopt.</p>
+        <p className="text-sm text-muted-foreground mb-8">
+          Choose the kind of pet you want to adopt.
+        </p>
         <div className="flex justify-center gap-6 sm:gap-10 mb-16">
           {kinds.map((k) => {
             const isActive = globalPetType === k.key;
@@ -239,7 +262,7 @@ function Index() {
               <button
                 key={k.key}
                 onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                className={`transition-all hover:scale-110 ${isActive ? 'text-[#FFC107]' : 'text-foreground hover:text-[#FFC107]'}`}
+                className={`transition-all hover:scale-110 ${isActive ? "text-[#FFC107]" : "text-foreground hover:text-[#FFC107]"}`}
               >
                 <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
               </button>
@@ -248,28 +271,33 @@ function Index() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-12">
-          {(globalPetType ? adoptables.filter(a => a.type === globalPetType) : adoptables).concat(adoptables).slice(0, 8).map((a, i) => (
-            <figure key={`${a.key}-${i}`} className="group flex flex-col items-center">
-              <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-[#FFC107]">
-                <img
-                  src={a.img}
-                  alt={a.key}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <figcaption className="font-display font-bold text-lg lowercase flex items-center gap-2">
-                {a.key} <span className="text-foreground text-xl leading-none">{a.sex}</span>
-              </figcaption>
-            </figure>
-          ))}
+          {(globalPetType ? adoptables.filter((a) => a.type === globalPetType) : adoptables)
+            .concat(adoptables)
+            .slice(0, 8)
+            .map((a, i) => (
+              <figure key={`${a.key}-${i}`} className="group flex flex-col items-center">
+                <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-[#FFC107]">
+                  <img
+                    src={a.img}
+                    alt={a.key}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <figcaption className="font-display font-bold text-lg lowercase flex items-center gap-2">
+                  {a.key} <span className="text-foreground text-xl leading-none">{a.sex}</span>
+                </figcaption>
+              </figure>
+            ))}
         </div>
 
-        <Link to="/adopt" className="mt-16 inline-block rounded-full bg-[#FFC107] px-10 py-3 text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105">
+        <Link
+          to="/adopt"
+          className="mt-16 inline-block rounded-full bg-[#FFC107] px-10 py-3 text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105"
+        >
           View More
         </Link>
       </section>
-
     </div>
   );
 }
