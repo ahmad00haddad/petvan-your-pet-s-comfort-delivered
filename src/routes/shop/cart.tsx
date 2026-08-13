@@ -2,7 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAppStore } from "../../lib/store";
 import { checkoutFn } from "../../server/shop";
 import { useState } from "react";
-import { Trash2, ArrowLeft } from "lucide-react";
+import { Trash2, ArrowLeft, ShoppingBag } from "lucide-react";
+import { toast } from "sonner";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export const Route = createFileRoute("/shop/cart")({
   component: Cart,
@@ -32,9 +34,10 @@ function Cart() {
       });
       setSuccess(true);
       clearCart();
+      toast.success("Order placed successfully!");
     } catch (err) {
       console.error(err);
-      alert("Checkout failed");
+      toast.error("Checkout failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -114,13 +117,46 @@ function Cart() {
                 <span>{(total + 2).toFixed(2)} JOD</span>
               </div>
             </div>
-            <button
-              onClick={handleCheckout}
-              disabled={loading}
-              className="w-full rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
-            >
-              {loading ? "Processing..." : "Checkout securely"}
-            </button>
+            <Dialog.Root>
+              <Dialog.Trigger asChild>
+                <button
+                  disabled={loading}
+                  className="w-full rounded-full bg-primary px-8 py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                >
+                  {loading ? "Processing..." : `Pay Now (${(total + 2).toFixed(2)} JOD)`}
+                </button>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50" />
+                <Dialog.Content className="fixed left-[50%] top-[50%] z-50 w-full max-w-md translate-x-[-50%] translate-y-[-50%] rounded-3xl border border-border bg-card p-6 shadow-lg sm:p-8">
+                  <div className="flex flex-col items-center text-center">
+                    <span className="grid size-16 place-items-center rounded-full bg-primary/20 text-primary mb-4">
+                      <ShoppingBag className="size-8" />
+                    </span>
+                    <Dialog.Title className="font-display text-2xl font-bold">Confirm Purchase</Dialog.Title>
+                    <Dialog.Description className="mt-2 text-sm text-muted-foreground mb-8">
+                      You are about to purchase <strong>{cart.length}</strong> items. The total amount including delivery is:
+                      <br /><br />
+                      <span className="font-bold text-foreground block text-2xl">{(total + 2).toFixed(2)} JOD</span>
+                    </Dialog.Description>
+                    
+                    <div className="flex w-full gap-3">
+                      <Dialog.Close asChild>
+                        <button className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">
+                          Cancel
+                        </button>
+                      </Dialog.Close>
+                      <button 
+                        onClick={handleCheckout}
+                        className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105"
+                      >
+                        Confirm Payment
+                      </button>
+                    </div>
+                  </div>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
           </div>
         </div>
       )}

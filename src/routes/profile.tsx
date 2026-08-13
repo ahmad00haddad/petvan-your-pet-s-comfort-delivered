@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppStore } from "../lib/store";
 import { getUserFn } from "../server/auth";
 import { getMyPetsFn } from "../server/pets";
-import { LogOut, Plus } from "lucide-react";
+import { LogOut, Plus, PawPrint } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({
   component: Profile,
@@ -78,8 +78,21 @@ function Profile() {
           </div>
 
           {pets.length === 0 ? (
-            <div className="rounded-3xl border border-dashed border-border bg-card p-10 text-center">
-              <p className="text-muted-foreground">You haven't added any pets yet.</p>
+            <div className="rounded-3xl border border-dashed border-border bg-card p-12 text-center shadow-sm">
+              <span className="mx-auto mb-6 grid size-20 place-items-center rounded-full bg-secondary text-primary">
+                <PawPrint className="size-10" />
+              </span>
+              <h3 className="font-display text-2xl font-bold mb-2">No pets added yet</h3>
+              <p className="text-muted-foreground mb-8 max-w-sm mx-auto">
+                Start by adding your first pet to keep track of their medical records, salon visits, and more!
+              </p>
+              <Link 
+                to="/pets/add" 
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 animate-pulse"
+              >
+                <Plus className="size-5" />
+                Add Your First Pet
+              </Link>
             </div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2">

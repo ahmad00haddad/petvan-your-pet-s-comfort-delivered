@@ -8,9 +8,12 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Toaster } from "sonner";
+import { Home, Search, Calendar, User } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { useAppStore } from "../lib/store";
 
 function NotFoundComponent() {
   return (
@@ -123,11 +126,34 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const userId = useAppStore((state) => state.userId);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Toaster position="top-center" richColors />
+      <div className="pb-20 lg:pb-0"> {/* Add padding for mobile bottom nav */}
+        <Outlet />
+      </div>
+
+      {/* Mobile Bottom Navigation (Only visible on small screens) */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around border-t border-border bg-background/90 backdrop-blur-md pb-safe lg:hidden">
+        <Link to="/" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
+          <Home className="size-5" />
+          <span className="text-[10px] font-bold">Home</span>
+        </Link>
+        <Link to="/shop" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
+          <Search className="size-5" />
+          <span className="text-[10px] font-bold">Shop</span>
+        </Link>
+        <Link to="/adopt" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
+          <Calendar className="size-5" />
+          <span className="text-[10px] font-bold">Adopt</span>
+        </Link>
+        <Link to={userId ? "/profile" : "/login"} className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
+          <User className="size-5" />
+          <span className="text-[10px] font-bold">{userId ? "Profile" : "Login"}</span>
+        </Link>
+      </nav>
     </QueryClientProvider>
   );
 }
