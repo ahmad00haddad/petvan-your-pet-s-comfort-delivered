@@ -33,7 +33,7 @@ function Adopt() {
   const filtered = activeFilter ? listings.filter((l) => l.pet.type === activeFilter) : listings;
 
   return (
-    <div className="mx-auto max-w-5xl p-5 py-10 sm:p-8 min-h-screen">
+    <div className="mx-auto max-w-5xl p-5 py-10 sm:p-8 min-h-screen animate-fade-in-up">
       <Link
         to="/"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
@@ -62,7 +62,7 @@ function Adopt() {
                 className={`group flex flex-col items-center gap-3 transition-colors ${isActive ? "text-primary scale-110" : "text-muted-foreground hover:text-primary"}`}
               >
                 <span
-                  className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? "bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20" : "bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary"}`}
+                  className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? "bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20 glow-primary" : "glass-panel border border-border shadow-[var(--shadow-card)] group-hover:border-primary group-hover:glow-primary group-hover:scale-105"}`}
                 >
                   <k.icon className="size-8" />
                 </span>
@@ -93,7 +93,7 @@ function Adopt() {
           {filtered.map((listing) => (
             <figure
               key={listing.id}
-              className="group rounded-3xl border border-border bg-card overflow-hidden shadow-[var(--shadow-card)] transition-transform hover:-translate-y-2"
+              className="group rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary"
             >
               <div className="aspect-[4/3] bg-secondary relative">
                 {listing.pet.image ? (

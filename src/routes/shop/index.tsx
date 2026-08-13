@@ -46,7 +46,7 @@ function Shop() {
   });
 
   return (
-    <div className="mx-auto max-w-6xl p-5 py-10 sm:p-8 min-h-screen">
+    <div className="mx-auto max-w-6xl p-5 py-10 sm:p-8 min-h-screen animate-fade-in-up">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4">
         <div className="flex items-center gap-4">
           <Link to="/" className="text-muted-foreground hover:text-foreground">
@@ -73,10 +73,10 @@ function Shop() {
           <button
             key={c.label}
             onClick={() => setFilter(filter === c.id ? null : c.id)}
-            className={`group grid size-24 place-items-center rounded-3xl shadow-[var(--shadow-card)] transition-transform hover:-translate-y-1 ${filter === c.id ? "bg-primary text-primary-foreground" : "bg-card text-foreground border border-border"}`}
+            className={`group grid size-24 place-items-center rounded-3xl shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary ${filter === c.id ? "bg-primary text-primary-foreground scale-105" : "glass-panel text-foreground border border-border"}`}
           >
-            <c.icon className="size-8" />
-            <span className="text-xs font-bold mt-1">{c.label}</span>
+            <c.icon className={`size-8 transition-colors ${filter === c.id ? "" : "group-hover:text-primary"}`} />
+            <span className={`text-xs font-bold mt-1 transition-colors ${filter === c.id ? "" : "group-hover:text-primary"}`}>{c.label}</span>
           </button>
         ))}
       </div>
@@ -95,7 +95,7 @@ function Shop() {
           filtered.map((p, i) => (
             <article
               key={p.id}
-              className="group relative overflow-hidden rounded-3xl bg-card p-5 flex flex-col text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-transform hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-3xl glass-panel p-5 flex flex-col text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-all hover:-translate-y-2 hover:glow-primary"
             >
               {/* Visual Badges */}
               {i === 0 && (
