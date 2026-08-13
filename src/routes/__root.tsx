@@ -167,7 +167,7 @@ function RootComponent() {
       <Toaster position="top-center" richColors />
 
       {/* Global Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur px-5 py-4 sm:px-12">
+      <header className="sticky top-0 z-50 glass-panel shadow-sm px-5 py-4 sm:px-12 border-b-0">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-6">
             <Logo />

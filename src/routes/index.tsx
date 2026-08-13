@@ -143,8 +143,8 @@ function Index() {
           />
         </div>
 
-        <div className="order-1 lg:order-2 lg:pl-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start">
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+        <div className="order-1 lg:order-2 lg:pl-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold text-glow">
             Hello, <br /> my friend!
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -154,7 +154,7 @@ function Index() {
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
             <Link
               to={userId ? "/profile" : "/login"}
-              className="rounded-full bg-primary px-8 py-2 text-xs sm:text-sm font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-wider"
+              className="rounded-full bg-primary px-8 py-2 text-xs sm:text-sm font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-wider shadow-[0_4px_20px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]"
             >
               {userId ? "Profile" : "Login"}
             </Link>
@@ -172,7 +172,7 @@ function Index() {
           </p>
           <Link
             to="/adopt"
-            className="rounded-full bg-primary px-8 py-2.5 text-xs font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-widest"
+            className="rounded-full bg-primary px-8 py-2.5 text-xs font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-widest shadow-[0_4px_20px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]"
           >
             FIND YOUR ADOPT FRIEND
           </Link>
@@ -180,7 +180,7 @@ function Index() {
       </section>
 
       {/* Services */}
-      <section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto">
+      <section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
         <p className="text-sm text-muted-foreground mb-6">Choose the kind of pet you own.</p>
         <div className="flex justify-center gap-6 sm:gap-10">
           {kinds.map((k) => {
@@ -226,9 +226,9 @@ function Index() {
       {/* Shop */}
       <section
         id="shop"
-        className="px-5 py-20 sm:px-8 bg-background border-t border-b border-border relative overflow-hidden"
+        className="px-5 py-20 sm:px-8 bg-background border-t border-b border-border relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '100ms' }}
       >
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="font-display text-3xl font-extrabold text-primary">Shop</h2>
           <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
@@ -240,10 +240,10 @@ function Index() {
               <Link
                 key={c.label}
                 to="/shop"
-                className="group w-28 h-28 bg-foreground rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-transform hover:-translate-y-2 shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+                className="group w-28 h-28 glass-panel rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-all hover:-translate-y-2 hover:glow-primary shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
               >
-                <c.icon className="size-8 text-primary-foreground" />
-                <span className="text-[10px] font-bold text-primary-foreground">{c.label}</span>
+                <c.icon className="size-8 text-foreground group-hover:text-primary transition-colors" />
+                <span className="text-[10px] font-bold text-foreground group-hover:text-primary transition-colors">{c.label}</span>
               </Link>
             ))}
           </div>
@@ -251,7 +251,7 @@ function Index() {
       </section>
 
       {/* Adoption */}
-      <section id="adopt" className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto">
+      <section id="adopt" className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto animate-fade-in-up" style={{ animationDelay: '200ms' }}>
         <p className="text-sm text-muted-foreground mb-8">
           Choose the kind of pet you want to adopt.
         </p>
@@ -276,7 +276,7 @@ function Index() {
             .slice(0, 8)
             .map((a, i) => (
               <figure key={`${a.key}-${i}`} className="group flex flex-col items-center">
-                <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-primary">
+                <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/10 overflow-hidden mb-4 transition-all group-hover:scale-105 group-hover:border-primary group-hover:glow-primary">
                   <img
                     src={a.img}
                     alt={a.key}
