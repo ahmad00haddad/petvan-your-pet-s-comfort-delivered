@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   Stethoscope,
   Home,
@@ -19,11 +20,13 @@ import {
   Facebook,
   Twitter,
   Mail,
+  Languages,
 } from "lucide-react";
 import heroDog from "@/assets/hero-dog.jpg";
 import petCat from "@/assets/pet-cat.jpg";
 import petRabbit from "@/assets/pet-rabbit.jpg";
 import petParrot from "@/assets/pet-parrot.jpg";
+import { copy, type Lang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,23 +49,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const services = [
-  {
-    icon: Stethoscope,
-    title: "Medical Care",
-    desc: "If you feel your pet needs immediate medical attention, guidance from a doctor, or other care.",
-  },
-  {
-    icon: Home,
-    title: "Hotel",
-    desc: "If you need a temporary, safe and comfortable place to take care of your pet.",
-  },
-  {
-    icon: Scissors,
-    title: "Salon",
-    desc: "If your pet needs cleaning, shaving, nail clipping and other grooming services.",
-  },
-];
+const serviceIcons = [Stethoscope, Home, Scissors];
 
 const shopCats = [
   { icon: Utensils, label: "Food" },
@@ -70,27 +57,20 @@ const shopCats = [
   { icon: Gamepad2, label: "Games" },
 ];
 
-const products = [
-  { name: "reflex", desc: "cat food for kitten chicken · 15kg", price: "7.99" },
-  { name: "whiskas", desc: "cat food for adult tuna flavour · 7kg", price: "4.99" },
-  { name: "royal canin", desc: "cat food for kitten chicken · 15kg", price: "19.99" },
-  { name: "pro line", desc: "cat food for adult chicken · 1.5kg", price: "6.50" },
-  { name: "reflex stick", desc: "cat stick food rabbit · 3 sticks", price: "1.75" },
-  { name: "happy cat", desc: "cat food skin and coat · 1.3kg", price: "14.99" },
-];
+const prices = ["7.99", "4.99", "19.99", "6.50", "1.75", "14.99"];
 
 const kinds = [
-  { icon: Cat, label: "Cats" },
-  { icon: Dog, label: "Dogs" },
-  { icon: Bird, label: "Birds" },
-  { icon: Fish, label: "Fish" },
+  { icon: Cat, key: "Cats" as const },
+  { icon: Dog, key: "Dogs" as const },
+  { icon: Bird, key: "Birds" as const },
+  { icon: Fish, key: "Fish" as const },
 ];
 
 const adoptables = [
-  { name: "zazo", sex: "♂", img: petCat },
-  { name: "lely", sex: "♀", img: petRabbit },
-  { name: "kiwi", sex: "♂", img: petParrot },
-  { name: "fully", sex: "♀", img: heroDog },
+  { key: "zazo" as const, sex: "♂", img: petCat },
+  { key: "lely" as const, sex: "♀", img: petRabbit },
+  { key: "kiwi" as const, sex: "♂", img: petParrot },
+  { key: "fully" as const, sex: "♀", img: heroDog },
 ];
 
 function Logo() {
@@ -105,37 +85,63 @@ function Logo() {
 }
 
 function Index() {
+  const [lang, setLang] = useState<Lang>("en");
+  const t = copy[lang];
+
+  useEffect(() => {
+    const saved = localStorage.getItem("petvan-lang");
+    if (saved === "ar" || saved === "en") setLang(saved);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("petvan-lang", lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = t.dir;
+  }, [lang, t.dir]);
+
   return (
-    <div id="top" className="min-h-screen bg-background font-sans text-foreground">
+    <div
+      id="top"
+      dir={t.dir}
+      className={`min-h-screen bg-background text-foreground ${lang === "ar" ? "font-arabic" : "font-sans"}`}
+    >
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-5 py-4 sm:px-8">
           <Logo />
           <div className="hidden items-center gap-1 text-sm sm:flex">
             <MapPin className="size-4 text-muted-foreground" />
-            <span className="font-medium">Location</span>
+            <span className="font-medium">{t.location}</span>
             <ChevronDown className="size-4 text-primary" />
-            <span className="text-muted-foreground">Amman</span>
+            <span className="text-muted-foreground">{t.city}</span>
           </div>
           <nav className="ms-auto hidden items-center gap-7 text-xs font-semibold tracking-[0.12em] lg:flex">
             <a className="transition-colors hover:text-primary" href="#about">
-              ABOUT US
+              {t.nav.about}
             </a>
             <a className="transition-colors hover:text-primary" href="#services">
-              OUR SERVICES
+              {t.nav.services}
             </a>
             <a className="transition-colors hover:text-primary" href="#shop">
-              HELP
+              {t.nav.help}
             </a>
           </nav>
-          <button className="relative ms-auto lg:ms-0" aria-label="Cart">
+          <button
+            onClick={() => setLang(lang === "en" ? "ar" : "en")}
+            className="ms-auto inline-flex items-center gap-1.5 rounded-full border border-primary/60 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground lg:ms-0"
+            aria-label="Switch language"
+          >
+            <Languages className="size-4" />
+            {t.toggle}
+          </button>
+          <button className="relative" aria-label={t.cart}>
             <ShoppingCart className="size-5" />
             <span className="absolute -right-2 -top-2 grid size-4 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
               5
             </span>
           </button>
           <button className="hidden rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:block">
-            Login
+            {t.login}
           </button>
         </div>
       </header>
@@ -145,7 +151,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-10 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:pb-24">
           <div className="relative order-2 lg:order-1">
             <div className="absolute -inset-6 rounded-[999px] bg-primary/10 blur-3xl" aria-hidden />
-            <div className="relative overflow-hidden rounded-[999px_999px_999px_999px] bg-[oklch(0.93_0.005_90)] shadow-[var(--shadow-card)]">
+            <div className="relative overflow-hidden rounded-[999px] bg-[oklch(0.93_0.005_90)] shadow-[var(--shadow-card)]">
               <img
                 src={heroDog}
                 alt="Happy dog holding a plush toy"
@@ -157,37 +163,32 @@ function Index() {
           </div>
 
           <div className="order-1 lg:order-2">
-            <p className="text-sm text-muted-foreground">A great place to receive care.</p>
+            <p className="text-sm text-muted-foreground">{t.tagline}</p>
             <p className="mt-1 font-display text-lg font-bold">
-              Be the hero your pet{" "}
+              {t.hero1}{" "}
               <span className="relative inline-block">
                 <span className="absolute inset-x-0 bottom-0.5 h-2 bg-primary/80" aria-hidden />
-                <span className="relative">thinks you are.</span>
+                <span className="relative">{t.hero2}</span>
               </span>
             </p>
-            <h1 className="mt-8 font-display text-5xl font-black leading-[1.05] sm:text-6xl">
-              Hello, <span className="text-gold">my friend!</span>
+            <h1 className="mt-8 font-display text-5xl font-black leading-[1.15] sm:text-6xl">
+              {t.hello} <span className="text-gold">{t.friend}</span>
             </h1>
-            <p className="mt-5 max-w-md text-muted-foreground">
-              The first mobile caravan specialized in pets in Jordan — providing treatment,
-              grooming, boarding and pet food, right at your doorstep.
-            </p>
+            <p className="mt-5 max-w-md text-muted-foreground">{t.heroDesc}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button className="rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105">
-                LOGIN
+                {t.loginBig}
               </button>
               <button className="rounded-full border border-primary px-8 py-3 text-sm font-bold tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
-                REGISTER
+                {t.register}
               </button>
             </div>
-            <p className="mt-10 max-w-sm text-sm text-muted-foreground">
-              First place potential adopters turn to when looking to get a new pet.
-            </p>
+            <p className="mt-10 max-w-sm text-sm text-muted-foreground">{t.adoptLead}</p>
             <a
               href="#adopt"
               className="mt-4 inline-block rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground transition-transform hover:scale-105"
             >
-              FIND YOUR BEST FRIEND
+              {t.findFriend}
             </a>
           </div>
         </div>
@@ -196,43 +197,44 @@ function Index() {
       {/* Services */}
       <section id="services" className="px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-6xl text-center">
-          <p className="text-sm text-muted-foreground">Choose the kind of pet you own.</p>
+          <p className="text-sm text-muted-foreground">{t.chooseKind}</p>
           <div className="mt-5 flex justify-center gap-8">
             {kinds.map((k) => (
               <button
-                key={k.label}
+                key={k.key}
                 className="group flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-                aria-label={k.label}
+                aria-label={t.kinds[k.key]}
               >
                 <k.icon className="size-8 transition-transform group-hover:-translate-y-1" />
-                <span className="text-[11px] tracking-wide">{k.label}</span>
+                <span className="text-[11px] tracking-wide">{t.kinds[k.key]}</span>
               </button>
             ))}
           </div>
 
           <h2 className="mt-12 font-display text-4xl font-extrabold text-primary">
-            Ask for services
+            {t.askServices}
           </h2>
-          <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">
-            WE PUT YOUR PET&apos;S NEED FIRST
-          </p>
+          <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">{t.askServicesSub}</p>
 
           <div className="mt-10 rounded-[3rem] border border-border bg-card p-8 shadow-[var(--shadow-card)] sm:p-12">
             <div className="grid gap-10 sm:grid-cols-3">
-              {services.map((s) => (
-                <article key={s.title} className="group flex flex-col items-center">
-                  <span className="grid size-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-transform group-hover:scale-110">
-                    <s.icon className="size-6" />
-                  </span>
-                  <h3 className="mt-4 font-display text-lg font-bold">{s.title}</h3>
-                  <p className="mt-2 max-w-[15rem] text-xs leading-relaxed text-muted-foreground">
-                    {s.desc}
-                  </p>
-                  <button className="mt-5 rounded-full border border-border px-5 py-1.5 text-xs font-bold transition-colors hover:border-primary hover:text-primary">
-                    Request
-                  </button>
-                </article>
-              ))}
+              {t.services.map((s, i) => {
+                const Icon = serviceIcons[i];
+                return (
+                  <article key={s.title} className="group flex flex-col items-center">
+                    <span className="grid size-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-transform group-hover:scale-110">
+                      <Icon className="size-6" />
+                    </span>
+                    <h3 className="mt-4 font-display text-lg font-bold">{s.title}</h3>
+                    <p className="mt-2 max-w-[15rem] text-xs leading-relaxed text-muted-foreground">
+                      {s.desc}
+                    </p>
+                    <button className="mt-5 rounded-full border border-border px-5 py-1.5 text-xs font-bold transition-colors hover:border-primary hover:text-primary">
+                      {t.request}
+                    </button>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -244,17 +246,13 @@ function Index() {
           <span className="mx-auto grid size-12 place-items-center rounded-full bg-primary text-primary-foreground">
             <Scissors className="size-5" />
           </span>
-          <p className="mt-3 font-display font-bold">Salon</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Cleaning, shaving, nail clipping and other services
-          </p>
+          <p className="mt-3 font-display font-bold">{t.salon}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{t.salonDesc}</p>
           <p className="mt-4 font-display text-lg font-bold">
-            Cost : <span className="text-primary">15 JD</span>
+            {t.cost} <span className="text-primary">{t.costValue}</span>
           </p>
 
-          <h3 className="mt-8 font-display text-2xl font-extrabold">
-            Only 10 minutes left to reach you
-          </h3>
+          <h3 className="mt-8 font-display text-2xl font-extrabold">{t.minutesLeft}</h3>
           <div className="relative mt-5 h-56 overflow-hidden rounded-3xl bg-secondary">
             <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(var(--color-border)_1px,transparent_1px),linear-gradient(90deg,var(--color-border)_1px,transparent_1px)] [background-size:26px_26px]" />
             <div className="absolute left-1/2 top-1/2 h-1.5 w-4/5 -translate-x-1/2 -translate-y-1/2 -rotate-12 rounded-full bg-primary/70" />
@@ -266,9 +264,9 @@ function Index() {
             <span className="grid size-10 place-items-center rounded-full bg-primary/20 text-sm font-bold text-primary">
               AH
             </span>
-            <div className="text-left">
+            <div className="text-start">
               <p className="text-sm">
-                Doctor <span className="font-bold">Haddad</span> will soon arrive
+                {t.doctorPre} <span className="font-bold">{t.doctorName}</span> {t.doctorPost}
               </p>
               <span className="flex text-primary">
                 {[0, 1, 2, 3].map((i) => (
@@ -284,10 +282,8 @@ function Index() {
       {/* Shop */}
       <section id="shop" className="px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-6xl text-center">
-          <h2 className="font-display text-4xl font-extrabold text-primary">Shop</h2>
-          <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">
-            CHOOSE WHAT YOU NEED WHENEVER YOU NEED
-          </p>
+          <h2 className="font-display text-4xl font-extrabold text-primary">{t.shop}</h2>
+          <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">{t.shopSub}</p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             {shopCats.map((c) => (
@@ -302,10 +298,10 @@ function Index() {
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((p) => (
+            {t.products.map((p, i) => (
               <article
                 key={p.name}
-                className="group relative overflow-hidden rounded-3xl bg-card p-5 text-left shadow-[var(--shadow-card)] ring-1 ring-border transition-transform hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-3xl bg-card p-5 text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-transform hover:-translate-y-1"
               >
                 <div className="grid h-36 place-items-center rounded-2xl bg-secondary">
                   <Utensils className="size-10 text-primary/70" />
@@ -313,10 +309,12 @@ function Index() {
                 <h3 className="mt-4 font-display text-lg font-bold lowercase">{p.name}</h3>
                 <p className="mt-1 text-xs text-muted-foreground">{p.desc}</p>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="font-display text-lg font-bold">{p.price} JD</span>
+                  <span className="font-display text-lg font-bold">
+                    {prices[i]} {t.currency}
+                  </span>
                   <button
                     className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-110"
-                    aria-label={`Add ${p.name} to cart`}
+                    aria-label={t.addToCart(p.name)}
                   >
                     <Plus className="size-4" />
                   </button>
@@ -330,57 +328,53 @@ function Index() {
       {/* Adoption */}
       <section id="adopt" className="px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="text-sm text-muted-foreground">
-            Choose the kind of pet you want to adopt.
-          </p>
+          <p className="text-sm text-muted-foreground">{t.chooseAdopt}</p>
           <div className="mt-5 flex justify-center gap-8 text-primary">
             {kinds.map((k) => (
-              <k.icon key={k.label} className="size-8" />
+              <k.icon key={k.key} className="size-8" />
             ))}
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
             {adoptables.map((a) => (
-              <figure key={a.name} className="group">
+              <figure key={a.key} className="group">
                 <img
                   src={a.img}
-                  alt={a.name}
+                  alt={t.pets[a.key]}
                   loading="lazy"
                   width={900}
                   height={1200}
                   className="mx-auto size-28 rounded-full border-2 border-border object-cover transition-transform group-hover:scale-105 group-hover:border-primary"
                 />
                 <figcaption className="mt-3 font-display font-bold">
-                  {a.name} <span className="text-primary">{a.sex}</span>
+                  {t.pets[a.key]} <span className="text-primary">{a.sex}</span>
                 </figcaption>
               </figure>
             ))}
           </div>
 
           <button className="mt-10 rounded-full bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105">
-            View More
+            {t.viewMore}
           </button>
         </div>
       </section>
 
       {/* Footer */}
       <footer id="about" className="border-t border-border px-5 py-14 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 text-center sm:grid-cols-3 sm:text-left">
+        <div className="mx-auto grid max-w-6xl gap-10 text-center sm:grid-cols-3 sm:text-start">
           <div>
-            <h2 className="font-display font-bold">About Us</h2>
-            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-              The first mobile veterinary clinic in Jordan specialized in caring for domestic pets
-              by ordering a caravan fully equipped with the latest tools and working hands from
-              experienced doctors.
+            <h2 className="font-display font-bold">{t.aboutUs}</h2>
+            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{t.aboutText}</p>
+          </div>
+          <div>
+            <h2 className="font-display font-bold">{t.contactUs}</h2>
+            <p className="mt-3 text-xs text-muted-foreground">Ahmad000Haddad@gmail.com</p>
+            <p className="mt-1 text-xs text-muted-foreground" dir="ltr">
+              +962 7 9925 6345
             </p>
           </div>
           <div>
-            <h2 className="font-display font-bold">Contact Us</h2>
-            <p className="mt-3 text-xs text-muted-foreground">Ahmad000Haddad@gmail.com</p>
-            <p className="mt-1 text-xs text-muted-foreground">+962 7 9925 6345</p>
-          </div>
-          <div>
-            <h2 className="font-display font-bold">Social With Us</h2>
+            <h2 className="font-display font-bold">{t.socialWithUs}</h2>
             <div className="mt-4 flex justify-center gap-4 text-muted-foreground sm:justify-start">
               {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
                 <a key={i} href="#top" className="transition-colors hover:text-primary">
@@ -390,9 +384,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <p className="mt-10 text-center text-[11px] text-muted-foreground/60">
-          Ahmad Haddad © All rights reserved.
-        </p>
+        <p className="mt-10 text-center text-[11px] text-muted-foreground/60">{t.rights}</p>
       </footer>
     </div>
   );
