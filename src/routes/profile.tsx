@@ -121,7 +121,7 @@ function Profile() {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2">
               {pets.map(pet => (
-                <Link key={pet.id} to={`/pets/${pet.id}`} className="group relative rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] flex items-center gap-4 hover:border-primary transition-colors">
+                <Link key={pet.id} to="/pets/$petId" params={{ petId: String(pet.id) }} className="group relative rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] flex items-center gap-4 hover:border-primary transition-colors">
                   <div className="grid size-12 shrink-0 place-items-center rounded-full bg-secondary text-xl overflow-hidden">
                     {pet.image ? <img src={pet.image} alt={pet.name} className="w-full h-full object-cover mix-blend-multiply" /> : (pet.type === 'Cats' || pet.type === 'Cat' ? '🐱' : pet.type === 'Dogs' || pet.type === 'Dog' ? '🐶' : pet.type === 'Birds' || pet.type === 'Bird' ? '🦜' : '🐟')}
                   </div>
