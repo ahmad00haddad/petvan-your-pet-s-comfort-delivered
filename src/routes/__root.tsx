@@ -199,6 +199,10 @@ function RootComponent() {
               <a className="transition-colors hover:text-primary" href="/#help">
                 HELP
               </a>
+              <Link to="/install" className="transition-colors hover:text-primary text-primary flex items-center gap-1">
+                <Smartphone className="size-3" />
+                INSTALL APP
+              </Link>
             </nav>
             <Link
               to="/shop/cart"
@@ -225,6 +229,18 @@ function RootComponent() {
               by ordering a caravan fully equipped with the latest tools and working hands from
               experienced doctors.
             </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">Quick Links</h2>
+            <nav className="flex flex-col gap-3 text-xs text-muted-foreground">
+              <a href="/#services" className="hover:text-primary transition-colors">Our Services</a>
+              <Link to="/adopt" className="hover:text-primary transition-colors">Adopt a Pet</Link>
+              <Link to="/shop" className="hover:text-primary transition-colors">Pet Shop</Link>
+              <Link to="/install" className="hover:text-primary transition-colors text-primary flex items-center gap-1 justify-center">
+                <Smartphone className="size-3" />
+                Install App
+              </Link>
+            </nav>
           </div>
           <div>
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">Contact Us</h2>

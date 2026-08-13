@@ -33,7 +33,7 @@ function InstallPage() {
   };
 
   return (
-    <div className="mx-auto max-w-lg p-5 py-10 sm:p-8 min-h-screen">
+    <div className="mx-auto max-w-lg p-5 py-10 sm:p-8 min-h-screen animate-fade-in-up">
       <Link
         to="/"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
@@ -43,17 +43,19 @@ function InstallPage() {
       </Link>
 
       <div className="text-center mb-10">
-        <div className="mx-auto grid size-24 place-items-center rounded-3xl bg-primary shadow-[var(--shadow-gold)] mb-6">
+        <div className="mx-auto grid size-24 place-items-center rounded-3xl bg-primary shadow-[0_0_40px_color-mix(in_oklch,var(--color-primary)_50%,transparent)] mb-6 transition-transform hover:scale-110">
           <Smartphone className="size-12 text-primary-foreground" />
         </div>
-        <h1 className="font-display text-4xl font-extrabold text-primary mb-4">Install PetVan</h1>
+        <h1 className="font-display text-4xl font-extrabold text-primary mb-4 text-glow">Install PetVan</h1>
         <p className="text-muted-foreground">
           Get the full app experience. Install PetVan on your home screen for faster access, offline
           mode, and push notifications.
         </p>
       </div>
 
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-card)] space-y-8">
+      <div className="rounded-3xl border border-border glass-panel p-6 shadow-[var(--shadow-card)] space-y-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+        
         {/* Android / Native PWA Install */}
         {(isAndroid || deferredPrompt) && (
           <div className="text-center border-b border-border pb-8">
@@ -61,7 +63,7 @@ function InstallPage() {
             <button
               onClick={handleInstallClick}
               disabled={!deferredPrompt}
-              className="w-full rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
+              className="w-full rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               <Download className="size-5" />
               {deferredPrompt ? "Install App Now" : "App is already installed"}
