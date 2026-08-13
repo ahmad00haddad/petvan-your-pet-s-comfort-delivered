@@ -163,10 +163,12 @@ function RootComponent() {
   const t = copy[lang];
 
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -181,7 +183,7 @@ function RootComponent() {
       <Toaster position="top-center" richColors />
 
       {/* Global Header */}
-      <header className="sticky top-0 z-50 glass-panel shadow-sm px-5 py-4 sm:px-12 border-b-0">
+      <header className={`sticky top-0 z-50 px-5 sm:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-5 border-b-0"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-6">
             <Logo />

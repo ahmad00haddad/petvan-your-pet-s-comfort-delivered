@@ -351,10 +351,33 @@ function Index() {
 
         <Link
           to="/adopt"
-          className="mt-16 inline-block rounded-full bg-primary px-10 py-3 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
+          className="mt-16 inline-block rounded-full bg-primary px-10 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 hover:glow-primary"
         >
           View More
         </Link>
+      </section>
+
+      {/* Numbers Speak Section */}
+      <section className="px-5 py-24 sm:px-8 relative overflow-hidden bg-primary/5 mt-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-0" />
+        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 text-center relative z-10">
+          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">10K<span className="text-3xl">+</span></h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Pets Served</p>
+          </div>
+          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">50<span className="text-3xl">+</span></h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Expert Vets</p>
+          </div>
+          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">15<span className="text-3xl">+</span></h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Mobile Caravans</p>
+          </div>
+          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">4.9</h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Client Rating</p>
+          </div>
+        </div>
       </section>
     </div>
   );
