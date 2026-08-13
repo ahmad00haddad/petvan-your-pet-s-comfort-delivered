@@ -74,7 +74,7 @@ function Profile() {
           />
         </div>
 
-        <div className="mt-4 flex items-center justify-center gap-1 text-[#FFC107]">
+        <div className="mt-4 flex items-center justify-center gap-1 text-primary">
           {[1, 2, 3, 4].map((i) => (
             <Star key={i} className="size-5 fill-current" />
           ))}
@@ -95,7 +95,7 @@ function Profile() {
 
         <Link
           to="/pets/add"
-          className="mt-6 inline-block rounded-full bg-[#FFC107] px-8 py-2 text-xs font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-wider"
+          className="mt-6 inline-block rounded-full bg-primary px-8 py-2 text-xs font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-wider"
         >
           Add Pet
         </Link>
@@ -113,7 +113,7 @@ function Profile() {
               params={{ petId: String(pet.id) }}
               className="group flex flex-col items-center"
             >
-              <div className="size-28 sm:size-32 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-[#FFC107] relative">
+              <div className="size-28 sm:size-32 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-primary relative">
                 {pet.image ? (
                   <img src={pet.image} alt={pet.name} className="w-full h-full object-cover" />
                 ) : (
@@ -128,7 +128,7 @@ function Profile() {
         )}
       </div>
 
-      <hr className="my-12 border-[#2a2a2a] max-w-xl mx-auto" />
+      <hr className="my-12 border-border max-w-xl mx-auto" />
 
       {/* Photo Section */}
       <div>
@@ -155,7 +155,7 @@ function Profile() {
           ))}
         </div>
 
-        <button className="mt-12 rounded-full bg-[#FFC107] px-10 py-2.5 text-xs font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-widest">
+        <button className="mt-12 rounded-full bg-primary px-10 py-2.5 text-xs font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-widest">
           View More
         </button>
       </div>

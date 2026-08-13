@@ -154,7 +154,7 @@ function Index() {
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
             <Link
               to={userId ? "/profile" : "/login"}
-              className="rounded-full bg-[#FFC107] px-8 py-2 text-xs sm:text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-wider"
+              className="rounded-full bg-primary px-8 py-2 text-xs sm:text-sm font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-wider"
             >
               {userId ? "Profile" : "Login"}
             </Link>
@@ -172,7 +172,7 @@ function Index() {
           </p>
           <Link
             to="/adopt"
-            className="rounded-full bg-[#FFC107] px-8 py-2.5 text-xs font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-widest"
+            className="rounded-full bg-primary px-8 py-2.5 text-xs font-bold text-primary-foreground transition-transform hover:scale-105 uppercase tracking-widest"
           >
             FIND YOUR ADOPT FRIEND
           </Link>
@@ -189,7 +189,7 @@ function Index() {
               <button
                 key={k.key}
                 onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                className={`transition-all hover:scale-110 ${isActive ? "text-[#FFC107]" : "text-foreground hover:text-[#FFC107]"}`}
+                className={`transition-all hover:scale-110 ${isActive ? "text-primary" : "text-foreground hover:text-primary"}`}
               >
                 <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
               </button>
@@ -197,7 +197,7 @@ function Index() {
           })}
         </div>
 
-        <h2 className="mt-20 font-display text-3xl font-extrabold text-[#FFC107]">
+        <h2 className="mt-20 font-display text-3xl font-extrabold text-primary">
           Ask for services
         </h2>
         <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
@@ -209,7 +209,7 @@ function Index() {
             const Icon = serviceIcons[i];
             return (
               <article key={s.title} className="flex flex-col items-center">
-                <span className="grid size-16 place-items-center rounded-full bg-[#FFC107] text-[#1a1a1a] shadow-[0_10px_30px_rgba(255,193,7,0.3)] transition-transform hover:scale-110">
+                <span className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_rgba(255,193,7,0.3)] transition-transform hover:scale-110">
                   <Icon className="size-8" />
                 </span>
                 <h3 className="mt-6 font-display text-base font-bold">{s.title}</h3>
@@ -226,11 +226,11 @@ function Index() {
       {/* Shop */}
       <section
         id="shop"
-        className="px-5 py-20 sm:px-8 bg-[#1a1a1a] border-t border-b border-[#2a2a2a] relative overflow-hidden"
+        className="px-5 py-20 sm:px-8 bg-background border-t border-b border-border relative overflow-hidden"
       >
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFC107] via-transparent to-transparent"></div>
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="font-display text-3xl font-extrabold text-[#FFC107]">Shop</h2>
+          <h2 className="font-display text-3xl font-extrabold text-primary">Shop</h2>
           <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
             CHOOSE WHAT YOU NEED WHENEVER YOU NEED
           </p>
@@ -242,8 +242,8 @@ function Index() {
                 to="/shop"
                 className="group w-28 h-28 bg-foreground rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-transform hover:-translate-y-2 shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
               >
-                <c.icon className="size-8 text-[#1a1a1a]" />
-                <span className="text-[10px] font-bold text-[#1a1a1a]">{c.label}</span>
+                <c.icon className="size-8 text-primary-foreground" />
+                <span className="text-[10px] font-bold text-primary-foreground">{c.label}</span>
               </Link>
             ))}
           </div>
@@ -262,7 +262,7 @@ function Index() {
               <button
                 key={k.key}
                 onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                className={`transition-all hover:scale-110 ${isActive ? "text-[#FFC107]" : "text-foreground hover:text-[#FFC107]"}`}
+                className={`transition-all hover:scale-110 ${isActive ? "text-primary" : "text-foreground hover:text-primary"}`}
               >
                 <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
               </button>
@@ -276,7 +276,7 @@ function Index() {
             .slice(0, 8)
             .map((a, i) => (
               <figure key={`${a.key}-${i}`} className="group flex flex-col items-center">
-                <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-[#FFC107]">
+                <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-primary">
                   <img
                     src={a.img}
                     alt={a.key}
@@ -293,7 +293,7 @@ function Index() {
 
         <Link
           to="/adopt"
-          className="mt-16 inline-block rounded-full bg-[#FFC107] px-10 py-3 text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105"
+          className="mt-16 inline-block rounded-full bg-primary px-10 py-3 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
         >
           View More
         </Link>
