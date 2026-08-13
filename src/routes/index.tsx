@@ -88,6 +88,28 @@ const getHeroImage = (petType: string | null) => {
   return heroDog;
 };
 
+function TypewriterText({ text }: { text: string }) {
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    setDisplayedText("");
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, 60);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return (
+    <span className="inline-block relative">
+      {displayedText}
+      <span className="absolute -right-2 top-0 bottom-0 w-[3px] bg-primary animate-pulse" />
+    </span>
+  );
+}
+
 function Logo() {
   return (
     <a href="#top" className="shrink-0">
@@ -125,6 +147,25 @@ function Index() {
     document.documentElement.dir = t.dir;
   }, [lang, t.dir]);
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const heroText = useMemo(() => {
+    if (globalPetType === "Cats") return "Hello, Cat Lover! 🐱";
+    if (globalPetType === "Dogs") return "Hey, Dog Parent! 🐶";
+    if (globalPetType === "Birds") return "Tweet Tweet! 🦜";
+    if (globalPetType === "Fish") return "Glub Glub! 🐟";
+    return "Hello, my friend!";
+  }, [globalPetType]);
+
   return (
     <div
       id="top"
@@ -133,19 +174,36 @@ function Index() {
     >
       {/* Hero */}
       <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center pt-8 px-5 sm:px-12">
-        <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-foreground rounded-[999px] -z-10 shadow-[0_0_80px_rgba(255,255,255,0.05)]"></div>
+        <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0 transition-transform duration-300 ease-out" style={{ transform: 'translate(calc(var(--mouse-x, 0) * -1), calc(var(--mouse-y, 0) * -1))' }}>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-foreground rounded-[999px] -z-10 shadow-[0_0_80px_rgba(255,255,255,0.05)] pulsing-glow"></div>
+          
+          {/* Floating Particles */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <div 
+                key={i} 
+                className="absolute size-2 rounded-full bg-primary/40 animate-float"
+                style={{ 
+                  top: `${20 + Math.random() * 60}%`, 
+                  left: `${20 + Math.random() * 60}%`, 
+                  animationDelay: `${i * 0.5}s`,
+                  animationDuration: `${3 + Math.random() * 2}s`
+                }}
+              />
+            ))}
+          </div>
+
           <img
             key={globalPetType || "default"}
             src={getHeroImage(globalPetType)}
             alt="Happy pet"
-            className="w-[85%] h-full object-contain mx-auto mix-blend-multiply"
+            className="w-[85%] h-full object-contain mx-auto mix-blend-multiply transition-transform duration-500 hover:scale-105"
           />
         </div>
 
         <div className="order-1 lg:order-2 lg:pl-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold text-glow">
-            Hello, <br /> my friend!
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold text-glow h-[120px] sm:h-[140px] flex items-center">
+            <TypewriterText text={heroText} />
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
             The first mobile caravan specialized in pets in Jordan, specialized in providing

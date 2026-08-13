@@ -7,9 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Toaster } from "sonner";
-import { Home, Search, Calendar, User, Smartphone } from "lucide-react";
+import { Home, Search, Calendar, User, Smartphone, ArrowUp } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -162,6 +162,20 @@ function RootComponent() {
   const lang = useAppStore((state) => state.lang);
   const t = copy[lang];
 
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster position="top-center" richColors />
@@ -215,9 +229,20 @@ function RootComponent() {
         </div>
       </header>
 
-      <main className="min-h-screen">
+      <main className="min-h-screen animate-fade-in-up">
         <Outlet />
       </main>
+
+      {/* Scroll to Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-all duration-300 hover:scale-110 hover:glow-primary ${
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="size-5" />
+      </button>
 
       {/* Global Footer */}
       <footer id="about" className="bg-background px-5 py-16 mt-20">

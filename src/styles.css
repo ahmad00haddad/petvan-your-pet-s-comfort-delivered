@@ -184,3 +184,24 @@
 @utility text-glow {
   text-shadow: 0 0 10px color-mix(in oklch, var(--color-primary) 50%, transparent);
 }
+
+@keyframes float {
+  0% { transform: translateY(0px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+@utility animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulsingGlow {
+  0% { box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 10%, transparent); }
+  50% { box-shadow: 0 0 80px color-mix(in oklch, var(--color-primary) 30%, transparent); }
+  100% { box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 10%, transparent); }
+}
+
+@utility pulsing-glow {
+  animation: pulsingGlow 4s ease-in-out infinite;
+}
