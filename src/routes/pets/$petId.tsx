@@ -25,6 +25,7 @@ function PetProfile() {
   const [pet, setPet] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"medical" | "vaccines">("medical");
+  const [ageString, setAgeString] = useState("Unknown");
 
   useEffect(() => {
     getPetByIdFn({ data: petId })
@@ -34,6 +35,18 @@ function PetProfile() {
       })
       .catch(() => setLoading(false));
   }, [petId]);
+
+  // Calculate age — client-only to avoid SSR hydration mismatch
+  useEffect(() => {
+    if (pet?.birthDate) {
+      const birth = new Date(pet.birthDate);
+      const diff = Date.now() - birth.getTime();
+      const age = new Date(diff);
+      const years = Math.abs(age.getUTCFullYear() - 1970);
+      const months = age.getUTCMonth();
+      setAgeString(years > 0 ? `${years}y ${months}m` : `${months}m`);
+    }
+  }, [pet?.birthDate]);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -70,17 +83,6 @@ function PetProfile() {
         </Link>
       </div>
     );
-  }
-
-  // Calculate age if birthDate exists
-  let ageString = "Unknown";
-  if (pet.birthDate) {
-    const birth = new Date(pet.birthDate);
-    const diff = new Date().getTime() - birth.getTime();
-    const age = new Date(diff);
-    const years = Math.abs(age.getUTCFullYear() - 1970);
-    const months = age.getUTCMonth();
-    ageString = years > 0 ? `${years}y ${months}m` : `${months}m`;
   }
 
   return (

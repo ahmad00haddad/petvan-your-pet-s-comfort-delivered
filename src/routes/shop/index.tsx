@@ -99,7 +99,7 @@ function Shop() {
             >
               {/* Visual Badges */}
               {i === 0 && (
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1 rounded-full bg-red-500 px-3 py-1 text-[10px] font-bold text-white shadow-sm">
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-1 rounded-full bg-red-500 px-3 py-1 text-[10px] font-bold text-primary-foreground shadow-sm">
                   <Flame className="size-3" />
                   Best Seller
                 </div>

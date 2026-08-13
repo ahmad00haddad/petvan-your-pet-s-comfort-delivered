@@ -39,7 +39,7 @@ function BookService() {
         data: { userId, serviceType: selected.id, total: selected.price },
       });
       toast.success("Booking confirmed successfully!");
-      navigate({ to: `/services/tracking/${order.id}` });
+      navigate({ to: "/services/tracking/$orderId", params: { orderId: String(order.id) } });
     } catch (err) {
       console.error(err);
       toast.error("Booking failed. Please try again.");

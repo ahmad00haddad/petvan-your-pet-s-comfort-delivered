@@ -190,19 +190,19 @@ function RootComponent() {
               </Link>
             )}
             <nav className="hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
-              <a className="transition-colors hover:text-[#FFC107]" href="/#about">
+              <a className="transition-colors hover:text-primary" href="/#about">
                 ABOUT US
               </a>
-              <a className="transition-colors hover:text-[#FFC107]" href="/#services">
+              <a className="transition-colors hover:text-primary" href="/#services">
                 OUR SERVICES
               </a>
-              <a className="transition-colors hover:text-[#FFC107]" href="/#help">
+              <a className="transition-colors hover:text-primary" href="/#help">
                 HELP
               </a>
             </nav>
             <Link
               to="/shop/cart"
-              className="relative transition-colors hover:text-[#FFC107]"
+              className="relative transition-colors hover:text-primary"
               aria-label="Cart"
             >
               <ShoppingCart className="size-5" />
@@ -237,7 +237,7 @@ function RootComponent() {
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">Social With Us</h2>
             <div className="flex justify-center gap-5 text-muted-foreground">
               {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
-                <a key={i} href="#top" className="transition-colors hover:text-[#FFC107]">
+                <a key={i} href="#top" className="transition-colors hover:text-primary">
                   <Icon className="size-6" />
                 </a>
               ))}
