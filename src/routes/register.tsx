@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAppStore } from "../lib/store";
 import { registerUserFn } from "../api/auth";
 import { ArrowLeft } from "lucide-react";
+import petCat from "@/assets/pet-cat.jpg";
 
 export const Route = createFileRoute("/register")({
   component: Register,
@@ -33,17 +34,38 @@ function Register() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4 relative">
-      <Link
-        to="/"
-        className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold"
-      >
-        <ArrowLeft className="size-5" />
-        Home
-      </Link>
-      <div className="w-full max-w-md space-y-8 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
-        <div className="text-center">
-          <h2 className="font-display text-3xl font-extrabold text-primary">Create an account</h2>
+    <div className="flex min-h-screen w-full bg-background animate-fade-in-up">
+      {/* Left Panel - Image */}
+      <div className="hidden lg:flex w-1/2 relative bg-secondary flex-col justify-between p-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
+        <img src={petCat} alt="Happy Cat" className="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80" />
+        <div className="relative z-20">
+          <Link to="/" className="font-display text-3xl font-extrabold tracking-tight">
+            <span className="text-foreground">Pet</span>
+            <span className="text-primary">Van</span>
+          </Link>
+        </div>
+        <div className="relative z-20 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
+          <h2 className="text-5xl font-black mb-4 text-glow">Join the family!</h2>
+          <p className="text-muted-foreground max-w-md text-lg">
+            Create an account to track your pet's medical history, book appointments, and more.
+          </p>
+        </div>
+      </div>
+
+      {/* Right Panel - Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-5 sm:p-8 relative">
+        <Link
+          to="/"
+          className="absolute top-6 left-6 lg:left-auto lg:right-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold transition-transform hover:-translate-x-1"
+        >
+          <ArrowLeft className="size-5" />
+          Home
+        </Link>
+        
+        <div className="w-full max-w-md space-y-8 rounded-3xl border border-border glass-panel p-8 shadow-[var(--shadow-card)]">
+        <div className="text-center lg:text-start">
+          <h2 className="font-display text-3xl font-extrabold text-primary text-glow">Sign Up</h2>
           <p className="mt-2 text-sm text-muted-foreground">Join PetVan today</p>
         </div>
 
@@ -60,7 +82,7 @@ function Register() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-2"
+                className="flex h-12 w-full rounded-xl border border-input bg-background/50 backdrop-blur px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary transition-all hover:bg-background/80 mt-2"
               />
             </div>
             <div>
@@ -73,7 +95,7 @@ function Register() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-2"
+                className="flex h-12 w-full rounded-xl border border-input bg-background/50 backdrop-blur px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary transition-all hover:bg-background/80 mt-2"
               />
             </div>
             <div>
@@ -86,7 +108,7 @@ function Register() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-2"
+                className="flex h-12 w-full rounded-xl border border-input bg-background/50 backdrop-blur px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-primary transition-all hover:bg-background/80 mt-2"
               />
             </div>
           </div>
@@ -94,7 +116,7 @@ function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+            className="w-full rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100"
           >
             {loading ? "Creating account..." : "Sign up"}
           </button>
@@ -106,6 +128,7 @@ function Register() {
             Sign in
           </Link>
         </p>
+      </div>
       </div>
     </div>
   );
