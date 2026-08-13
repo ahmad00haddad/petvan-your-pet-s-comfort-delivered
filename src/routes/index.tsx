@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router'
 import { useAppStore } from "../lib/store";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { getProductsFn } from "../api/shop";
 import {
   Stethoscope,
   Home,
@@ -30,6 +31,7 @@ import heroDog from "@/assets/hero-dog.jpg";
 import petCat from "@/assets/pet-cat.jpg";
 import petRabbit from "@/assets/pet-rabbit.jpg";
 import petParrot from "@/assets/pet-parrot.jpg";
+// Use fish icon if no image
 import { copy, type Lang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
@@ -71,11 +73,19 @@ const kinds = [
 ];
 
 const adoptables = [
-  { key: "zazo" as const, sex: "♂", img: petCat },
-  { key: "lely" as const, sex: "♀", img: petRabbit },
-  { key: "kiwi" as const, sex: "♂", img: petParrot },
-  { key: "fully" as const, sex: "♀", img: heroDog },
+  { key: "zazo" as const, sex: "♂", img: petCat, type: "Cats" },
+  { key: "lely" as const, sex: "♀", img: petRabbit, type: "Dogs" },
+  { key: "kiwi" as const, sex: "♂", img: petParrot, type: "Birds" },
+  { key: "fully" as const, sex: "♀", img: heroDog, type: "Cats" },
 ];
+
+const getHeroImage = (petType: string | null) => {
+  if (petType === "Cats") return petCat;
+  if (petType === "Birds") return petParrot;
+  if (petType === "Dogs") return heroDog;
+  // Default/Fish
+  return heroDog;
+};
 
 function Logo() {
   return (
@@ -93,7 +103,15 @@ function Index() {
   const cart = useAppStore((state) => state.cart);
   const lang = useAppStore((state) => state.lang);
   const setLang = useAppStore((state) => state.setLang);
+  const globalPetType = useAppStore((state) => state.globalPetType);
+  const setGlobalPetType = useAppStore((state) => state.setGlobalPetType);
   const t = copy[lang];
+
+  const [dbProducts, setDbProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    getProductsFn().then(setDbProducts);
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem("petvan-lang") as Lang;
@@ -166,11 +184,12 @@ function Index() {
             <div className="absolute -inset-6 rounded-[999px] bg-primary/10 blur-3xl" aria-hidden />
             <div className="relative overflow-hidden rounded-[999px] bg-[oklch(0.93_0.005_90)] shadow-[var(--shadow-card)]">
               <img
-                src={heroDog}
-                alt="Happy dog holding a plush toy"
+                key={globalPetType || "default"}
+                src={getHeroImage(globalPetType)}
+                alt="Happy pet"
                 width={1008}
                 height={1408}
-                className="mx-auto block h-[420px] w-full object-cover object-top sm:h-[560px]"
+                className="mx-auto block h-[420px] w-full object-cover object-top sm:h-[560px] animate-in fade-in zoom-in duration-500"
               />
             </div>
           </div>
@@ -181,7 +200,7 @@ function Index() {
               {t.hero1}{" "}
               <span className="relative inline-block">
                 <span className="absolute inset-x-0 bottom-0.5 h-2 bg-primary/80" aria-hidden />
-                <span className="relative">{t.hero2}</span>
+                <span className="relative">{globalPetType ? t.kinds[globalPetType as keyof typeof t.kinds] : t.hero2}</span>
               </span>
             </p>
             <h1 className="mt-8 font-display text-5xl font-black leading-[1.15] sm:text-6xl">
@@ -214,16 +233,22 @@ function Index() {
         <div className="mx-auto max-w-6xl text-center">
           <p className="text-sm text-muted-foreground">{t.chooseKind}</p>
           <div className="mt-5 flex justify-center gap-8">
-            {kinds.map((k) => (
-              <button
-                key={k.key}
-                className="group flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-                aria-label={t.kinds[k.key]}
-              >
-                <k.icon className="size-8 transition-transform group-hover:-translate-y-1" />
-                <span className="text-[11px] tracking-wide">{t.kinds[k.key]}</span>
-              </button>
-            ))}
+            {kinds.map((k) => {
+              const isActive = globalPetType === k.key;
+              return (
+                <button
+                  key={k.key}
+                  onClick={() => setGlobalPetType(isActive ? null : k.key)}
+                  className={`group flex flex-col items-center gap-3 transition-all ${isActive ? 'text-primary scale-110' : 'text-muted-foreground hover:text-primary'}`}
+                  aria-label={t.kinds[k.key]}
+                >
+                  <span className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
+                    <k.icon className="size-8" />
+                  </span>
+                  <span className="text-[11px] font-bold tracking-wide">{t.kinds[k.key]}</span>
+                </button>
+              );
+            })}
           </div>
 
           <h2 className="mt-12 font-display text-4xl font-extrabold text-primary">
@@ -315,19 +340,23 @@ function Index() {
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {t.products.map((p, i) => (
+            {(dbProducts.length > 0 ? (globalPetType ? dbProducts.filter(p => p.targetPet === globalPetType) : dbProducts) : t.products).slice(0, 3).map((p: any, i) => (
               <article
-                key={p.name}
+                key={p.name || p.id}
                 className="group relative overflow-hidden rounded-3xl bg-card p-5 text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-transform hover:-translate-y-1"
               >
-                <div className="grid h-36 place-items-center rounded-2xl bg-secondary">
-                  <Utensils className="size-10 text-primary/70" />
+                <div className="grid h-36 place-items-center rounded-2xl bg-secondary overflow-hidden">
+                  {p.image ? (
+                    <img src={p.image} alt={p.name} className="h-full w-full object-cover mix-blend-multiply" />
+                  ) : (
+                    <Utensils className="size-10 text-primary/70" />
+                  )}
                 </div>
-                <h3 className="mt-4 font-display text-lg font-bold lowercase">{p.name}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">{p.desc}</p>
+                <h3 className="mt-4 font-display text-lg font-bold lowercase line-clamp-1">{p.name}</h3>
+                <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{p.description || p.desc}</p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="font-display text-lg font-bold">
-                    {prices[i]} {t.currency}
+                    {p.price ? p.price.toFixed(2) : prices[i]} {t.currency}
                   </span>
                   <button
                     className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-110"
@@ -346,25 +375,36 @@ function Index() {
       <section id="adopt" className="px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-sm text-muted-foreground">{t.chooseAdopt}</p>
-          <div className="mt-5 flex justify-center gap-8 text-primary">
-            {kinds.map((k) => (
-              <k.icon key={k.key} className="size-8" />
-            ))}
+          <div className="mt-5 flex justify-center gap-8">
+            {kinds.map((k) => {
+              const isActive = globalPetType === k.key;
+              return (
+                <button
+                  key={k.key}
+                  onClick={() => setGlobalPetType(isActive ? null : k.key)}
+                  className={`group flex flex-col items-center gap-3 transition-all ${isActive ? 'text-primary scale-110' : 'text-muted-foreground hover:text-primary'}`}
+                >
+                  <span className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
+                    <k.icon className="size-8" />
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
-            {adoptables.map((a) => (
+            {(globalPetType ? adoptables.filter(a => a.type === globalPetType) : adoptables).map((a) => (
               <figure key={a.key} className="group">
                 <img
                   src={a.img}
-                  alt={t.pets[a.key]}
+                  alt={t.pets[a.key as keyof typeof t.pets] || a.key}
                   loading="lazy"
                   width={900}
                   height={1200}
-                  className="mx-auto size-28 rounded-full border-2 border-border object-cover transition-transform group-hover:scale-105 group-hover:border-primary"
+                  className="mx-auto size-28 rounded-full border-2 border-border object-cover transition-transform group-hover:scale-105 group-hover:border-primary animate-in zoom-in duration-500"
                 />
                 <figcaption className="mt-3 font-display font-bold">
-                  {t.pets[a.key]} <span className="text-primary">{a.sex}</span>
+                  {t.pets[a.key as keyof typeof t.pets] || a.key} <span className="text-primary">{a.sex}</span>
                 </figcaption>
               </figure>
             ))}

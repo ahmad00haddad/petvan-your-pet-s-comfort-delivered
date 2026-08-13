@@ -15,6 +15,7 @@ const cats = [
 ];
 
 function Shop() {
+  const globalPetType = useAppStore(state => state.globalPetType);
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string | null>(null);
@@ -28,7 +29,12 @@ function Shop() {
     });
   }, []);
 
-  const filtered = filter ? products.filter(p => p.category === filter) : products;
+  // Filter first by category if chosen, otherwise by globalPetType
+  const filtered = products.filter(p => {
+    if (filter) return p.category === filter;
+    if (globalPetType) return p.targetPet === globalPetType;
+    return true;
+  });
 
   return (
     <div className="mx-auto max-w-6xl p-5 py-10 sm:p-8 min-h-screen">

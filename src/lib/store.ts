@@ -13,6 +13,9 @@ interface AppState {
   lang: 'en' | 'ar'
   setLang: (lang: 'en' | 'ar') => void
 
+  globalPetType: string | null
+  setGlobalPetType: (type: string | null) => void
+
   userId: string | null
   setUserId: (id: string | null) => void
   
@@ -28,6 +31,9 @@ export const useAppStore = create<AppState>()(
     (set) => ({
       lang: 'en',
       setLang: (lang) => set({ lang }),
+
+      globalPetType: null,
+      setGlobalPetType: (type) => set({ globalPetType: type }),
 
       userId: null,
       setUserId: (id) => set({ userId: id }),

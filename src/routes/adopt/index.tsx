@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdoptionsFn } from "../../api/adopt";
+import { useAppStore } from "../../lib/store";
 import { ArrowLeft, Heart, Cat, Dog, Bird, Fish, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/adopt/")({
@@ -15,6 +16,8 @@ const kinds = [
 ];
 
 function Adopt() {
+  const globalPetType = useAppStore(state => state.globalPetType);
+  const setGlobalPetType = useAppStore(state => state.setGlobalPetType);
   const [listings, setListings] = useState<any[]>([]);
   const [filter, setFilter] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +29,8 @@ function Adopt() {
     });
   }, []);
 
-  const filtered = filter ? listings.filter(l => l.pet.type === filter) : listings;
+  const activeFilter = filter || globalPetType;
+  const filtered = activeFilter ? listings.filter(l => l.pet.type === activeFilter) : listings;
 
   return (
     <div className="mx-auto max-w-5xl p-5 py-10 sm:p-8 min-h-screen">
@@ -40,18 +44,24 @@ function Adopt() {
         <p className="text-muted-foreground max-w-2xl mx-auto">Open your home and your heart to a pet in need. Browse our community's adoption board to find your new best friend.</p>
         
         <div className="mt-8 flex justify-center gap-6">
-          {kinds.map((k) => (
-            <button
-              key={k.key}
-              onClick={() => setFilter(filter === k.key ? null : k.key)}
-              className={`group flex flex-col items-center gap-3 transition-colors ${filter === k.key ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
-            >
-              <span className={`grid size-16 place-items-center rounded-full transition-all ${filter === k.key ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] scale-110' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
-                <k.icon className="size-8" />
-              </span>
-              <span className="text-xs font-bold">{k.key}s</span>
-            </button>
-          ))}
+          {kinds.map((k) => {
+            const isActive = activeFilter === k.key;
+            return (
+              <button
+                key={k.key}
+                onClick={() => {
+                  setFilter(isActive ? null : k.key);
+                  setGlobalPetType(isActive ? null : k.key); // also update global context
+                }}
+                className={`group flex flex-col items-center gap-3 transition-colors ${isActive ? 'text-primary scale-110' : 'text-muted-foreground hover:text-primary'}`}
+              >
+                <span className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
+                  <k.icon className="size-8" />
+                </span>
+                <span className="text-xs font-bold">{k.key}s</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
