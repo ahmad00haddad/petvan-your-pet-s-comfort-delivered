@@ -74,19 +74,53 @@ function Adopt() {
       </div>
 
       {loading ? (
-        <div className="py-20 flex flex-col items-center justify-center gap-4 text-primary">
-          <Loader2 className="size-10 animate-spin" />
-          <p className="font-bold animate-pulse">Finding friends...</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={`skeleton-${i}`} className="rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] flex flex-col h-[400px]">
+              <div className="aspect-[4/3] bg-secondary animate-pulse" />
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="h-8 w-2/3 bg-secondary rounded animate-pulse mb-2" />
+                <div className="h-4 w-1/3 bg-secondary rounded animate-pulse mb-4" />
+                <div className="h-4 w-full bg-secondary rounded animate-pulse mb-2" />
+                <div className="h-4 w-5/6 bg-secondary rounded animate-pulse mb-6 flex-grow" />
+                <div className="flex items-center justify-between border-t border-border pt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="size-8 rounded-full bg-secondary animate-pulse" />
+                    <div className="h-4 w-24 bg-secondary rounded animate-pulse" />
+                  </div>
+                  <div className="h-8 w-20 bg-secondary rounded-full animate-pulse" />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       ) : listings.length === 0 ? (
-        <div className="rounded-3xl border border-dashed border-border bg-card p-16 text-center">
-          <Heart className="size-12 mx-auto text-muted-foreground/30 mb-4" />
-          <h2 className="text-xl font-bold mb-2">No pets available right now</h2>
-          <p className="text-muted-foreground">Check back later for new adoption listings.</p>
+        <div className="rounded-3xl border border-dashed border-border bg-card p-16 text-center shadow-[var(--shadow-card)]">
+          <Heart className="size-16 mx-auto text-muted-foreground/30 mb-6" />
+          <h2 className="text-3xl font-display font-bold mb-3 text-glow">No pets available right now</h2>
+          <p className="text-muted-foreground max-w-md mx-auto">
+            Check back later for new adoption listings. Our community is always growing!
+          </p>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="text-center p-10 text-muted-foreground">
-          No {filter}s available for adoption right now.
+        <div className="rounded-3xl glass-panel p-16 text-center shadow-[var(--shadow-card)] ring-1 ring-border mt-8 flex flex-col items-center">
+          <div className="grid size-24 place-items-center rounded-full bg-secondary text-primary mb-6 shadow-inner relative overflow-hidden">
+            <div className="absolute inset-0 bg-primary/10 animate-pulse" />
+            <Heart className="size-10 relative z-10" />
+          </div>
+          <h2 className="text-3xl font-display font-bold mb-3">No {filter}s found</h2>
+          <p className="text-muted-foreground max-w-md mx-auto mb-8">
+            We couldn't find any {filter}s looking for a home right now. But don't worry, your perfect match might be waiting in another category!
+          </p>
+          <button
+            onClick={() => {
+              setFilter(null);
+              setGlobalPetType(null);
+            }}
+            className="rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105"
+          >
+            Show All Pets (Match Me)
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -83,13 +83,33 @@ function Shop() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {loading ? (
-          <div className="col-span-full py-20 flex flex-col items-center justify-center gap-4 text-primary">
-            <Loader2 className="size-10 animate-spin" />
-            <p className="font-bold animate-pulse">Loading products...</p>
-          </div>
+          Array.from({ length: 8 }).map((_, i) => (
+            <div key={`skeleton-${i}`} className="group relative overflow-hidden rounded-3xl glass-panel p-5 flex flex-col h-[320px] shadow-[var(--shadow-card)] ring-1 ring-border">
+              <div className="h-40 w-full rounded-2xl bg-secondary animate-pulse mb-4" />
+              <div className="h-6 w-3/4 bg-secondary rounded animate-pulse mb-3" />
+              <div className="h-3 w-full bg-secondary rounded animate-pulse mb-1" />
+              <div className="h-3 w-4/5 bg-secondary rounded animate-pulse flex-grow" />
+              <div className="mt-4 flex justify-between items-center">
+                <div className="h-6 w-1/3 bg-secondary rounded animate-pulse" />
+                <div className="size-10 rounded-full bg-secondary animate-pulse" />
+              </div>
+            </div>
+          ))
         ) : filtered.length === 0 ? (
-          <div className="col-span-full text-center p-10 text-muted-foreground">
-            No products found.
+          <div className="col-span-full py-20 flex flex-col items-center justify-center text-center">
+            <div className="grid size-24 place-items-center rounded-full bg-secondary text-muted-foreground mb-6">
+              <ShoppingCart className="size-10 opacity-50" />
+            </div>
+            <h3 className="font-display text-2xl font-bold mb-2">No items found</h3>
+            <p className="text-muted-foreground max-w-sm mb-8">
+              We couldn't find any products matching your current filters. Try selecting a different category.
+            </p>
+            <button 
+              onClick={() => setFilter(null)}
+              className="rounded-full bg-primary/10 text-primary px-6 py-2 text-sm font-bold transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              Clear Filters
+            </button>
           </div>
         ) : (
           filtered.map((p, i) => (
