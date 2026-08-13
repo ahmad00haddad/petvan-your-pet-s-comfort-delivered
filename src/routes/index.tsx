@@ -19,6 +19,8 @@ import {
   ShoppingCart,
   Instagram,
   Facebook,
+  Twitter,
+  Mail,
   LogOut,
   Calendar,
   Languages,
