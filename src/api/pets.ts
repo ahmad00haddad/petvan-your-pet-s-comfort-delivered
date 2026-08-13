@@ -9,6 +9,14 @@ export const getMyPetsFn = createServerFn({ method: "GET" })
     });
   });
 
+export const getPetByIdFn = createServerFn({ method: "GET" })
+  .validator((petId: string) => petId)
+  .handler(async ({ data: petId }) => {
+    return await prisma.pet.findUnique({
+      where: { id: petId },
+    });
+  });
+
 export const addPetFn = createServerFn({ method: "POST" })
   .validator((data: { userId: string; name: string; type: string; gender: string }) => data)
   .handler(async ({ data }) => {

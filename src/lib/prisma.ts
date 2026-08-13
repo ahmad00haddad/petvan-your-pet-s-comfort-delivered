@@ -15,10 +15,40 @@ const products = [
 
 let users: any[] = [];
 let pets: any[] = [
-  { id: "pet1", ownerId: "u1", name: "Zazo", type: "Cat", gender: "M" },
-  { id: "pet2", ownerId: "u2", name: "Lely", type: "Dog", gender: "F" },
-  { id: "pet3", ownerId: "u3", name: "Kiwi", type: "Bird", gender: "M" },
-  { id: "pet4", ownerId: "u4", name: "Fully", type: "Cat", gender: "F" }
+  { 
+    id: "pet1", ownerId: "u1", name: "Zazo", type: "Cats", gender: "M",
+    breed: "Persian", weight: "4.5 kg", birthDate: "2022-04-12",
+    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800",
+    medicalReports: [
+      { id: "mr1", date: "2023-10-01", doctor: "Dr. Haddad", diagnosis: "Routine Checkup", prescription: "None", notes: "Healthy and active." },
+      { id: "mr2", date: "2024-02-15", doctor: "Dr. Haddad", diagnosis: "Mild ear infection", prescription: "Ear drops 2x daily", notes: "Follow up in 2 weeks." }
+    ],
+    vaccinations: [
+      { id: "v1", name: "FVRCP", dateGiven: "2023-05-10", nextDueDate: "2024-05-10" },
+      { id: "v2", name: "Rabies", dateGiven: "2023-05-10", nextDueDate: "2024-05-10" }
+    ]
+  },
+  { 
+    id: "pet2", ownerId: "u2", name: "Lely", type: "Dogs", gender: "F",
+    breed: "Golden Retriever", weight: "28 kg", birthDate: "2021-08-05",
+    image: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=800",
+    medicalReports: [],
+    vaccinations: []
+  },
+  { 
+    id: "pet3", ownerId: "u3", name: "Kiwi", type: "Birds", gender: "M",
+    breed: "Cockatiel", weight: "0.09 kg", birthDate: "2023-11-20",
+    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?auto=format&fit=crop&q=80&w=800",
+    medicalReports: [],
+    vaccinations: []
+  },
+  { 
+    id: "pet4", ownerId: "u4", name: "Fully", type: "Cats", gender: "F",
+    breed: "Siamese", weight: "3.8 kg", birthDate: "2020-01-30",
+    image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&q=80&w=800",
+    medicalReports: [],
+    vaccinations: []
+  }
 ];
 let orders: any[] = [];
 let adoptionListings: any[] = [
