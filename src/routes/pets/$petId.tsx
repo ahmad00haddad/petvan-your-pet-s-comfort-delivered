@@ -141,25 +141,25 @@ function PetProfile() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-4xl px-5 sm:px-8 -mt-2">
+      <div className="mx-auto max-w-4xl px-5 sm:px-8 -mt-2 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
         {/* Quick Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-          <div className="rounded-2xl bg-card border border-border p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center">
+          <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <CalendarDays className="size-5 text-primary mb-2" />
             <p className="text-xs text-muted-foreground">Age</p>
             <p className="font-bold text-sm">{ageString}</p>
           </div>
-          <div className="rounded-2xl bg-card border border-border p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center">
+          <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Weight className="size-5 text-primary mb-2" />
             <p className="text-xs text-muted-foreground">Weight</p>
             <p className="font-bold text-sm">{pet.weight || "--"}</p>
           </div>
-          <div className="rounded-2xl bg-card border border-border p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center">
+          <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Info className="size-5 text-primary mb-2" />
             <p className="text-xs text-muted-foreground">Gender</p>
             <p className="font-bold text-sm">{pet.gender === "M" ? "Male" : "Female"}</p>
           </div>
-          <div className="rounded-2xl bg-card border border-border p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center">
+          <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Activity className="size-5 text-primary mb-2" />
             <p className="text-xs text-muted-foreground">Status</p>
             <p className="font-bold text-sm text-green-500">Healthy</p>
@@ -196,7 +196,7 @@ function PetProfile() {
                 pet.medicalReports.map((report: any) => (
                   <div
                     key={report.id}
-                    className="rounded-2xl bg-card border border-border p-5 shadow-[var(--shadow-card)] flex gap-4"
+                    className="rounded-2xl glass-panel p-5 shadow-[var(--shadow-card)] flex gap-4 transition-all hover:bg-card/50"
                   >
                     <div className="mt-1 grid size-10 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
                       <Stethoscope className="size-5" />
@@ -236,7 +236,7 @@ function PetProfile() {
                 pet.vaccinations.map((vac: any) => (
                   <div
                     key={vac.id}
-                    className="rounded-2xl bg-card border border-border p-5 shadow-[var(--shadow-card)] flex items-center justify-between gap-4"
+                    className="rounded-2xl glass-panel p-5 shadow-[var(--shadow-card)] flex items-center justify-between gap-4 transition-all hover:bg-card/50"
                   >
                     <div className="flex items-center gap-4">
                       <div className="grid size-10 shrink-0 place-items-center rounded-full bg-blue-500/10 text-blue-500">
