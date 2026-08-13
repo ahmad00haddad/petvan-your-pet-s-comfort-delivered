@@ -172,7 +172,7 @@ function Profile() {
                     <div className="text-end">
                       <p className="font-bold">{order.total.toFixed(2)} JD</p>
                       {order.type === 'SERVICE' && (
-                        <Link to={`/services/tracking/${order.id}`} className="text-xs text-primary hover:underline mt-1 inline-block">
+                        <Link to="/services/tracking/$orderId" params={{ orderId: String(order.id) }} className="text-xs text-primary hover:underline mt-1 inline-block">
                           Track Status
                         </Link>
                       )}
