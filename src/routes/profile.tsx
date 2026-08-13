@@ -4,7 +4,7 @@ import { useAppStore } from "../lib/store";
 import { getUserFn } from "../api/auth";
 import { getMyPetsFn, deletePetFn } from "../api/pets";
 import { getMyOrdersFn } from "../api/orders";
-import { LogOut, Plus, PawPrint, Trash2, Package, Calendar, Loader2 } from "lucide-react";
+import { LogOut, Plus, PawPrint, Package, Calendar, Trash2, Star, Loader2 } from "lucide-react";
 import { copy } from "../lib/i18n";
 import { toast } from "sonner";
 
@@ -62,131 +62,89 @@ function Profile() {
   if (!user) return null;
 
   return (
-    <div className="mx-auto max-w-4xl p-5 py-10 sm:p-8 min-h-screen">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-        <div className="flex items-center gap-4">
-          <Link to="/" className="text-muted-foreground hover:text-foreground">← {t.home}</Link>
-          <h1 className="font-display text-4xl font-extrabold text-primary">{t.profile}</h1>
+    <div className="mx-auto max-w-4xl p-5 py-10 sm:p-12 min-h-screen text-center">
+      {/* Profile Header */}
+      <div className="flex flex-col items-center">
+        <div className="size-40 rounded-full border-4 border-foreground/20 overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)]">
+          <img 
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&h=400&fit=crop" 
+            alt="User Avatar"
+            className="w-full h-full object-cover grayscale"
+          />
         </div>
-        <button 
-          onClick={() => {
-            setUserId(null);
-            navigate({ to: "/" });
-          }}
-          className="flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-destructive hover:text-destructive-foreground"
+        
+        <div className="mt-4 flex items-center justify-center gap-1 text-[#FFC107]">
+          {[1,2,3,4].map(i => <Star key={i} className="size-5 fill-current" />)}
+          <Star className="size-5" />
+        </div>
+
+        <p className="mt-3 text-xs text-muted-foreground uppercase tracking-widest">customer</p>
+        <div className="flex items-center justify-center gap-3 mt-1">
+          <h1 className="font-display text-2xl font-bold">{user.name}</h1>
+          <button onClick={() => setUserId(null)} className="text-muted-foreground hover:text-destructive" aria-label="Settings / Logout">
+            <LogOut className="size-5" />
+          </button>
+        </div>
+
+        <Link 
+          to="/pets/add" 
+          className="mt-6 inline-block rounded-full bg-[#FFC107] px-8 py-2 text-xs font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-wider"
         >
-          <LogOut className="size-4" />
-          Logout
+          Add Pet
+        </Link>
+      </div>
+
+      {/* Pets */}
+      <div className="mt-16 flex justify-center gap-8 sm:gap-12">
+        {pets.length === 0 ? (
+          <p className="text-muted-foreground text-sm">No pets added yet.</p>
+        ) : (
+          pets.map(pet => (
+            <Link key={pet.id} to="/pets/$petId" params={{ petId: String(pet.id) }} className="group flex flex-col items-center">
+              <div className="size-28 sm:size-32 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-[#FFC107] relative">
+                {pet.image ? (
+                  <img src={pet.image} alt={pet.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-secondary text-4xl">
+                    <PawPrint />
+                  </div>
+                )}
+              </div>
+              <h3 className="font-display font-bold uppercase tracking-widest">{pet.name}</h3>
+            </Link>
+          ))
+        )}
+      </div>
+
+      <hr className="my-12 border-[#2a2a2a] max-w-xl mx-auto" />
+
+      {/* Photo Section */}
+      <div>
+        <h2 className="text-muted-foreground font-display mb-8 text-sm flex justify-center items-center gap-2">
+          Photo <Plus className="size-4" />
+        </h2>
+        
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto">
+          {[
+            "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba",
+            "https://images.unsplash.com/photo-1573865526739-10659fec78a5",
+            "https://images.unsplash.com/photo-1614989647360-1e523f380fa0",
+            "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8",
+            "https://images.unsplash.com/photo-1552053831-71594a27632d",
+            "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e"
+          ].map((src, i) => (
+            <div key={i} className="aspect-square bg-secondary overflow-hidden">
+              <img src={`${src}?w=400&h=400&fit=crop`} alt={`Pet photo ${i}`} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+            </div>
+          ))}
+        </div>
+
+        <button className="mt-12 rounded-full bg-[#FFC107] px-10 py-2.5 text-xs font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-widest">
+          View More
         </button>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-3">
-        <div className="col-span-1 rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-card)] h-fit">
-          <div className="grid size-24 place-items-center rounded-full bg-secondary mx-auto text-3xl font-bold text-primary">
-            {user.name.charAt(0).toUpperCase()}
-          </div>
-          <h2 className="mt-4 text-center font-display text-xl font-bold">{user.name}</h2>
-          <p className="text-center text-sm text-muted-foreground">{user.email}</p>
-        </div>
 
-        <div className="col-span-2">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-2xl font-bold">My Pets</h2>
-            <Link 
-              to="/pets/add" 
-              className="flex items-center gap-1 rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
-            >
-              <Plus className="size-4" />
-              Add Pet
-            </Link>
-          </div>
-
-          {pets.length === 0 ? (
-            <div className="rounded-3xl border border-dashed border-border bg-card p-12 text-center shadow-sm">
-              <span className="mx-auto mb-6 grid size-20 place-items-center rounded-full bg-secondary text-primary">
-                <PawPrint className="size-10" />
-              </span>
-              <h3 className="font-display text-2xl font-bold mb-2">No pets added yet</h3>
-              <p className="text-muted-foreground mb-8 max-w-sm mx-auto">
-                Start by adding your first pet to keep track of their medical records, salon visits, and more!
-              </p>
-              <Link 
-                to="/pets/add" 
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 animate-pulse"
-              >
-                <Plus className="size-5" />
-                Add Your First Pet
-              </Link>
-            </div>
-          ) : (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {pets.map(pet => (
-                <Link key={pet.id} to="/pets/$petId" params={{ petId: String(pet.id) }} className="group relative rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] flex items-center gap-4 hover:border-primary transition-colors">
-                  <div className="grid size-12 shrink-0 place-items-center rounded-full bg-secondary text-xl overflow-hidden">
-                    {pet.image ? <img src={pet.image} alt={pet.name} className="w-full h-full object-cover mix-blend-multiply" /> : (pet.type === 'Cats' || pet.type === 'Cat' ? '🐱' : pet.type === 'Dogs' || pet.type === 'Dog' ? '🐶' : pet.type === 'Birds' || pet.type === 'Bird' ? '🦜' : '🐟')}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-lg font-bold">{pet.name}</h3>
-                    <p className="text-sm text-muted-foreground">{pet.breed || pet.type}</p>
-                  </div>
-                  <button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleDeletePet(pet.id);
-                    }}
-                    className="absolute top-3 end-3 rounded-full bg-destructive/10 p-2 text-destructive opacity-0 transition-all hover:bg-destructive hover:text-destructive-foreground group-hover:opacity-100"
-                    aria-label={t.deletePet}
-                  >
-                    <Trash2 className="size-4" />
-                  </button>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {/* Orders Section */}
-          <div className="mt-12">
-            <h2 className="font-display text-2xl font-bold mb-6">{t.orderHistory}</h2>
-            
-            {orders.length === 0 ? (
-              <div className="rounded-3xl border border-dashed border-border bg-card p-8 text-center shadow-sm">
-                <span className="mx-auto mb-4 grid size-16 place-items-center rounded-full bg-secondary text-muted-foreground">
-                  <Package className="size-8" />
-                </span>
-                <p className="text-muted-foreground">No past orders or bookings found.</p>
-              </div>
-            ) : (
-              <div className="grid gap-4">
-                {orders.map(order => (
-                  <div key={order.id} className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className={`grid size-12 place-items-center rounded-full ${order.type === 'SERVICE' ? 'bg-primary/20 text-primary' : 'bg-secondary text-foreground'}`}>
-                        {order.type === 'SERVICE' ? <Calendar className="size-6" /> : <Package className="size-6" />}
-                      </div>
-                      <div>
-                        <h3 className="font-display font-bold">
-                          {order.type === 'SERVICE' ? order.serviceType : 'Shop Purchase'}
-                        </h3>
-                        <p className="text-xs text-muted-foreground">
-                          Order #{order.id} • {order.status}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-end">
-                      <p className="font-bold">{order.total.toFixed(2)} JD</p>
-                      {order.type === 'SERVICE' && (
-                        <Link to="/services/tracking/$orderId" params={{ orderId: String(order.id) }} className="text-xs text-primary hover:underline mt-1 inline-block">
-                          Track Status
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

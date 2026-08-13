@@ -15,6 +15,16 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useAppStore } from "../lib/store";
 import { copy } from "../lib/i18n";
+import { MapPin, ShoppingCart, Instagram, Facebook, Twitter, Mail } from "lucide-react";
+
+function Logo() {
+  return (
+    <Link to="/" className="shrink-0 flex items-center font-display text-2xl font-extrabold tracking-tight">
+      <span className="text-foreground">Pet</span>
+      <span className="text-[#FFC107]">Van</span>
+    </Link>
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -151,33 +161,71 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Toaster position="top-center" richColors />
-      <div className="pb-20 lg:pb-0"> {/* Add padding for mobile bottom nav */}
-        <Outlet />
-      </div>
+      
+      {/* Global Header */}
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur px-5 py-4 sm:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          <div className="flex items-center gap-6">
+            <Logo />
+            <div className="hidden items-center gap-1.5 text-sm sm:flex">
+              <span className="font-bold">Location</span>
+              <MapPin className="size-4 text-[#FFC107]" />
+              <span className="text-muted-foreground text-xs">Amman</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-8">
+            {userId && (
+              <Link to="/profile" className="hidden sm:block">
+                <div className="grid size-8 place-items-center rounded-full bg-secondary text-primary font-bold overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop" alt="User" />
+                </div>
+              </Link>
+            )}
+            <nav className="hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
+              <a className="transition-colors hover:text-[#FFC107]" href="/#about">ABOUT US</a>
+              <a className="transition-colors hover:text-[#FFC107]" href="/#services">OUR SERVICES</a>
+              <a className="transition-colors hover:text-[#FFC107]" href="/#help">HELP</a>
+            </nav>
+            <Link to="/shop/cart" className="relative transition-colors hover:text-[#FFC107]" aria-label="Cart">
+              <ShoppingCart className="size-5" />
+            </Link>
+          </div>
+        </div>
+      </header>
 
-      {/* Mobile Bottom Navigation (Only visible on small screens) */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around border-t border-border bg-background/90 backdrop-blur-md pb-safe lg:hidden">
-        <Link to="/" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
-          <Home className="size-5" />
-          <span className="text-[10px] font-bold">{t.home}</span>
-        </Link>
-        <Link to="/shop" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
-          <Search className="size-5" />
-          <span className="text-[10px] font-bold">{t.shop}</span>
-        </Link>
-        <Link to="/adopt" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
-          <Calendar className="size-5" />
-          <span className="text-[10px] font-bold">{t.adopt}</span>
-        </Link>
-        <Link to="/install" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
-          <Smartphone className="size-5" />
-          <span className="text-[10px] font-bold">{t.app}</span>
-        </Link>
-        <Link to={userId ? "/profile" : "/login"} className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
-          <User className="size-5" />
-          <span className="text-[10px] font-bold">{userId ? t.profile : t.login}</span>
-        </Link>
-      </nav>
+      <main className="min-h-screen">
+        <Outlet />
+      </main>
+
+      {/* Global Footer */}
+      <footer id="about" className="bg-[#151515] px-5 py-16 mt-20">
+        <div className="mx-auto grid max-w-5xl gap-12 text-center sm:grid-cols-3">
+          <div>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">About Us</h2>
+            <p className="text-xs leading-relaxed text-muted-foreground max-w-[250px] mx-auto">
+              The first mobile veterinary clinic in Jordan specialized in caring for domestic pets by ordering a caravan fully equipped with the latest tools and working hands from experienced doctors.
+            </p>
+          </div>
+          <div>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">Contact Us</h2>
+            <p className="text-xs text-muted-foreground mb-2">Ahmad000Haddad@gmail.com</p>
+            <p className="text-xs text-muted-foreground" dir="ltr">+962799256345</p>
+          </div>
+          <div>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">Social With Us</h2>
+            <div className="flex justify-center gap-5 text-muted-foreground">
+              {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
+                <a key={i} href="#top" className="transition-colors hover:text-[#FFC107]">
+                  <Icon className="size-6" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p className="mt-16 text-center text-xs text-muted-foreground/40">Ahmad Haddad © All rights reserved.</p>
+      </footer>
     </QueryClientProvider>
   );
 }
+

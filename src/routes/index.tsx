@@ -125,324 +125,151 @@ function Index() {
   }, [lang, t.dir]);
 
   return (
-    <div
-      id="top"
-      dir={t.dir}
-      className={`min-h-screen bg-background text-foreground ${lang === "ar" ? "font-arabic" : "font-sans"}`}
-    >
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center gap-6 px-5 py-4 sm:px-8">
-          <Logo />
-          <div className="hidden items-center gap-1 text-sm sm:flex">
-            <MapPin className="size-4 text-muted-foreground" />
-            <span className="font-medium">{t.location}</span>
-            <ChevronDown className="size-4 text-primary" />
-            <span className="text-muted-foreground">{t.city}</span>
-          </div>
-          <nav className="ms-auto hidden items-center gap-7 text-xs font-semibold tracking-[0.12em] lg:flex">
-            <a className="transition-colors hover:text-primary" href="#about">
-              {t.nav.about}
-            </a>
-            <a className="transition-colors hover:text-primary" href="#services">
-              {t.nav.services}
-            </a>
-            <a className="transition-colors hover:text-primary" href="#shop">
-              {t.nav.help}
-            </a>
-          </nav>
-          <button
-            onClick={() => setLang(lang === "en" ? "ar" : "en")}
-            className="ms-auto inline-flex items-center gap-1.5 rounded-full border border-primary/60 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground lg:ms-0"
-            aria-label="Switch language"
-          >
-            <Languages className="size-4" />
-            {t.toggle}
-          </button>
-          <Link to="/shop/cart" className="relative" aria-label={t.cart}>
-            <ShoppingCart className="size-5" />
-            {cart.length > 0 && (
-              <span className="absolute -right-2 -top-2 grid size-4 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                {cart.reduce((sum, item) => sum + item.quantity, 0)}
-              </span>
-            )}
-          </Link>
-          <Link to="/install" className="hidden items-center gap-2 rounded-full border border-primary px-4 py-2 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:flex">
-            <Smartphone className="size-4" />
-            Install App
-          </Link>
-          <Link to={userId ? "/profile" : "/login"} className="hidden rounded-full bg-primary px-5 py-2 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 sm:block">
-            {userId ? "Profile" : t.login}
-          </Link>
-        </div>
-      </header>
-
+    <div id="top" dir={t.dir} className={`min-h-screen bg-background text-foreground pb-20 ${lang === "ar" ? "font-arabic" : "font-sans"}`}>
+      
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-10 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:pb-24">
-          <div className="relative order-2 lg:order-1">
-            <div className="absolute -inset-6 rounded-[999px] bg-primary/10 blur-3xl" aria-hidden />
-            <div className="relative overflow-hidden rounded-[999px] bg-[oklch(0.93_0.005_90)] shadow-[var(--shadow-card)]">
-              <img
-                key={globalPetType || "default"}
-                src={getHeroImage(globalPetType)}
-                alt="Happy pet"
-                width={1008}
-                height={1408}
-                className="mx-auto block h-[420px] w-full object-cover object-top sm:h-[560px] animate-in fade-in zoom-in duration-500"
-              />
-            </div>
-          </div>
+      <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center pt-8 px-5 sm:px-12">
+        <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-foreground rounded-[999px] -z-10 shadow-[0_0_80px_rgba(255,255,255,0.05)]"></div>
+          <img
+            key={globalPetType || "default"}
+            src={getHeroImage(globalPetType)}
+            alt="Happy pet"
+            className="w-[85%] h-full object-contain mx-auto mix-blend-multiply"
+          />
+        </div>
 
-          <div className="order-1 lg:order-2">
-            <p className="text-sm text-muted-foreground">{t.tagline}</p>
-            <p className="mt-1 font-display text-lg font-bold">
-              {t.hero1}{" "}
-              <span className="relative inline-block">
-                <span className="absolute inset-x-0 bottom-0.5 h-2 bg-primary/80" aria-hidden />
-                <span className="relative">{globalPetType ? t.kinds[globalPetType as keyof typeof t.kinds] : t.hero2}</span>
-              </span>
-            </p>
-            <h1 className="mt-8 font-display text-5xl font-black leading-[1.15] sm:text-6xl">
-              {t.hello} <span className="text-gold">{t.friend}</span>
-            </h1>
-            <p className="mt-5 max-w-md text-muted-foreground">{t.heroDesc}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to={userId ? "/profile" : "/login"} className="rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105">
-                {userId ? "Go to Profile" : t.loginBig}
-              </Link>
-              {!userId && (
-                <Link to="/register" className="rounded-full border border-primary px-8 py-3 text-sm font-bold tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
-                  {t.register}
-                </Link>
-              )}
-            </div>
-            <p className="mt-10 max-w-sm text-sm text-muted-foreground">{t.adoptLead}</p>
-            <Link
-              to="/adopt"
-              className="mt-4 inline-block rounded-full bg-primary px-8 py-3 text-sm font-bold tracking-wide text-primary-foreground transition-transform hover:scale-105"
-            >
-              {t.findFriend}
+        <div className="order-1 lg:order-2 lg:pl-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+            Hello, <br /> my friend!
+          </h1>
+          <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
+            The first mobile caravan specialized in pets in Jordan, specialized in providing treatment and care for them.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            <Link to={userId ? "/profile" : "/login"} className="rounded-full bg-[#FFC107] px-8 py-2 text-xs sm:text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-wider">
+              {userId ? "Profile" : "Login"}
             </Link>
+            {!userId && (
+              <Link to="/register" className="rounded-full border border-foreground px-8 py-2 text-xs sm:text-sm font-bold text-foreground transition-colors hover:bg-foreground hover:text-background uppercase tracking-wider">
+                Register
+              </Link>
+            )}
           </div>
+          <p className="mt-10 text-xs text-muted-foreground uppercase tracking-wider mb-4">
+            FIND A NEW PET AND RESCUE IT FROM WHEN IT MIGHT BE ALONE OR LOST
+          </p>
+          <Link
+            to="/adopt"
+            className="rounded-full bg-[#FFC107] px-8 py-2.5 text-xs font-bold text-[#1a1a1a] transition-transform hover:scale-105 uppercase tracking-widest"
+          >
+            FIND YOUR ADOPT FRIEND
+          </Link>
         </div>
       </section>
 
       {/* Services */}
-      <section id="services" className="px-5 py-16 sm:px-8">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-sm text-muted-foreground">{t.chooseKind}</p>
-          <div className="mt-5 flex justify-center gap-8">
-            {kinds.map((k) => {
-              const isActive = globalPetType === k.key;
-              return (
-                <button
-                  key={k.key}
-                  onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                  className={`group flex flex-col items-center gap-3 transition-all ${isActive ? 'text-primary scale-110' : 'text-muted-foreground hover:text-primary'}`}
-                  aria-label={t.kinds[k.key]}
-                >
-                  <span className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
-                    <k.icon className="size-8" />
-                  </span>
-                  <span className="text-[11px] font-bold tracking-wide">{t.kinds[k.key]}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <h2 className="mt-12 font-display text-4xl font-extrabold text-primary">
-            {t.askServices}
-          </h2>
-          <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">{t.askServicesSub}</p>
-
-          <div className="mt-10 rounded-[3rem] border border-border bg-card p-8 shadow-[var(--shadow-card)] sm:p-12">
-            <div className="grid gap-10 sm:grid-cols-3">
-              {t.services.map((s, i) => {
-                const Icon = serviceIcons[i];
-                return (
-                  <article key={s.title} className="group flex flex-col items-center">
-                    <span className="grid size-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-transform group-hover:scale-110">
-                      <Icon className="size-6" />
-                    </span>
-                    <h3 className="mt-4 font-display text-lg font-bold">{s.title}</h3>
-                    <p className="mt-2 max-w-[15rem] text-xs leading-relaxed text-muted-foreground">
-                      {s.desc}
-                    </p>
-                    <Link to="/services/book" className="mt-5 rounded-full border border-border px-5 py-1.5 text-xs font-bold transition-colors hover:border-primary hover:text-primary">
-                      {t.request}
-                    </Link>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
+      <section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto">
+        <p className="text-sm text-muted-foreground mb-6">Choose the kind of pet you own.</p>
+        <div className="flex justify-center gap-6 sm:gap-10">
+          {kinds.map((k) => {
+            const isActive = globalPetType === k.key;
+            return (
+              <button
+                key={k.key}
+                onClick={() => setGlobalPetType(isActive ? null : k.key)}
+                className={`transition-all hover:scale-110 ${isActive ? 'text-[#FFC107]' : 'text-foreground hover:text-[#FFC107]'}`}
+              >
+                <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
+              </button>
+            );
+          })}
         </div>
-      </section>
 
-      {/* Tracking */}
-      <section className="px-5 py-12 sm:px-8">
-        <div className="mx-auto max-w-3xl rounded-[2.5rem] border border-border bg-card p-8 text-center shadow-[var(--shadow-card)]">
-          <span className="mx-auto grid size-12 place-items-center rounded-full bg-primary text-primary-foreground">
-            <Scissors className="size-5" />
-          </span>
-          <p className="mt-3 font-display font-bold">{t.salon}</p>
-          <p className="mt-1 text-xs text-muted-foreground">{t.salonDesc}</p>
-          <p className="mt-4 font-display text-lg font-bold">
-            {t.cost} <span className="text-primary">{t.costValue}</span>
-          </p>
+        <h2 className="mt-20 font-display text-3xl font-extrabold text-[#FFC107]">Ask for services</h2>
+        <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">CHOOSE THE KIND OF SERVICES YOU NEED</p>
 
-          <h3 className="mt-8 font-display text-2xl font-extrabold">{t.minutesLeft}</h3>
-          <div className="relative mt-5 h-56 overflow-hidden rounded-3xl bg-secondary">
-            <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(var(--color-border)_1px,transparent_1px),linear-gradient(90deg,var(--color-border)_1px,transparent_1px)] [background-size:26px_26px]" />
-            <div className="absolute left-1/2 top-1/2 h-1.5 w-4/5 -translate-x-1/2 -translate-y-1/2 -rotate-12 rounded-full bg-primary/70" />
-            <span className="absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)]">
-              <MapPin className="size-6" />
-            </span>
-          </div>
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <span className="grid size-10 place-items-center rounded-full bg-primary/20 text-sm font-bold text-primary">
-              AH
-            </span>
-            <div className="text-start">
-              <p className="text-sm">
-                {t.doctorPre} <span className="font-bold">{t.doctorName}</span> {t.doctorPost}
-              </p>
-              <span className="flex text-primary">
-                {[0, 1, 2, 3].map((i) => (
-                  <Star key={i} className="size-3.5 fill-current" />
-                ))}
-                <Star className="size-3.5" />
-              </span>
-            </div>
-          </div>
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
+          {t.services.map((s, i) => {
+            const Icon = serviceIcons[i];
+            return (
+              <article key={s.title} className="flex flex-col items-center">
+                <span className="grid size-16 place-items-center rounded-full bg-[#FFC107] text-[#1a1a1a] shadow-[0_10px_30px_rgba(255,193,7,0.3)] transition-transform hover:scale-110">
+                  <Icon className="size-8" />
+                </span>
+                <h3 className="mt-6 font-display text-base font-bold">{s.title}</h3>
+                <p className="mt-3 text-[10px] leading-relaxed text-muted-foreground max-w-[200px] text-center">
+                  The first mobile caravan specialized in caring for domestic pets by ordering a caravan fully equipped...
+                </p>
+              </article>
+            );
+          })}
         </div>
       </section>
 
       {/* Shop */}
-      <section id="shop" className="px-5 py-16 sm:px-8">
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="font-display text-4xl font-extrabold text-primary">
-            <Link to="/shop" className="hover:underline">{t.shop}</Link>
-          </h2>
-          <p className="mt-1 text-xs tracking-[0.2em] text-muted-foreground">{t.shopSub}</p>
+      <section id="shop" className="px-5 py-20 sm:px-8 bg-[#1a1a1a] border-t border-b border-[#2a2a2a] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#FFC107] via-transparent to-transparent"></div>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="font-display text-3xl font-extrabold text-[#FFC107]">Shop</h2>
+          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">CHOOSE WHAT YOU NEED WHENEVER YOU NEED</p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-6">
+          <div className="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10">
             {shopCats.map((c) => (
-              <button
+              <Link
                 key={c.label}
-                className="group grid size-24 place-items-center rounded-3xl bg-foreground text-background shadow-[var(--shadow-card)] transition-transform hover:-translate-y-1"
+                to="/shop"
+                className="group w-28 h-28 bg-foreground rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-transform hover:-translate-y-2 shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
               >
-                <c.icon className="size-8" />
-                <span className="sr-only">{c.label}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {(dbProducts.length > 0 ? (globalPetType ? dbProducts.filter(p => p.targetPet === globalPetType) : dbProducts) : t.products).slice(0, 3).map((p: any, i) => (
-              <article
-                key={p.name || p.id}
-                className="group relative overflow-hidden rounded-3xl bg-card p-5 text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-transform hover:-translate-y-1"
-              >
-                <div className="grid h-36 place-items-center rounded-2xl bg-secondary overflow-hidden">
-                  {p.image ? (
-                    <img src={p.image} alt={p.name} className="h-full w-full object-cover mix-blend-multiply" />
-                  ) : (
-                    <Utensils className="size-10 text-primary/70" />
-                  )}
-                </div>
-                <h3 className="mt-4 font-display text-lg font-bold lowercase line-clamp-1">{p.name}</h3>
-                <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{p.description || p.desc}</p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="font-display text-lg font-bold">
-                    {p.price ? p.price.toFixed(2) : prices[i]} {t.currency}
-                  </span>
-                  <button
-                    className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-110"
-                    aria-label={t.addToCart(p.name)}
-                  >
-                    <Plus className="size-4" />
-                  </button>
-                </div>
-              </article>
+                <c.icon className="size-8 text-[#1a1a1a]" />
+                <span className="text-[10px] font-bold text-[#1a1a1a]">{c.label}</span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* Adoption */}
-      <section id="adopt" className="px-5 py-16 sm:px-8">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-sm text-muted-foreground">{t.chooseAdopt}</p>
-          <div className="mt-5 flex justify-center gap-8">
-            {kinds.map((k) => {
-              const isActive = globalPetType === k.key;
-              return (
-                <button
-                  key={k.key}
-                  onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                  className={`group flex flex-col items-center gap-3 transition-all ${isActive ? 'text-primary scale-110' : 'text-muted-foreground hover:text-primary'}`}
-                >
-                  <span className={`grid size-16 place-items-center rounded-full transition-all ${isActive ? 'bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20' : 'bg-card border border-border shadow-[var(--shadow-card)] group-hover:border-primary'}`}>
-                    <k.icon className="size-8" />
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+      <section id="adopt" className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto">
+        <p className="text-sm text-muted-foreground mb-8">Choose the kind of pet you want to adopt.</p>
+        <div className="flex justify-center gap-6 sm:gap-10 mb-16">
+          {kinds.map((k) => {
+            const isActive = globalPetType === k.key;
+            return (
+              <button
+                key={k.key}
+                onClick={() => setGlobalPetType(isActive ? null : k.key)}
+                className={`transition-all hover:scale-110 ${isActive ? 'text-[#FFC107]' : 'text-foreground hover:text-[#FFC107]'}`}
+              >
+                <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
+              </button>
+            );
+          })}
+        </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
-            {(globalPetType ? adoptables.filter(a => a.type === globalPetType) : adoptables).map((a) => (
-              <figure key={a.key} className="group">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-12">
+          {(globalPetType ? adoptables.filter(a => a.type === globalPetType) : adoptables).concat(adoptables).slice(0, 8).map((a, i) => (
+            <figure key={`${a.key}-${i}`} className="group flex flex-col items-center">
+              <div className="size-32 sm:size-40 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-transform group-hover:scale-105 group-hover:border-[#FFC107]">
                 <img
                   src={a.img}
-                  alt={t.pets[a.key as keyof typeof t.pets] || a.key}
+                  alt={a.key}
                   loading="lazy"
-                  width={900}
-                  height={1200}
-                  className="mx-auto size-28 rounded-full border-2 border-border object-cover transition-transform group-hover:scale-105 group-hover:border-primary animate-in zoom-in duration-500"
+                  className="w-full h-full object-cover"
                 />
-                <figcaption className="mt-3 font-display font-bold">
-                  {t.pets[a.key as keyof typeof t.pets] || a.key} <span className="text-primary">{a.sex}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-
-          <Link to="/adopt" className="mt-10 inline-block rounded-full bg-primary px-8 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105">
-            {t.viewMore}
-          </Link>
+              </div>
+              <figcaption className="font-display font-bold text-lg lowercase flex items-center gap-2">
+                {a.key} <span className="text-foreground text-xl leading-none">{a.sex}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
+
+        <Link to="/adopt" className="mt-16 inline-block rounded-full bg-[#FFC107] px-10 py-3 text-sm font-bold text-[#1a1a1a] transition-transform hover:scale-105">
+          View More
+        </Link>
       </section>
 
-      {/* Footer */}
-      <footer id="about" className="border-t border-border px-5 py-14 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 text-center sm:grid-cols-3 sm:text-start">
-          <div>
-            <h2 className="font-display font-bold">{t.aboutUs}</h2>
-            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{t.aboutText}</p>
-          </div>
-          <div>
-            <h2 className="font-display font-bold">{t.contactUs}</h2>
-            <p className="mt-3 text-xs text-muted-foreground">Ahmad000Haddad@gmail.com</p>
-            <p className="mt-1 text-xs text-muted-foreground" dir="ltr">
-              +962 7 9925 6345
-            </p>
-          </div>
-          <div>
-            <h2 className="font-display font-bold">{t.socialWithUs}</h2>
-            <div className="mt-4 flex justify-center gap-4 text-muted-foreground sm:justify-start">
-              {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
-                <a key={i} href="#top" className="transition-colors hover:text-primary">
-                  <Icon className="size-5" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        <p className="mt-10 text-center text-[11px] text-muted-foreground/60">{t.rights}</p>
-      </footer>
     </div>
   );
 }
