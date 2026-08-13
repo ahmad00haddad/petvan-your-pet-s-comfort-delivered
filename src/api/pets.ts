@@ -21,3 +21,11 @@ export const addPetFn = createServerFn({ method: "POST" })
       },
     });
   });
+
+export const deletePetFn = createServerFn({ method: "POST" })
+  .validator((data: { userId: string; petId: string }) => data)
+  .handler(async ({ data }) => {
+    const pet = await prisma.pet.findUnique({ where: { id: data.petId } });
+    if (!pet || pet.ownerId !== data.userId) throw new Error("Unauthorized");
+    return await prisma.pet.delete({ where: { id: data.petId } });
+  });

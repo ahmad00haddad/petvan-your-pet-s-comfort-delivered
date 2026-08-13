@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdoptionsFn } from "../../api/adopt";
-import { ArrowLeft, Heart, Cat, Dog, Bird, Fish } from "lucide-react";
+import { ArrowLeft, Heart, Cat, Dog, Bird, Fish, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/adopt/")({
   component: Adopt,
@@ -56,7 +56,10 @@ function Adopt() {
       </div>
 
       {loading ? (
-        <div className="text-center p-10 text-muted-foreground">Loading adoption board...</div>
+        <div className="py-20 flex flex-col items-center justify-center gap-4 text-primary">
+          <Loader2 className="size-10 animate-spin" />
+          <p className="font-bold animate-pulse">Finding friends...</p>
+        </div>
       ) : listings.length === 0 ? (
         <div className="rounded-3xl border border-dashed border-border bg-card p-16 text-center">
           <Heart className="size-12 mx-auto text-muted-foreground/30 mb-4" />
@@ -92,9 +95,12 @@ function Adopt() {
                     </div>
                     <span className="text-xs text-muted-foreground">Listed by {listing.lister.name}</span>
                   </div>
-                  <button className="rounded-full bg-primary/10 text-primary px-4 py-2 text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <a 
+                    href={`mailto:${listing.lister.email}?subject=Regarding adopting ${listing.pet.name}`}
+                    className="rounded-full bg-primary/10 text-primary px-4 py-2 text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
                     Contact
-                  </button>
+                  </a>
                 </div>
               </figcaption>
             </figure>

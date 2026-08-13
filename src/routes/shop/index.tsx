@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getProductsFn } from "../../api/shop";
 import { useAppStore } from "../../lib/store";
-import { ShoppingCart, Utensils, Wrench, Gamepad2, Plus } from "lucide-react";
+import { ShoppingCart, Utensils, Wrench, Gamepad2, Plus, Loader2, Sparkles, Flame } from "lucide-react";
 
 export const Route = createFileRoute("/shop/")({
   component: Shop,
@@ -16,12 +16,16 @@ const cats = [
 
 function Shop() {
   const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string | null>(null);
   const addToCart = useAppStore(state => state.addToCart);
   const cart = useAppStore(state => state.cart);
   
   useEffect(() => {
-    getProductsFn().then(setProducts);
+    getProductsFn().then(data => {
+      setProducts(data);
+      setLoading(false);
+    });
   }, []);
 
   const filtered = filter ? products.filter(p => p.category === filter) : products;
@@ -61,16 +65,37 @@ function Shop() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filtered.map(p => (
+        {loading ? (
+          <div className="col-span-full py-20 flex flex-col items-center justify-center gap-4 text-primary">
+            <Loader2 className="size-10 animate-spin" />
+            <p className="font-bold animate-pulse">Loading products...</p>
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="col-span-full text-center p-10 text-muted-foreground">No products found.</div>
+        ) : filtered.map((p, i) => (
           <article
             key={p.id}
             className="group relative overflow-hidden rounded-3xl bg-card p-5 flex flex-col text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-transform hover:-translate-y-1"
           >
-            <div className="grid h-40 place-items-center rounded-2xl bg-secondary mb-4 overflow-hidden">
+            {/* Visual Badges */}
+            {i === 0 && (
+              <div className="absolute top-4 left-4 z-10 flex items-center gap-1 rounded-full bg-red-500 px-3 py-1 text-[10px] font-bold text-white shadow-sm">
+                <Flame className="size-3" />
+                Best Seller
+              </div>
+            )}
+            {i === 2 && (
+              <div className="absolute top-4 left-4 z-10 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-[10px] font-bold text-primary-foreground shadow-sm">
+                <Sparkles className="size-3" />
+                New Arrival
+              </div>
+            )}
+
+            <div className="grid h-40 place-items-center rounded-2xl bg-secondary mb-4 overflow-hidden relative">
               {p.image ? (
-                <img src={p.image} alt={p.name} className="h-full w-full object-cover mix-blend-multiply" />
+                <img src={p.image} alt={p.name} className="h-full w-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-110" />
               ) : (
-                <Utensils className="size-10 text-primary/70" />
+                <Utensils className="size-10 text-primary/70 transition-transform duration-500 group-hover:scale-110" />
               )}
             </div>
             <h3 className="font-display text-lg font-bold line-clamp-2">{p.name}</h3>
@@ -81,7 +106,7 @@ function Shop() {
               </span>
               <button
                 onClick={() => addToCart({ productId: p.id, name: p.name, price: p.price, quantity: 1, image: p.image })}
-                className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-110 active:scale-95"
+                className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-110 active:scale-95"
               >
                 <Plus className="size-5" />
               </button>

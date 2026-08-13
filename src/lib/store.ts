@@ -10,6 +10,9 @@ interface CartItem {
 }
 
 interface AppState {
+  lang: 'en' | 'ar'
+  setLang: (lang: 'en' | 'ar') => void
+
   userId: string | null
   setUserId: (id: string | null) => void
   
@@ -23,6 +26,9 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set) => ({
+      lang: 'en',
+      setLang: (lang) => set({ lang }),
+
       userId: null,
       setUserId: (id) => set({ userId: id }),
 

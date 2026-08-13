@@ -91,13 +91,14 @@ function Logo() {
 function Index() {
   const userId = useAppStore((state) => state.userId);
   const cart = useAppStore((state) => state.cart);
-  const [lang, setLang] = useState<Lang>("en");
+  const lang = useAppStore((state) => state.lang);
+  const setLang = useAppStore((state) => state.setLang);
   const t = copy[lang];
 
   useEffect(() => {
-    const saved = localStorage.getItem("petvan-lang");
+    const saved = localStorage.getItem("petvan-lang") as Lang;
     if (saved === "ar" || saved === "en") setLang(saved);
-  }, []);
+  }, [setLang]);
 
   useEffect(() => {
     localStorage.setItem("petvan-lang", lang);

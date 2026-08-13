@@ -14,6 +14,7 @@ import { Home, Search, Calendar, User, Smartphone } from "lucide-react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useAppStore } from "../lib/store";
+import { copy } from "../lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -113,8 +114,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const lang = useAppStore((state) => state.lang);
+  
   return (
-    <html lang="en" className="dark">
+    <html 
+      lang={lang} 
+      dir={lang === "ar" ? "rtl" : "ltr"} 
+      className={`dark ${lang === "ar" ? "font-cairo" : "font-poppins"}`}
+    >
       <head>
         <HeadContent />
       </head>
@@ -138,6 +145,8 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const userId = useAppStore((state) => state.userId);
+  const lang = useAppStore((state) => state.lang);
+  const t = copy[lang];
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -150,23 +159,23 @@ function RootComponent() {
       <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-16 items-center justify-around border-t border-border bg-background/90 backdrop-blur-md pb-safe lg:hidden">
         <Link to="/" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <Home className="size-5" />
-          <span className="text-[10px] font-bold">Home</span>
+          <span className="text-[10px] font-bold">{t.home}</span>
         </Link>
         <Link to="/shop" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <Search className="size-5" />
-          <span className="text-[10px] font-bold">Shop</span>
+          <span className="text-[10px] font-bold">{t.shop}</span>
         </Link>
         <Link to="/adopt" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <Calendar className="size-5" />
-          <span className="text-[10px] font-bold">Adopt</span>
+          <span className="text-[10px] font-bold">{t.adopt}</span>
         </Link>
         <Link to="/install" className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <Smartphone className="size-5" />
-          <span className="text-[10px] font-bold">App</span>
+          <span className="text-[10px] font-bold">{t.app}</span>
         </Link>
         <Link to={userId ? "/profile" : "/login"} className="flex flex-col items-center gap-1 p-2 text-muted-foreground hover:text-primary [&.active]:text-primary">
           <User className="size-5" />
-          <span className="text-[10px] font-bold">{userId ? "Profile" : "Login"}</span>
+          <span className="text-[10px] font-bold">{userId ? t.profile : t.login}</span>
         </Link>
       </nav>
     </QueryClientProvider>

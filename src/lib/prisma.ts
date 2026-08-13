@@ -35,6 +35,10 @@ export const prisma = {
       const pet = { id: generateId(), ...data };
       pets.push(pet);
       return pet;
+    },
+    delete: async ({ where }: any) => {
+      pets = pets.filter(p => p.id !== where.id);
+      return { id: where.id };
     }
   },
   product: {
@@ -42,6 +46,10 @@ export const prisma = {
   },
   order: {
     findUnique: async ({ where }: any) => orders.find(o => o.id === where.id) || null,
+    findMany: async ({ where }: any) => {
+      if (!where) return orders;
+      return orders.filter(o => o.userId === where.userId);
+    },
     create: async ({ data }: any) => {
       const order = { id: generateId(), ...data };
       orders.push(order);
@@ -52,11 +60,14 @@ export const prisma = {
     findMany: async ({ where, include }: any) => {
       let result = adoptionListings.filter(al => !where || al.status === where.status);
       if (include) {
-        result = result.map(al => ({
-          ...al,
-          pet: pets.find(p => p.id === al.petId),
-          lister: users.find(u => u.id === al.listerId) || { name: "User" }
-        }));
+        result = result.map(al => {
+          const u = users.find(u => u.id === al.listerId);
+          return {
+            ...al,
+            pet: pets.find(p => p.id === al.petId),
+            lister: u ? { name: u.name, email: u.email } : { name: "User", email: "contact@petvan.com" }
+          };
+        });
       }
       return result;
     },
