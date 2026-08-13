@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../lib/store";
 import { loginUserFn } from "../api/auth";
+import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   component: Login,
@@ -31,7 +32,11 @@ function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 relative">
+      <Link to="/" className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold">
+        <ArrowLeft className="size-5" />
+        Home
+      </Link>
       <div className="w-full max-w-md space-y-8 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
         <div className="text-center">
           <h2 className="font-display text-3xl font-extrabold text-primary">Welcome back</h2>
