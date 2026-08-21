@@ -83,6 +83,12 @@ export const copy = {
     addToCart: (n: string) => `Add ${n} to cart`,
     cart: "Cart",
 
+    profile: "Profile",
+    login: "Login",
+    register: "Register",
+    findAdoptFriend: "FIND YOUR ADOPT FRIEND",
+
+
     welcomeBack: "Welcome Back",
     welcomeBackDesc: "Enter your details to access your account.",
     emailAddress: "Email Address",
@@ -280,6 +286,12 @@ export const copy = {
     rights: "أحمد حداد © جميع الحقوق محفوظة.",
     addToCart: (n: string) => `أضف ${n} إلى السلة`,
     cart: "السلة",
+
+    profile: "الملف الشخصي",
+    login: "تسجيل الدخول",
+    register: "إنشاء حساب",
+    findAdoptFriend: "اعثر على صديقك الجديد",
+
 
     welcomeBack: "مرحباً بعودتك",
     welcomeBackDesc: "أدخل بياناتك للوصول إلى حسابك.",

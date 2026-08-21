@@ -163,7 +163,7 @@ function Index() {
     if (globalPetType === "Dogs") return "Hey, Dog Parent! 🐶";
     if (globalPetType === "Birds") return "Tweet Tweet! 🦜";
     if (globalPetType === "Fish") return "Glub Glub! 🐟";
-    return "{t.hello} {t.friend}";
+    return `${t.hello} ${t.friend}`;
   }, [globalPetType]);
 
   return (
@@ -212,16 +212,12 @@ function Index() {
             <Link
               to={userId ? "/profile" : "/login"}
               className="rounded-full bg-primary px-8 py-2 text-xs sm:text-sm font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-wider shadow-[0_4px_20px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]"
-            >
-              {userId ? "Profile" : "Login"}
-            </Link>
+            >{userId ? t.profile : t.login}</Link>
             {!userId && (
               <Link
                 to="/register"
                 className="rounded-full border border-foreground px-8 py-2 text-xs sm:text-sm font-bold text-foreground transition-colors hover:bg-foreground hover:text-background uppercase tracking-wider"
-              >
-                Register
-              </Link>
+              >{t.register}</Link>
             )}
           </div>
           <p className="mt-10 text-xs text-muted-foreground uppercase tracking-wider mb-4">
@@ -230,9 +226,7 @@ function Index() {
           <Link
             to="/adopt"
             className="rounded-full bg-primary px-8 py-2.5 text-xs font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-widest shadow-[0_4px_20px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]"
-          >
-            FIND YOUR ADOPT FRIEND
-          </Link>
+          >{t.findAdoptFriend}</Link>
         </div>
       </section>
 
