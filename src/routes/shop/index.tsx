@@ -144,7 +144,7 @@ function Shop() {
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="h-full w-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 ) : (
                   <Utensils className="size-10 text-primary/70 transition-transform duration-500 group-hover:scale-110" />
@@ -183,7 +183,7 @@ function Shop() {
               <div className="grid sm:grid-cols-2 gap-8">
                 <div className="rounded-3xl bg-secondary overflow-hidden aspect-square flex items-center justify-center p-4 relative max-h-[50vh]">
                   {selectedProduct.image ? (
-                    <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-contain mix-blend-multiply" />
+                    <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-contain" />
                   ) : (
                     <Utensils className="size-20 text-muted-foreground/30" />
                   )}

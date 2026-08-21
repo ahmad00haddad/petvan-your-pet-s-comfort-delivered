@@ -41,7 +41,7 @@ function Register() {
       {/* Left Panel - Image */}
       <div className="hidden lg:flex w-1/2 relative bg-secondary flex-col justify-between p-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
-        <img src={petCat} alt="Happy Cat" className="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80" />
+        <img src={petCat} alt="Happy Cat" className="absolute inset-0 w-full h-full object-cover opacity-80" />
         <div className="relative z-20">
           <Link to="/" className="font-display text-3xl font-extrabold tracking-tight">
             <span className="text-foreground">Pet</span>

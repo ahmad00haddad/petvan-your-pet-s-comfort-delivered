@@ -96,7 +96,7 @@ function PetProfile() {
           <img
             src={pet.image}
             alt={pet.name}
-            className="h-full w-full object-cover mix-blend-multiply"
+            className="h-full w-full object-cover"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-8xl">

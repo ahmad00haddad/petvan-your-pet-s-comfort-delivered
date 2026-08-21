@@ -106,7 +106,7 @@ function Cart() {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="size-20 rounded-xl object-cover mix-blend-multiply bg-secondary"
+                    className="size-20 rounded-xl object-cover bg-secondary"
                   />
                 ) : (
                   <div className="size-20 rounded-xl bg-secondary" />

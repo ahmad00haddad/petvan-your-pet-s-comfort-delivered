@@ -197,7 +197,7 @@ function Index() {
             key={globalPetType || "default"}
             src={getHeroImage(globalPetType)}
             alt="Happy pet"
-            className="w-[85%] h-full object-contain mx-auto mix-blend-multiply transition-transform duration-500 hover:scale-105"
+            className="w-[85%] h-full object-contain mx-auto transition-transform duration-500 hover:scale-105"
           />
         </div>
 
