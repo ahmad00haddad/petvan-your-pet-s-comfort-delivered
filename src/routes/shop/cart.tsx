@@ -1,3 +1,4 @@
+import { ContextHint } from "../../components/ContextHint";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAppStore } from "../../lib/store";
 import { checkoutFn } from "../../api/shop";
@@ -152,7 +153,7 @@ function Cart() {
                 <span>2.00 JOD</span>
               </div>
               <div className="border-t border-border pt-3 flex justify-between font-bold text-lg">
-                <span>{t.total}</span>
+                
                 <span>{(total + 2).toFixed(2)} JOD</span>
               </div>
             </div>

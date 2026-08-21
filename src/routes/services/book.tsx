@@ -1,3 +1,4 @@
+import { ContextHint } from "../../components/ContextHint";
 import { Magnetic } from "../../components/Magnetic";
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
@@ -87,7 +88,9 @@ function BookService() {
 
       <div className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)] flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
-          <h2 className="font-display text-xl font-bold">Total: {selected.price.toFixed(2)} JOD</h2>
+          <h2 className="font-display text-xl font-bold flex items-center">Total: {selected.price.toFixed(2)} JOD
+            <ContextHint content={lang === "ar" ? "سيتم دفع المبلغ الإجمالي نقداً عند وصول العيادة المتنقلة." : "Total amount will be paid in cash upon the arrival of the mobile clinic."} />
+          </h2>
           <p className="text-sm text-muted-foreground mt-1">
             Our mobile van will arrive at your registered location.
           </p>
