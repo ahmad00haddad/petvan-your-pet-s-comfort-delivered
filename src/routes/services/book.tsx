@@ -1,3 +1,4 @@
+import { Magnetic } from "../../components/Magnetic";
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../../lib/store";

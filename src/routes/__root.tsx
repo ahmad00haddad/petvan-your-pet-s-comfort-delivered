@@ -18,6 +18,7 @@ import { copy } from "../lib/i18n";
 import { GuidedTour } from "../components/GuidedTour";
 import { CustomCursor } from "../components/CustomCursor";
 import { Preloader } from "../components/Preloader";
+import { ScrollProgress } from "../components/ScrollProgress";
 import { GrainOverlay } from "../components/GrainOverlay";
 import { MapPin, ShoppingCart, Instagram, Facebook, Twitter, Mail } from "lucide-react";
 
@@ -237,6 +238,7 @@ function RootComponent() {
 
       <main className="min-h-screen animate-fade-in-up">
         <Preloader />
+        <ScrollProgress />
         <CustomCursor />
         <GrainOverlay />
         <Outlet />

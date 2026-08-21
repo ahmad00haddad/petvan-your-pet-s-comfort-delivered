@@ -1,3 +1,4 @@
+import { Magnetic } from "../components/Magnetic";
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../lib/store";
@@ -108,13 +109,13 @@ function Register() {
             </div>
           </div>
 
-          <button
+          <Magnetic className="w-full"><button
             type="submit"
             disabled={loading}
             className="w-full rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100"
           >
             {loading ? "Creating account..." : "Sign up"}
-          </button>
+          </button></Magnetic>
         </form>
 
         <p className="text-center text-sm text-muted-foreground">

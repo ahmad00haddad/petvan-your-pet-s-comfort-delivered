@@ -1,3 +1,4 @@
+import { Magnetic } from "../components/Magnetic";
 import { useAppStore } from '../lib/store';
 import { copy } from '../lib/i18n';
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -63,14 +64,14 @@ function InstallPage() {
         {(isAndroid || deferredPrompt) && (
           <div className="text-center border-b border-border pb-8">
             <h2 className="font-bold text-xl mb-4">{t.fastInstall}</h2>
-            <button
+            <Magnetic className="w-full"><button
               onClick={handleInstallClick}
               disabled={!deferredPrompt}
               className="w-full rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               <Download className="size-5" />
               {deferredPrompt ? t.installNow : t.alreadyInstalled}
-            </button>
+            </button></Magnetic>
           </div>
         )}
 

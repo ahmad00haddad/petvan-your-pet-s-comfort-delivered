@@ -1,3 +1,4 @@
+import { RevealOnScroll } from "../components/RevealOnScroll";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "../lib/store";
 import { useEffect, useState, useMemo } from "react";
@@ -231,7 +232,8 @@ function Index() {
       </section>
 
       {/* Services */}
-      <section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+      <RevealOnScroll>
+<section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
         <p className="text-sm text-muted-foreground mb-6">{t.chooseKind}</p>
         <div className="flex justify-center gap-6 sm:gap-10">
           {kinds.map((k) => {
@@ -273,6 +275,7 @@ function Index() {
           })}
         </div>
       </section>
+</RevealOnScroll>
 
       {/* Shop */}
       <section
