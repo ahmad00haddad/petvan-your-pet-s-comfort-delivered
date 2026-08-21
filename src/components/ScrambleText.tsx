@@ -1,7 +1,6 @@
+import { useState, useEffect, useRef } from "react";
 
-import { useState, useEffect } from "react";
-
-const CHARS = "!<>-_\\\\/[]{}—=+*^?#________";
+const CHARS = "!<>-_\\/[]{}=+*^?#";
 
 interface ScrambleTextProps {
   text: string;
@@ -10,17 +9,18 @@ interface ScrambleTextProps {
 
 export function ScrambleText({ text, className = "" }: ScrambleTextProps) {
   const [displayText, setDisplayText] = useState(text);
-  const [isScrambling, setIsScrambling] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isScrambling = useRef(false);
 
   const scramble = () => {
-    if (isScrambling) return;
-    setIsScrambling(true);
+    if (isScrambling.current) return;
+    isScrambling.current = true;
 
     let frame = 0;
     const maxFrames = 20;
     const originalLength = text.length;
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       let scrambled = "";
       for (let i = 0; i < originalLength; i++) {
         if (i < (frame / maxFrames) * originalLength) {
@@ -33,15 +33,18 @@ export function ScrambleText({ text, className = "" }: ScrambleTextProps) {
       frame++;
 
       if (frame > maxFrames) {
-        clearInterval(interval);
+        if (intervalRef.current) clearInterval(intervalRef.current);
         setDisplayText(text);
-        setIsScrambling(false);
+        isScrambling.current = false;
       }
     }, 30);
   };
 
   useEffect(() => {
     setDisplayText(text);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [text]);
 
   return (

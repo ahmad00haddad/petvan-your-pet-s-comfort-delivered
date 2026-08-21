@@ -62,9 +62,9 @@ export const Route = createFileRoute("/")({
 const serviceIcons = [Stethoscope, Home, Scissors];
 
 const shopCats = [
-  { icon: Utensils, label: "Food" },
-  { icon: Wrench, label: "Tools" },
-  { icon: Gamepad2, label: "Games" },
+  { icon: Utensils, labelEn: "Food", labelAr: "طعام" },
+  { icon: Wrench, labelEn: "Tools", labelAr: "أدوات" },
+  { icon: Gamepad2, labelEn: "Games", labelAr: "ألعاب" },
 ];
 
 const prices = ["7.99", "4.99", "19.99", "6.50", "1.75", "14.99"];
@@ -162,10 +162,10 @@ function Index() {
   }, []);
 
   const heroText = useMemo(() => {
-    if (globalPetType === "Cats") return "Hello, Cat Lover! 🐱";
-    if (globalPetType === "Dogs") return "Hey, Dog Parent! 🐶";
-    if (globalPetType === "Birds") return "Tweet Tweet! 🦜";
-    if (globalPetType === "Fish") return "Glub Glub! 🐟";
+    if (globalPetType === "Cats") return lang === "ar" ? "أهلاً بك يا عاشق القطط! 🐱" : "Hello, Cat Lover! 🐱";
+    if (globalPetType === "Dogs") return lang === "ar" ? "مرحباً يا صاحب الكلاب! 🐶" : "Hey, Dog Parent! 🐶";
+    if (globalPetType === "Birds") return lang === "ar" ? "تغريد وفرح! 🦜" : "Tweet Tweet! 🦜";
+    if (globalPetType === "Fish") return lang === "ar" ? "عالم تحت الماء! 🐟" : "Glub Glub! 🐟";
     return `${t.hello} ${t.friend}`;
   }, [globalPetType]);
 
@@ -226,7 +226,7 @@ function Index() {
             )}
           </div>
           <p className="mt-10 text-xs text-muted-foreground uppercase tracking-wider mb-4">
-            FIND A NEW PET AND RESCUE IT FROM WHEN IT MIGHT BE ALONE OR LOST
+            {lang === "ar" ? "اعثر على حيوان أليف جديد وانقذه قبل أن يضيع أو يُترك وحيداً" : "FIND A NEW PET AND RESCUE IT FROM WHEN IT MIGHT BE ALONE OR LOST"}
           </p>
           <Link
             to="/adopt"
@@ -258,7 +258,7 @@ function Index() {
               {t.askServices}
             </h2>
         <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
-          CHOOSE THE KIND OF SERVICES YOU NEED
+          {lang === "ar" ? "اختر نوع الخدمة التي تحتاجها" : "CHOOSE THE KIND OF SERVICES YOU NEED"}
         </p>
 
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
@@ -271,8 +271,7 @@ function Index() {
                 </span>
                 <h3 className="mt-6 font-display text-base font-bold">{s.title}</h3>
                 <p className="mt-3 text-[10px] leading-relaxed text-muted-foreground max-w-[200px] text-center">
-                  The first mobile caravan specialized in caring for domestic pets by ordering a
-                  caravan fully equipped...
+                  {s.desc}
                 </p>
               </article>
             );
@@ -294,12 +293,12 @@ function Index() {
           <div className="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10">
             {shopCats.map((c) => (
               <Link
-                key={c.label}
+                key={c.labelEn}
                 to="/shop"
                 className="group w-28 h-28 glass-panel rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-all hover:-translate-y-2 hover:glow-primary shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
               >
                 <c.icon className="size-8 text-foreground group-hover:text-primary transition-colors" />
-                <span className="text-[10px] font-bold text-foreground group-hover:text-primary transition-colors">{c.label}</span>
+                <span className="text-[10px] font-bold text-foreground group-hover:text-primary transition-colors">{lang === "ar" ? c.labelAr : c.labelEn}</span>
               </Link>
             ))}
           </div>
@@ -361,19 +360,19 @@ function Index() {
         <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 text-center relative z-10">
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">10K<span className="text-3xl">+</span></h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Pets Served</p>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'حيوان تمت خدمته' : 'Pets Served'}</p>
           </div>
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '200ms' }}>
             <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">50<span className="text-3xl">+</span></h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Expert Vets</p>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'طبيب بيطري متخصص' : 'Expert Vets'}</p>
           </div>
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '300ms' }}>
             <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">15<span className="text-3xl">+</span></h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Mobile Caravans</p>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'عيادة متنقلة' : 'Mobile Caravans'}</p>
           </div>
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
             <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">4.9</h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">Client Rating</p>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'تقييم العملاء' : 'Client Rating'}</p>
           </div>
         </div>
       </section>

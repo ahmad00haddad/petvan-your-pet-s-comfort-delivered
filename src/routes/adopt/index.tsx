@@ -1,3 +1,4 @@
+import { copy } from "../../lib/i18n";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdoptionsFn } from "../../api/adopt";

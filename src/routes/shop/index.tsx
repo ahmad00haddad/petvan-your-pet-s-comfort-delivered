@@ -23,12 +23,6 @@ export const Route = createFileRoute("/shop/")({
   component: Shop,
 });
 
-const cats = [
-  { id: t.catsWord, icon: Utensils, label: t.catsWord },
-  { id: t.toolsWord || "Tools", icon: Wrench, label: t.toolsWord || "Tools" },
-  { id: t.gamesWord || "Games", icon: Gamepad2, label: t.gamesWord || "Games" },
-];
-
 function Shop() {
   const globalPetType = useAppStore((state) => state.globalPetType);
   const [products, setProducts] = useState<any[]>([]);
@@ -40,6 +34,12 @@ function Shop() {
   const cart = useAppStore((state) => state.cart);
   const lang = useAppStore((state) => state.lang);
   const t = copy[lang];
+
+  const cats = [
+    { id: "food", icon: Utensils, label: lang === "ar" ? "طعام" : "Food" },
+    { id: "tools", icon: Wrench, label: lang === "ar" ? "أدوات" : "Tools" },
+    { id: "games", icon: Gamepad2, label: lang === "ar" ? "ألعاب" : "Games" },
+  ];
 
   useEffect(() => {
     getProductsFn().then((data) => {

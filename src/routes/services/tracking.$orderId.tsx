@@ -1,7 +1,9 @@
-import { createFileRoute, Link, useParams, useNavigate } from "@tanstack/react-router";
+import { useAppStore } from "../../lib/store";
+import { copy } from "../../lib/i18n";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getOrderFn } from "../../api/services";
-import { MapPin, Star, Clock, Home, ArrowLeft, Heart, CheckCircle2 } from "lucide-react";
+import { MapPin, Star, Clock, Home, ArrowLeft, CheckCircle2 } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { toast } from "sonner";
 
@@ -11,6 +13,8 @@ export const Route = createFileRoute("/services/tracking/$orderId")({
 
 function Tracking() {
   const { orderId } = Route.useParams();
+  const lang = useAppStore((state: any) => state.lang);
+  const t = copy[lang as keyof typeof copy];
   const navigate = useNavigate();
   const [order, setOrder] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +31,7 @@ function Tracking() {
         const calculateTimeLeft = () => {
           const diff = new Date(data.eta).getTime() - new Date().getTime();
           if (diff <= 0) {
-            setTimeLeft("Arrived");
+            setTimeLeft(lang === "ar" ? "وصل" : "Arrived");
             setArrived(true);
           } else {
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -77,7 +81,7 @@ function Tracking() {
           {order.serviceType} {t.bookingConfirmed}
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
-          Order #{order.id.slice(-6).toUpperCase()}
+          {lang === 'ar' ? 'طلب رقم #' : 'Order #'}{order.id.slice(-6).toUpperCase()}
         </p>
 
         <div className="my-10">
@@ -100,7 +104,7 @@ function Tracking() {
             <path
               d="M 20 80 Q 50 20 80 20"
               fill="none"
-              stroke="hsl(var(--primary) / 0.5)"
+              stroke="oklch(0.75 0.18 85 / 0.5)"
               strokeWidth="3"
               strokeDasharray="6,6"
               className="animate-[dash_20s_linear_infinite]"
@@ -128,7 +132,7 @@ function Tracking() {
           </span>
           <div className="text-center sm:text-start">
             <p className="text-lg">
-              <span className="font-bold">{order.driverName}</span> {arrived ? "has arrived!" : "is on the way!"}
+              <span className="font-bold">{order.driverName}</span> {arrived ? (lang === "ar" ? "وصل!" : "has arrived!") : (lang === "ar" ? "في الطريق!" : "is on the way!")}
             </p>
             <span className="flex items-center justify-center sm:justify-start mt-2 text-primary gap-1">
               {[0, 1, 2, 3].map((i) => (
@@ -153,7 +157,7 @@ function Tracking() {
               Service Completed!
             </Dialog.Title>
             <Dialog.Description className="text-sm text-muted-foreground mb-8">
-              We hope your pet enjoyed the {order.serviceType} service with {order.driverName}. Please rate your experience!
+              {lang === 'ar' ? `نأمل أن يكون حيوانك قد استمتع بخدمة ${order.serviceType}. يرجى تقييم تجربتك!` : `We hope your pet enjoyed the ${order.serviceType} service with ${order.driverName}. Please rate your experience!`}
             </Dialog.Description>
 
             <div className="flex justify-center gap-2 mb-6">
@@ -170,7 +174,7 @@ function Tracking() {
 
             <textarea
               className="w-full h-24 p-4 rounded-2xl bg-secondary border-none resize-none focus:ring-2 focus:ring-primary outline-none mb-6 text-sm placeholder:text-muted-foreground/50"
-              placeholder="Leave a comment (optional)..."
+              placeholder={lang === "ar" ? "اترك تعليقاً (اختياري)..." : "Leave a comment (optional)..."}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>
@@ -179,7 +183,7 @@ function Tracking() {
               disabled={rating === 0}
               onClick={() => {
                 setRatingSubmitted(true);
-                toast.success("Thank you for your feedback!");
+                toast.success(lang === "ar" ? "شكراً على تقييمك!" : "Thank you for your feedback!");
                 navigate({ to: "/profile" });
               }}
               className="w-full rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"

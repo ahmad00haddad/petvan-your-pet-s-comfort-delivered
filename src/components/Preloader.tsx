@@ -7,7 +7,7 @@ export function Preloader() {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
   const lang = useAppStore((state: any) => state.lang);
-  const t = copy[lang];
+  const t = copy[lang as keyof typeof copy];
 
   useEffect(() => {
     setMounted(true);

@@ -83,9 +83,6 @@ export const copy = {
     addToCart: (n: string) => `Add ${n} to cart`,
     cart: "Cart",
 
-    profile: "Profile",
-    login: "Login",
-    register: "Register",
     findAdoptFriend: "FIND YOUR ADOPT FRIEND",
 
 
@@ -102,7 +99,7 @@ export const copy = {
     signUp: "Sign Up",
     signingUp: "Signing Up...",
     alreadyHaveAccount: "Already have an account?",
-    installApp: "Install PetVan",
+
     installAppDesc: "Get the full app experience. Install PetVan on your home screen for faster access, offline mode, and push notifications.",
     fastInstall: "Fast Installation",
     installNow: "Install App Now",
@@ -112,8 +109,6 @@ export const copy = {
     iosStep1: "Tap the Share button at the bottom of Safari",
     iosStep2: "Scroll down and tap 'Add to Home Screen'",
 
-
-    bookService: "Book a Service",
     bookServiceDesc: "Select a mobile service to deliver comfort to your door.",
     bookingConfirmed: "Booking Confirmed",
     orderNotFound: "Order not found",
@@ -287,9 +282,6 @@ export const copy = {
     addToCart: (n: string) => `أضف ${n} إلى السلة`,
     cart: "السلة",
 
-    profile: "الملف الشخصي",
-    login: "تسجيل الدخول",
-    register: "إنشاء حساب",
     findAdoptFriend: "اعثر على صديقك الجديد",
 
 
@@ -306,7 +298,7 @@ export const copy = {
     signUp: "إنشاء حساب",
     signingUp: "جاري إنشاء الحساب...",
     alreadyHaveAccount: "لديك حساب بالفعل؟",
-    installApp: "تثبيت تطبيق PetVan",
+
     installAppDesc: "احصل على تجربة التطبيق الكاملة. قم بتثبيت PetVan على شاشتك الرئيسية للوصول الأسرع والوضع غير المتصل والإشعارات.",
     fastInstall: "تثبيت سريع",
     installNow: "تثبيت التطبيق الآن",
@@ -316,8 +308,6 @@ export const copy = {
     iosStep1: "اضغط على زر المشاركة في أسفل Safari",
     iosStep2: "قم بالتمرير لأسفل واضغط على 'إضافة إلى الشاشة الرئيسية'",
 
-
-    bookService: "احجز خدمة",
     bookServiceDesc: "اختر خدمة متنقلة لتوصيل الراحة إلى باب منزلك.",
     bookingConfirmed: "تم تأكيد الحجز",
     orderNotFound: "لم يتم العثور على الطلب",

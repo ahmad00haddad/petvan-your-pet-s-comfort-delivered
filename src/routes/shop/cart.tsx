@@ -1,4 +1,3 @@
-import { ContextHint } from "../../components/ContextHint";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAppStore } from "../../lib/store";
 import { checkoutFn } from "../../api/shop";
@@ -14,6 +13,8 @@ export const Route = createFileRoute("/shop/cart")({
 
 function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart, userId } = useAppStore();
+  const lang = useAppStore((state: any) => state.lang);
+  const t = copy[lang as keyof typeof copy];
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [address, setAddress] = useState("");
@@ -83,11 +84,11 @@ function Cart() {
         Back to Shop
       </Link>
 
-      <h1 className="font-display text-4xl font-extrabold text-primary mb-8">Shopping Cart</h1>
+      <h1 className="font-display text-4xl font-extrabold text-primary mb-8">{t.cart}</h1>
 
       {cart.length === 0 ? (
         <div className="rounded-3xl border border-dashed border-border bg-card p-12 text-center">
-          <p className="text-muted-foreground mb-6">Your cart is empty.</p>
+          <p className="text-muted-foreground mb-6">{t.cartEmpty}</p>
           <Link
             to="/shop"
             className="rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground"
@@ -188,7 +189,7 @@ function Cart() {
                           required
                           value={address}
                           onChange={(e) => setAddress(e.target.value)}
-                          placeholder="e.g. Mecca St, Amman" 
+                          placeholder={lang === "ar" ? "مثال: شارع مكة، عمّان" : "e.g. Mecca St, Amman"} 
                           className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         />
                       </div>
@@ -199,7 +200,7 @@ function Cart() {
                           required
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="e.g. 079xxxxxxx" 
+                          placeholder={lang === "ar" ? "مثال: 079xxxxxxx" : "e.g. 079xxxxxxx"} 
                           className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         />
                       </div>
@@ -218,7 +219,7 @@ function Cart() {
                     <div className="flex w-full gap-3">
                       <Dialog.Close asChild>
                         <button className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">
-                          Cancel
+                          {t.cancel}
                         </button>
                       </Dialog.Close>
                       <button

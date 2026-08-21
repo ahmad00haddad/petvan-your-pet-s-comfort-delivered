@@ -242,7 +242,7 @@ function Profile() {
 
             <textarea
               className="w-full h-24 p-4 rounded-2xl bg-secondary border border-border resize-none focus:ring-2 focus:ring-primary outline-none mb-6 text-sm placeholder:text-muted-foreground/50"
-              placeholder="e.g. Very friendly and loves to play..."
+              placeholder={lang === "ar" ? "مثال: ودود جداً ويحب اللعب..." : "e.g. Very friendly and loves to play..."}
               value={adoptDescription}
               onChange={(e) => setAdoptDescription(e.target.value)}
             ></textarea>
@@ -289,7 +289,7 @@ function Profile() {
                     value={newPetName}
                     onChange={(e) => setNewPetName(e.target.value)}
                     className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                    placeholder="e.g. Bella"
+                    placeholder={lang === "ar" ? "مثال: بيلا" : "e.g. Bella"}
                   />
                 </div>
 
@@ -303,9 +303,9 @@ function Profile() {
                       onChange={(e) => setNewPetType(e.target.value)}
                       className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
-                      <option value="Cat">{t.catsWord}</option>
-                      <option value="Dog">{t.dogsWord}</option>
-                      <option value="Bird">{t.birdsWord}</option>
+                      <option value="Cats">{t.catsWord}</option>
+                      <option value="Dogs">{t.dogsWord}</option>
+                      <option value="Birds">{t.birdsWord}</option>
                       <option value="Fish">{t.fishWord}</option>
                       <option value="Other">{t.otherWord}</option>
                     </select>
