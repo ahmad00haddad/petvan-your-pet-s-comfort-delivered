@@ -193,9 +193,9 @@ function RootComponent() {
           <div className="flex items-center gap-6">
             <Logo />
             <div className="hidden items-center gap-1.5 text-sm sm:flex">
-              <span className="font-bold">Location</span>
+              <span className="font-bold">{t.location}</span>
               <MapPin className="size-4 text-primary" />
-              <span className="text-muted-foreground text-xs">Amman</span>
+              <span className="text-muted-foreground text-xs">{t.city}</span>
             </div>
           </div>
 
@@ -211,19 +211,11 @@ function RootComponent() {
               </Link>
             )}
             <nav className="nav-tour hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
-              <a className="transition-colors hover:text-primary" href="/#about">
-                ABOUT US
-              </a>
-              <a className="transition-colors hover:text-primary" href="/#services">
-                OUR SERVICES
-              </a>
-              <a className="transition-colors hover:text-primary" href="/#help">
-                HELP
-              </a>
+              <a className="transition-colors hover:text-primary" href="/#about">{t.nav.about}</a>
+              <a className="transition-colors hover:text-primary" href="/#services">{t.nav.services}</a>
+              <a className="transition-colors hover:text-primary" href="/#help">{t.nav.help}</a>
               <Link to="/install" className="install-tour transition-colors hover:text-primary text-primary flex items-center gap-1">
-                <Smartphone className="size-3" />
-                INSTALL APP
-              </Link>
+                <Smartphone className="size-3" />{t.installApp}</Link>
             </nav>
             <Link
               to="/shop/cart"
@@ -260,7 +252,7 @@ function RootComponent() {
       <footer id="about" className="bg-background px-5 py-16 mt-20">
         <div className="mx-auto grid max-w-5xl gap-12 text-center sm:grid-cols-3">
           <div>
-            <h2 className="font-display font-bold text-lg mb-4 text-foreground">About Us</h2>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">{t.aboutUs}</h2>
             <p className="text-xs leading-relaxed text-muted-foreground max-w-[250px] mx-auto">
               The first mobile veterinary clinic in Jordan specialized in caring for domestic pets
               by ordering a caravan fully equipped with the latest tools and working hands from
@@ -268,26 +260,24 @@ function RootComponent() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <h2 className="font-display font-bold text-lg mb-4 text-foreground">Quick Links</h2>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">{lang === "ar" ? "روابط سريعة" : "Quick Links"}</h2>
             <nav className="flex flex-col gap-3 text-xs text-muted-foreground">
-              <a href="/#services" className="hover:text-primary transition-colors">Our Services</a>
-              <Link to="/adopt" className="hover:text-primary transition-colors">Adopt a Pet</Link>
-              <Link to="/shop" className="hover:text-primary transition-colors">Pet Shop</Link>
+              <a href="/#services" className="hover:text-primary transition-colors">{t.nav.services}</a>
+              <Link to="/adopt" className="hover:text-primary transition-colors">{t.adopt}</Link>
+              <Link to="/shop" className="hover:text-primary transition-colors">{t.shop}</Link>
               <Link to="/install" className="hover:text-primary transition-colors text-primary flex items-center gap-1 justify-center">
-                <Smartphone className="size-3" />
-                Install App
-              </Link>
+                <Smartphone className="size-3" />{t.installApp}</Link>
             </nav>
           </div>
           <div>
-            <h2 className="font-display font-bold text-lg mb-4 text-foreground">Contact Us</h2>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">{t.contactUs}</h2>
             <p className="text-xs text-muted-foreground mb-2">Ahmad000Haddad@gmail.com</p>
             <p className="text-xs text-muted-foreground" dir="ltr">
               +962799256345
             </p>
           </div>
           <div>
-            <h2 className="font-display font-bold text-lg mb-4 text-foreground">Social With Us</h2>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">{t.socialWithUs}</h2>
             <div className="flex justify-center gap-5 text-muted-foreground">
               {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
                 <a key={i} href="#top" className="transition-colors hover:text-primary">
@@ -298,7 +288,7 @@ function RootComponent() {
           </div>
         </div>
         <p className="mt-16 text-center text-xs text-muted-foreground/40">
-          Ahmad Haddad © All rights reserved.
+          {t.rights}
         </p>
       </footer>
     </QueryClientProvider>

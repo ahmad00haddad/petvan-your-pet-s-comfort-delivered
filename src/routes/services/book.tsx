@@ -79,8 +79,8 @@ function BookService() {
             <span className="grid size-14 place-items-center rounded-full bg-primary text-primary-foreground mb-4">
               <s.icon className="size-6" />
             </span>
-            <h3 className="font-display text-lg font-bold">{s.name}</h3>
-            <p className="mt-2 text-xs text-muted-foreground flex-grow">{s.desc}</p>
+            <h3 className="font-display text-lg font-bold">{s.id === "MEDICAL" ? t.services[0].title : s.id === "HOTEL" ? t.services[1].title : t.services[2].title}</h3>
+            <p className="mt-2 text-xs text-muted-foreground flex-grow">{s.id === "MEDICAL" ? t.services[0].desc : s.id === "HOTEL" ? t.services[1].desc : t.services[2].desc}</p>
             <span className="mt-4 font-bold text-primary">{s.price.toFixed(2)} JOD</span>
           </button>
         ))}
@@ -91,9 +91,7 @@ function BookService() {
           <h2 className="font-display text-xl font-bold flex items-center">Total: {selected.price.toFixed(2)} JOD
             <ContextHint content={lang === "ar" ? "سيتم دفع المبلغ الإجمالي نقداً عند وصول العيادة المتنقلة." : "Total amount will be paid in cash upon the arrival of the mobile clinic."} />
           </h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            Our mobile van will arrive at your registered location.
-          </p>
+          <p className="text-sm text-muted-foreground mt-1">{lang === "ar" ? "ستصل العيادة المتنقلة إلى موقعك المسجل." : "Our mobile van will arrive at your registered location."}</p>
         </div>
 
         <Dialog.Root>
@@ -102,7 +100,7 @@ function BookService() {
               disabled={loading}
               className="w-full sm:w-auto rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 whitespace-nowrap"
             >
-              {loading ? "Confirming..." : "Confirm Booking"}
+              {loading ? "Confirming..." : lang === "ar" ? "تأكيد الحجز" : "Confirm Booking"}
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
@@ -112,31 +110,24 @@ function BookService() {
                 <span className="grid size-16 place-items-center rounded-full bg-primary/20 text-primary mb-4">
                   <AlertCircle className="size-8" />
                 </span>
-                <Dialog.Title className="font-display text-2xl font-bold">
-                  Confirm Booking
-                </Dialog.Title>
+                <Dialog.Title className="font-display text-2xl font-bold">{lang === "ar" ? "تأكيد الحجز" : "Confirm Booking"}</Dialog.Title>
                 <Dialog.Description className="mt-2 text-sm text-muted-foreground mb-8">
-                  Are you sure you want to book the <strong>{selected.name}</strong> service? A
-                  mobile van will be dispatched to your location immediately.
+                  {lang === "ar" ? "هل أنت متأكد أنك تريد حجز خدمة" : "Are you sure you want to book the"} <strong>{selected.id === "MEDICAL" ? t.services[0].title : selected.id === "HOTEL" ? t.services[1].title : t.services[2].title}</strong> {lang === "ar" ? "؟ سيتم إرسال عيادة متنقلة لموقعك فوراً." : "service? A mobile van will be dispatched to your location immediately."}
                   <br />
                   <br />
                   <span className="font-bold text-foreground block text-lg">
-                    Cost: {selected.price.toFixed(2)} JOD
+                    {t.cost} {selected.price.toFixed(2)} JOD
                   </span>
                 </Dialog.Description>
 
                 <div className="flex w-full gap-3">
                   <Dialog.Close asChild>
-                    <button className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">
-                      Cancel
-                    </button>
+                    <button className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">{t.cancel}</button>
                   </Dialog.Close>
                   <button
                     onClick={handleBook}
                     className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105"
-                  >
-                    Yes, dispatch van
-                  </button>
+                  >{lang === "ar" ? "نعم، أرسل العيادة" : "Yes, dispatch van"}</button>
                 </div>
               </div>
             </Dialog.Content>

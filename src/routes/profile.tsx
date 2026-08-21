@@ -303,11 +303,11 @@ function Profile() {
                       onChange={(e) => setNewPetType(e.target.value)}
                       className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
-                      <option value="Cat">Cat</option>
-                      <option value="Dog">Dog</option>
-                      <option value="Bird">Bird</option>
-                      <option value="Fish">Fish</option>
-                      <option value="Other">Other</option>
+                      <option value="Cat">{t.catsWord}</option>
+                      <option value="Dog">{t.dogsWord}</option>
+                      <option value="Bird">{t.birdsWord}</option>
+                      <option value="Fish">{t.fishWord}</option>
+                      <option value="Other">{t.otherWord}</option>
                     </select>
                   </div>
 
