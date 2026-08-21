@@ -205,3 +205,45 @@
 @utility pulsing-glow {
   animation: pulsingGlow 4s ease-in-out infinite;
 }
+
+/* Driver.js Dark Theme Overrides */
+.driver-popover {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 1rem !important;
+  box-shadow: var(--shadow-card) !important;
+  font-family: inherit !important;
+}
+.driver-popover-title {
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  color: var(--color-primary) !important;
+  margin-bottom: 0.5rem !important;
+}
+.driver-popover-description {
+  font-size: 0.875rem !important;
+  color: var(--color-muted-foreground) !important;
+}
+.driver-popover-footer button {
+  background-color: var(--color-secondary) !important;
+  color: var(--color-foreground) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+  text-shadow: none !important;
+}
+.driver-popover-footer button:hover {
+  background-color: var(--color-primary) !important;
+  color: var(--color-primary-foreground) !important;
+}
+.driver-popover-navigation-btns {
+  gap: 0.5rem !important;
+  display: flex !important;
+}
+.driver-popover-arrow {
+  border-color: var(--color-border) !important;
+}
+

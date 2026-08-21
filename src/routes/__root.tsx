@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useAppStore } from "../lib/store";
 import { copy } from "../lib/i18n";
+import { GuidedTour } from "../components/GuidedTour";
 import { MapPin, ShoppingCart, Instagram, Facebook, Twitter, Mail } from "lucide-react";
 
 function Logo() {
@@ -196,7 +197,7 @@ function RootComponent() {
 
           <div className="flex items-center gap-8">
             {userId && (
-              <Link to="/profile" className="hidden sm:block">
+              <Link to="/profile" className="profile-tour hidden sm:block">
                 <div className="grid size-8 place-items-center rounded-full bg-secondary text-primary font-bold overflow-hidden">
                   <img
                     src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
@@ -205,7 +206,7 @@ function RootComponent() {
                 </div>
               </Link>
             )}
-            <nav className="hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
+            <nav className="nav-tour hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
               <a className="transition-colors hover:text-primary" href="/#about">
                 ABOUT US
               </a>
@@ -215,14 +216,14 @@ function RootComponent() {
               <a className="transition-colors hover:text-primary" href="/#help">
                 HELP
               </a>
-              <Link to="/install" className="transition-colors hover:text-primary text-primary flex items-center gap-1">
+              <Link to="/install" className="install-tour transition-colors hover:text-primary text-primary flex items-center gap-1">
                 <Smartphone className="size-3" />
                 INSTALL APP
               </Link>
             </nav>
             <Link
               to="/shop/cart"
-              className="relative transition-colors hover:text-primary"
+              className="cart-tour relative transition-colors hover:text-primary"
               aria-label="Cart"
             >
               <ShoppingCart className="size-5" />
@@ -233,6 +234,7 @@ function RootComponent() {
 
       <main className="min-h-screen animate-fade-in-up">
         <Outlet />
+        <GuidedTour />
       </main>
 
       {/* Scroll to Top Button */}
