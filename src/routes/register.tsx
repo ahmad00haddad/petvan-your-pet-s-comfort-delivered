@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../lib/store";
+import { copy } from "../lib/i18n";
 import { registerUserFn } from "../api/auth";
 import { ArrowLeft } from "lucide-react";
 import petCat from "@/assets/pet-cat.jpg";
@@ -65,7 +66,7 @@ function Register() {
         
         <div className="w-full max-w-md space-y-8 rounded-3xl border border-border glass-panel p-8 shadow-[var(--shadow-card)]">
         <div className="text-center lg:text-start">
-          <h2 className="font-display text-3xl font-extrabold text-primary text-glow">Sign Up</h2>
+          <h2 className="font-display text-3xl font-extrabold text-primary text-glow">{t.signUp}</h2>
           <p className="mt-2 text-sm text-muted-foreground">Join PetVan today</p>
         </div>
 

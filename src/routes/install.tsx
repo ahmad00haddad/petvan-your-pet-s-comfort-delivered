@@ -46,7 +46,7 @@ function InstallPage() {
         <div className="mx-auto grid size-24 place-items-center rounded-3xl bg-primary shadow-[0_0_40px_color-mix(in_oklch,var(--color-primary)_50%,transparent)] mb-6 transition-transform hover:scale-110">
           <Smartphone className="size-12 text-primary-foreground" />
         </div>
-        <h1 className="font-display text-4xl font-extrabold text-primary mb-4 text-glow">Install PetVan</h1>
+        <h1 className="font-display text-4xl font-extrabold text-primary mb-4 text-glow">{t.installApp}</h1>
         <p className="text-muted-foreground">
           Get the full app experience. Install PetVan on your home screen for faster access, offline
           mode, and push notifications.
@@ -59,14 +59,14 @@ function InstallPage() {
         {/* Android / Native PWA Install */}
         {(isAndroid || deferredPrompt) && (
           <div className="text-center border-b border-border pb-8">
-            <h2 className="font-bold text-xl mb-4">Fast Installation</h2>
+            <h2 className="font-bold text-xl mb-4">{t.fastInstall}</h2>
             <button
               onClick={handleInstallClick}
               disabled={!deferredPrompt}
               className="w-full rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-2"
             >
               <Download className="size-5" />
-              {deferredPrompt ? "Install App Now" : "App is already installed"}
+              {deferredPrompt ? t.installNow : t.alreadyInstalled}
             </button>
           </div>
         )}
@@ -74,7 +74,7 @@ function InstallPage() {
         {/* iOS Manual Install Guide */}
         {isIOS && (
           <div className="space-y-6">
-            <h2 className="font-bold text-xl text-center">Apple iOS Installation</h2>
+            <h2 className="font-bold text-xl text-center">{t.iosInstallTitle}</h2>
             <p className="text-sm text-muted-foreground text-center mb-6">
               Safari doesn't support automatic installation. Follow these 2 easy steps:
             </p>
