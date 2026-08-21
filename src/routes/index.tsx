@@ -177,11 +177,20 @@ function Index() {
     >
       {/* Hero */}
       <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center pt-8 px-5 sm:px-12">
-        <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0 transition-transform duration-300 ease-out" style={{ transform: 'translate(calc(var(--mouse-x, 0) * -1), calc(var(--mouse-y, 0) * -1))' }}>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square bg-foreground rounded-[999px] -z-10 shadow-[0_0_80px_rgba(255,255,255,0.05)] pulsing-glow"></div>
+        <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0 transition-transform duration-300 ease-out flex items-center justify-center" style={{ transform: 'translate(calc(var(--mouse-x, 0) * -1), calc(var(--mouse-y, 0) * -1))' }}>
+          
+          <div className="relative w-[300px] sm:w-[450px] aspect-square rounded-full shadow-[0_0_80px_rgba(255,255,255,0.05)] pulsing-glow overflow-hidden border-4 border-foreground/10 group">
+            <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            <img
+              key={globalPetType || "default"}
+              src={getHeroImage(globalPetType)}
+              alt="Happy pet"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+          </div>
           
           {/* Floating Particles */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none z-0">
             {[...Array(6)].map((_, i) => (
               <div 
                 key={i} 
@@ -195,13 +204,6 @@ function Index() {
               />
             ))}
           </div>
-
-          <img
-            key={globalPetType || "default"}
-            src={getHeroImage(globalPetType)}
-            alt="Happy pet"
-            className="w-[85%] h-full object-contain mx-auto transition-transform duration-500 hover:scale-105"
-          />
         </div>
 
         <div className="order-1 lg:order-2 lg:pl-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up" style={{ animationDelay: '100ms' }}>
