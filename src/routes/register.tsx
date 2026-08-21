@@ -11,6 +11,8 @@ export const Route = createFileRoute("/register")({
 });
 
 function Register() {
+  const lang = useAppStore((state: any) => state.lang);
+  const t = copy[lang];
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,9 +62,7 @@ function Register() {
           to="/"
           className="absolute top-6 left-6 lg:left-auto lg:right-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold transition-transform hover:-translate-x-1"
         >
-          <ArrowLeft className="size-5" />
-          Home
-        </Link>
+          <ArrowLeft className="size-5" />{t.goBackHome}</Link>
         
         <div className="w-full max-w-md space-y-8 rounded-3xl border border-border glass-panel p-8 shadow-[var(--shadow-card)]">
         <div className="text-center lg:text-start">
@@ -74,9 +74,7 @@ function Register() {
           {error && <div className="text-sm text-red-500 text-center">{error}</div>}
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="name">
-                Full Name
-              </label>
+              <label className="text-sm font-medium leading-none" htmlFor="name">{t.fullName}</label>
               <input
                 id="name"
                 type="text"
@@ -87,9 +85,7 @@ function Register() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="email">
-                Email
-              </label>
+              <label className="text-sm font-medium leading-none" htmlFor="email">{t.emailAddress}</label>
               <input
                 id="email"
                 type="email"
@@ -100,9 +96,7 @@ function Register() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="password">
-                Password
-              </label>
+              <label className="text-sm font-medium leading-none" htmlFor="password">{t.password}</label>
               <input
                 id="password"
                 type="password"
@@ -125,9 +119,7 @@ function Register() {
 
         <p className="text-center text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link to="/login" className="font-bold text-primary hover:underline">
-            Sign in
-          </Link>
+          <Link to="/login" className="font-bold text-primary hover:underline">{t.signIn}</Link>
         </p>
       </div>
       </div>

@@ -11,6 +11,8 @@ export const Route = createFileRoute("/login")({
 });
 
 function Login() {
+  const lang = useAppStore((state: any) => state.lang);
+  const t = copy[lang];
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -59,23 +61,19 @@ function Login() {
           to="/"
           className="absolute top-6 left-6 lg:left-auto lg:right-6 flex items-center gap-2 text-muted-foreground hover:text-foreground font-bold transition-transform hover:-translate-x-1"
         >
-          <ArrowLeft className="size-5" />
-          Home
-        </Link>
+          <ArrowLeft className="size-5" />{t.goBackHome}</Link>
         
         <div className="w-full max-w-md space-y-8 rounded-3xl border border-border glass-panel p-8 shadow-[var(--shadow-card)]">
         <div className="text-center lg:text-start">
           <h2 className="font-display text-3xl font-extrabold text-primary text-glow">{t.signIn}</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Enter your details to access your account</p>
+          <p className="mt-2 text-sm text-muted-foreground">{t.welcomeBackDesc}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           {error && <div className="text-sm text-red-500 text-center">{error}</div>}
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="email">
-                Email
-              </label>
+              <label className="text-sm font-medium leading-none" htmlFor="email">{t.emailAddress}</label>
               <input
                 id="email"
                 type="email"
@@ -86,9 +84,7 @@ function Login() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium leading-none" htmlFor="password">
-                Password
-              </label>
+              <label className="text-sm font-medium leading-none" htmlFor="password">{t.password}</label>
               <input
                 id="password"
                 type="password"
@@ -105,15 +101,13 @@ function Login() {
             disabled={loading}
             className="w-full rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100"
           >
-            {loading ? "Signing in..." : "Sign in"}
+            {loading ? t.signingIn : t.signIn}
           </button>
         </form>
 
         <p className="text-center text-sm text-muted-foreground">
           Don't have an account?{" "}
-          <Link to="/register" className="font-bold text-primary hover:underline">
-            Sign up
-          </Link>
+          <Link to="/register" className="font-bold text-primary hover:underline">{t.signUp}</Link>
         </p>
       </div>
       </div>

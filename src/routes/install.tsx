@@ -1,3 +1,5 @@
+import { useAppStore } from '../lib/store';
+import { copy } from '../lib/i18n';
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, Download, Share, PlusSquare, Smartphone } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -48,8 +50,7 @@ function InstallPage() {
         </div>
         <h1 className="font-display text-4xl font-extrabold text-primary mb-4 text-glow">{t.installApp}</h1>
         <p className="text-muted-foreground">
-          Get the full app experience. Install PetVan on your home screen for faster access, offline
-          mode, and push notifications.
+          {t.installAppDesc}
         </p>
       </div>
 
@@ -76,7 +77,7 @@ function InstallPage() {
           <div className="space-y-6">
             <h2 className="font-bold text-xl text-center">{t.iosInstallTitle}</h2>
             <p className="text-sm text-muted-foreground text-center mb-6">
-              Safari doesn't support automatic installation. Follow these 2 easy steps:
+              {t.iosInstallDesc}
             </p>
 
             <div className="flex items-start gap-4">
