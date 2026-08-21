@@ -52,7 +52,7 @@ function Register() {
       setUserId(user.id);
       navigate({ to: "/profile" });
     } catch (err: any) {
-      setError(err.message || "Registration failed");
+      setError(err.message || lang === "ar" ? "فشل إنشاء الحساب" : "Registration failed");
     } finally {
       setLoading(false);
     }
@@ -71,9 +71,9 @@ function Register() {
           </Link>
         </div>
         <div className="relative z-20 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-          <h2 className="text-5xl font-black mb-4 text-glow">Join the family!</h2>
+          <h2 className="text-5xl font-black mb-4 text-glow">{lang === "ar" ? "انضم إلى العائلة!" : "Join the family!"}</h2>
           <p className="text-muted-foreground max-w-md text-lg">
-            Create an account to track your pet's medical history, book appointments, and more.
+            {lang === "ar" ? "أنشئ حساباً لتتبع سجل حيوانك الطبي وحجز المواعيد والمزيد." : "Create an account to track your pet's medical history, book appointments, and more."}
           </p>
         </div>
       </div>
@@ -134,7 +134,7 @@ function Register() {
             disabled={loading}
             className="w-full rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-all hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:hover:scale-100"
           >
-            {loading ? "Creating account..." : "Sign up"}
+            {loading ? lang === "ar" ? "جاري إنشاء الحساب..." : "Creating account..." : lang === "ar" ? "إنشاء حساب" : "Sign up"}
           </button></Magnetic>
         </form>
 

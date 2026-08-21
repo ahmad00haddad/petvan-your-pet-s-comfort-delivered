@@ -28,7 +28,7 @@ function PetProfile() {
   const [pet, setPet] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"medical" | "vaccines">("medical");
-  const [ageString, setAgeString] = useState("Unknown");
+  const [ageString, setAgeString] = useState(lang === "ar" ? "غير محدد" : "Unknown");
 
   useEffect(() => {
     getPetByIdFn({ data: petId })
@@ -69,7 +69,7 @@ function PetProfile() {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4 text-primary bg-background">
         <Loader2 className="size-10 animate-spin" />
-        <p className="font-bold animate-pulse text-foreground">Loading Profile...</p>
+        <p className="font-bold animate-pulse text-foreground">{lang === "ar" ? "جاري تحميل الملف الشخصي..." : "Loading Profile..."}</p>
       </div>
     );
   }
@@ -120,7 +120,7 @@ function PetProfile() {
           </Link>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => alert("QR Code Modal opens here...")}
+              onClick={() => alert(lang === "ar" ? "قريباً: رمز QR الخاص بحيوانك" : "Coming soon: Pet QR Code")}
               className="grid size-10 place-items-center rounded-full bg-background/50 backdrop-blur text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <QrCode className="size-5" />
@@ -168,7 +168,7 @@ function PetProfile() {
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Info className="size-5 text-primary mb-2" />
             <p className="text-xs text-muted-foreground">{t.gender}</p>
-            <p className="font-bold text-sm">{pet.gender === "M" ? "Male" : "Female"}</p>
+            <p className="font-bold text-sm">{pet.gender === "M" ? (lang === "ar" ? "ذكر" : "Male") : (lang === "ar" ? "أنثى" : "Female")}</p>
           </div>
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Activity className="size-5 text-primary mb-2" />

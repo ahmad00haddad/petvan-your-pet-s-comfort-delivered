@@ -48,7 +48,7 @@ function Profile() {
       getMyOrdersFn({ data: userId }),
     ]).then(([u, p, o]) => {
       if (!u) {
-        toast.error("Session expired. Please log in again.");
+        toast.error(lang === "ar" ? "انتهت الجلسة. الرجاء تسجيل الدخول مجدداً." : "Session expired. Please log in again.");
         setUserId(null); // Clear invalid ID
         navigate({ to: "/login" });
         return;
@@ -60,7 +60,7 @@ function Profile() {
       setLoading(false);
     }).catch((err) => {
       console.error("Profile load error:", err);
-      toast.error("Failed to load profile. Please log in again.");
+      toast.error(lang === "ar" ? "فشل تحميل الملف الشخصي. الرجاء تسجيل الدخول مجدداً." : "Failed to load profile. Please log in again.");
       setUserId(null);
       navigate({ to: "/login" });
       setLoading(false);
@@ -71,9 +71,9 @@ function Profile() {
     try {
       await deletePetFn({ data: { userId: userId!, petId } });
       setPets(pets.filter((p) => p.id !== petId));
-      toast.success("Pet removed successfully");
+      toast.success(lang === "ar" ? "تم حذف الحيوان بنجاح" : "Pet removed successfully");
     } catch {
-      toast.error("Failed to remove pet");
+      toast.error(lang === "ar" ? "فشل حذف الحيوان" : "Failed to remove pet");
     }
   };
 
@@ -84,11 +84,11 @@ function Profile() {
       await listForAdoptionFn({
         data: { userId: userId!, petId: listingPetId, description: adoptDescription },
       });
-      toast.success("Pet successfully listed for adoption!");
+      toast.success(lang === "ar" ? "تم نشر الحيوان للتبني بنجاح!" : "Pet successfully listed for adoption!");
       setListingPetId(null);
       setAdoptDescription("");
     } catch {
-      toast.error("Failed to list pet for adoption");
+      toast.error(lang === "ar" ? "فشل نشر الحيوان للتبني" : "Failed to list pet for adoption");
     } finally {
       setListingLoading(false);
     }
@@ -103,13 +103,13 @@ function Profile() {
         data: { userId, name: newPetName, type: newPetType, gender: newPetGender },
       });
       setPets([...pets, newPet]);
-      toast.success("Pet added successfully!");
+      toast.success(lang === "ar" ? "تمت إضافة الحيوان بنجاح!" : "Pet added successfully!");
       setAddPetModalOpen(false);
       setNewPetName("");
       setNewPetType("Cat");
       setNewPetGender("M");
     } catch {
-      toast.error("Failed to add pet");
+      toast.error(lang === "ar" ? "فشل إضافة الحيوان" : "Failed to add pet");
     } finally {
       setAddingPet(false);
     }

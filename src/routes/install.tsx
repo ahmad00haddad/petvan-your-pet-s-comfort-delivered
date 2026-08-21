@@ -44,7 +44,7 @@ function InstallPage() {
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
       >
         <ArrowLeft className="size-4" />
-        Back to Home
+        {lang === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}
       </Link>
 
       <div className="text-center mb-10">
@@ -88,9 +88,9 @@ function InstallPage() {
                 1
               </div>
               <div>
-                <p className="font-bold">Tap the Share button</p>
+                <p className="font-bold">{lang === "ar" ? "اضغط زر المشاركة" : "Tap the Share button"}</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Look for the share icon at the bottom of your Safari browser.
+                  {lang === "ar" ? "ابحث عن أيقونة المشاركة في أسفل متصفح Safari." : "Look for the share icon at the bottom of your Safari browser."}
                 </p>
                 <div className="mt-3 inline-flex rounded-xl bg-background border border-border p-3">
                   <Share className="size-6 text-primary" />
@@ -103,13 +103,13 @@ function InstallPage() {
                 2
               </div>
               <div>
-                <p className="font-bold">Tap "Add to Home Screen"</p>
+                <p className="font-bold">{lang === "ar" ? 'اضغط "إضافة إلى الشاشة الرئيسية"' : 'Tap "Add to Home Screen"'}</p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  Scroll down the list of actions and tap this option.
+                  {lang === "ar" ? "انزل في قائمة الإجراءات واضغط هذا الخيار." : "Scroll down the list of actions and tap this option."}
                 </p>
                 <div className="mt-3 inline-flex items-center gap-3 rounded-xl bg-background border border-border p-3 px-5">
                   <PlusSquare className="size-5 text-foreground" />
-                  <span className="font-medium">Add to Home Screen</span>
+                  <span className="font-medium">{lang === 'ar' ? 'إضافة إلى الشاشة الرئيسية' : 'Add to Home Screen'}</span>
                 </div>
               </div>
             </div>

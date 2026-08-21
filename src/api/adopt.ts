@@ -7,7 +7,7 @@ export const getAdoptionsFn = createServerFn({ method: "GET" }).handler(async ()
     include: {
       pet: true,
       lister: {
-        select: { name: true },
+        select: { name: true, email: true },
       },
     },
   });

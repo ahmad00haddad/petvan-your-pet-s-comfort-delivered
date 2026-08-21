@@ -249,7 +249,7 @@ function Shop() {
                           image: selectedProduct.image,
                         });
                         setSelectedProduct(null);
-                        toast.success(`Added ${quantity} ${selectedProduct.name} to cart`);
+                        toast.success(lang === "ar" ? `تمت إضافة ${quantity} ${selectedProduct.name} إلى السلة` : `Added ${quantity} ${selectedProduct.name} to cart`);
                       }}
                       className="flex-1 rounded-full bg-primary py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 flex items-center justify-center gap-2"
                     >

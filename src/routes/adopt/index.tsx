@@ -42,14 +42,13 @@ function Adopt() {
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
       >
         <ArrowLeft className="size-4" />
-        Back to Home
+        {lang === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}
       </Link>
 
       <div className="text-center mb-12">
-        <h1 className="font-display text-5xl font-extrabold text-primary mb-4">Find a Friend</h1>
+        <h1 className="font-display text-5xl font-extrabold text-primary mb-4">{lang === "ar" ? "ابحث عن صديق" : "Find a Friend"}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Open your home and your heart to a pet in need. Browse our community's adoption board to
-          find your new best friend.
+          {lang === "ar" ? "افتح منزلك وقلبك لحيوان يحتاج إليك. تصفح لوحة التبني في مجتمعنا لتجد رفيقك الجديد." : "Open your home and your heart to a pet in need. Browse our community's adoption board to find your new best friend."}
         </p>
 
         <div className="mt-8 flex justify-center gap-6">
@@ -69,7 +68,7 @@ function Adopt() {
                 >
                   <k.icon className="size-8" />
                 </span>
-                <span className="text-xs font-bold">{k.key}s</span>
+                <span className="text-xs font-bold">{lang === "ar" ? (k.key === "Cat" ? "قطط" : k.key === "Dog" ? "كلاب" : k.key === "Bird" ? "طيور" : "أسماك") : `${k.key}s`}</span>
               </button>
             );
           })}
@@ -100,9 +99,9 @@ function Adopt() {
       ) : listings.length === 0 ? (
         <div className="rounded-3xl border border-dashed border-border bg-card p-16 text-center shadow-[var(--shadow-card)]">
           <Heart className="size-16 mx-auto text-muted-foreground/30 mb-6" />
-          <h2 className="text-3xl font-display font-bold mb-3 text-glow">No pets available right now</h2>
+          <h2 className="text-3xl font-display font-bold mb-3 text-glow">{lang === "ar" ? "لا توجد حيوانات متاحة حالياً" : "No pets available right now"}</h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Check back later for new adoption listings. Our community is always growing!
+            {lang === "ar" ? "تحقق لاحقاً من قوائم التبني الجديدة. مجتمعنا ينمو باستمرار!" : "Check back later for new adoption listings. Our community is always growing!"}
           </p>
         </div>
       ) : filtered.length === 0 ? (
@@ -111,9 +110,9 @@ function Adopt() {
             <div className="absolute inset-0 bg-primary/10 animate-pulse" />
             <Heart className="size-10 relative z-10" />
           </div>
-          <h2 className="text-3xl font-display font-bold mb-3">No {filter}s found</h2>
+          <h2 className="text-3xl font-display font-bold mb-3">{lang === "ar" ? `لا توجد نتائج لـ ${filter}` : `No ${filter}s found`}</h2>
           <p className="text-muted-foreground max-w-md mx-auto mb-8">
-            We couldn't find any {filter}s looking for a home right now. But don't worry, your perfect match might be waiting in another category!
+            {lang === "ar" ? "لم نجد حيوانات تبحث عن منزل في هذه الفئة الآن. ربما رفيقك المثالي ينتظرك في فئة أخرى!" : `We couldn't find any ${filter}s looking for a home right now. But don't worry, your perfect match might be waiting in another category!`}
           </p>
           <button
             onClick={() => {
@@ -151,7 +150,7 @@ function Adopt() {
                   </div>
                 )}
                 <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-md rounded-full px-3 py-1 text-xs font-bold">
-                  {listing.pet.gender === "M" ? "♂ Male" : "♀ Female"}
+                  {listing.pet.gender === "M" ? (lang === "ar" ? "♂ ذكر" : "♂ Male") : (lang === "ar" ? "♀ أنثى" : "♀ Female")}
                 </div>
               </div>
               <figcaption className="p-6">
@@ -166,14 +165,14 @@ function Adopt() {
                       {listing.lister.name.charAt(0)}
                     </div>
                     <span className="text-xs text-muted-foreground">
-                      Listed by {listing.lister.name}
+                      {lang === "ar" ? `نشره: ${listing.lister.name}` : `Listed by ${listing.lister.name}`}
                     </span>
                   </div>
                   <a
                     href={`mailto:${listing.lister.email}?subject=Regarding adopting ${listing.pet.name}`}
                     className="rounded-full bg-primary/10 text-primary px-4 py-2 text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
                   >
-                    Contact
+                    {lang === "ar" ? "تواصل" : "Contact"}
                   </a>
                 </div>
               </figcaption>

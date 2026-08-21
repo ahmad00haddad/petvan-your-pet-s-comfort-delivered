@@ -30,7 +30,7 @@ function Login() {
       setUserId(user.id);
       navigate({ to: "/profile" });
     } catch (err: any) {
-      setError(err.message || "Login failed");
+      setError(err.message || (lang === "ar" ? "فشل تسجيل الدخول" : "Login failed"));
     } finally {
       setLoading(false);
     }
@@ -49,9 +49,9 @@ function Login() {
           </Link>
         </div>
         <div className="relative z-20 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-          <h2 className="text-5xl font-black mb-4 text-glow">Welcome back!</h2>
+          <h2 className="text-5xl font-black mb-4 text-glow">{t.welcomeBack}</h2>
           <p className="text-muted-foreground max-w-md text-lg">
-            Be the hero your pet thinks you are. Sign in to continue your journey with PetVan.
+            {t.welcomeBackDesc}
           </p>
         </div>
       </div>
@@ -107,7 +107,7 @@ function Login() {
         </form>
 
         <p className="text-center text-sm text-muted-foreground">
-          Don't have an account?{" "}
+          {lang === "ar" ? "ليس لديك حساب؟" : "Don't have an account?"}{" "}
           <Link to="/register" className="font-bold text-primary hover:underline">{t.signUp}</Link>
         </p>
       </div>
