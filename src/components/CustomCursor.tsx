@@ -50,14 +50,14 @@ export function CustomCursor() {
   return (
     <>
       <div
-        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[100] mix-blend-screen transition-transform duration-100 ease-out"
+        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] transition-transform duration-100 ease-out"
         style={{
           transform: `translate3d(${position.x - 8}px, ${position.y - 8}px, 0) scale(${isHovering ? 2.5 : 1})`,
           opacity: isHovering ? 0.4 : 1,
         }}
       />
       <div
-        className="fixed top-0 left-0 w-10 h-10 border border-primary/40 rounded-full pointer-events-none z-[99] transition-transform duration-300 ease-out"
+        className="fixed top-0 left-0 w-10 h-10 border border-primary/40 rounded-full pointer-events-none z-[9998] transition-transform duration-300 ease-out"
         style={{
           transform: `translate3d(${position.x - 20}px, ${position.y - 20}px, 0) scale(${isHovering ? 1.5 : 1})`,
         }}
