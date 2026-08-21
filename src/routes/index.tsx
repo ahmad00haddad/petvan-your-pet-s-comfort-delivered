@@ -1,3 +1,5 @@
+import { SpotlightCard } from "../components/SpotlightCard";
+import { ScrambleText } from "../components/ScrambleText";
 import { RevealOnScroll } from "../components/RevealOnScroll";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "../lib/store";

@@ -1,3 +1,4 @@
+import { SpotlightCard } from "../../components/SpotlightCard";
 import { Magnetic } from "../../components/Magnetic";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";

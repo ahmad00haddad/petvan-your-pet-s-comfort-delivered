@@ -8,6 +8,26 @@ import { registerUserFn } from "../api/auth";
 import { ArrowLeft } from "lucide-react";
 import petCat from "@/assets/pet-cat.jpg";
 
+
+function PasswordCoach({ password }: { password: string }) {
+  const lang = useAppStore((state: any) => state.lang);
+  if (!password) return null;
+  const hasNum = /\d/.test(password);
+  const hasLen = password.length >= 8;
+  const isSecure = hasNum && hasLen;
+  return (
+    <div className="mt-2 flex items-center gap-2 text-xs transition-all duration-300">
+      <div className={`h-1 flex-1 rounded-full ${hasLen ? "bg-primary" : "bg-border"}`} />
+      <div className={`h-1 flex-1 rounded-full ${hasNum ? "bg-primary" : "bg-border"}`} />
+      <span className={`ml-2 font-bold ${isSecure ? "text-primary" : "text-muted-foreground"}`}>
+        {isSecure 
+          ? (lang === "ar" ? "كلمة المرور قوية!" : "Highly secure!") 
+          : (lang === "ar" ? "أضف رقماً وحروفاً أكثر" : "Add a number and more chars")}
+      </span>
+    </div>
+  );
+}
+
 export const Route = createFileRoute("/register")({
   component: Register,
 });
@@ -20,6 +40,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [pass, setPass] = useState("");
   const navigate = useNavigate();
   const setUserId = useAppStore((state) => state.setUserId);
 
@@ -100,8 +121,7 @@ function Register() {
             <div>
               <label className="text-sm font-medium leading-none" htmlFor="password">{t.password}</label>
               <input
-                id="password"
-                type="password"
+                id="password" type="password" value={pass} onChange={(e) => setPass(e.target.value)}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
