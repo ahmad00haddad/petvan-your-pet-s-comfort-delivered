@@ -247,3 +247,24 @@
   border-color: var(--color-border) !important;
 }
 
+
+@keyframes slideUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes loadingBar {
+  0% { transform: scaleX(0); }
+  50% { transform: scaleX(0.7); }
+  100% { transform: scaleX(1); }
+}
+
+/* Hide default cursor on desktop when using custom cursor */
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+  a, button, [role="button"], input, select, textarea {
+    cursor: none !important;
+  }
+}
+

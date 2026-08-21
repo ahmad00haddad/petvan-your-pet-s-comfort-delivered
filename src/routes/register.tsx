@@ -11,7 +11,7 @@ export const Route = createFileRoute("/register")({
 });
 
 function Register() {
-  const lang = useAppStore((state: any) => state.lang);
+  const lang = useAppStore((state: any) => state.lang) as keyof typeof copy;
   const t = copy[lang];
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

@@ -7,7 +7,7 @@ import { useAppStore } from "../lib/store";
 import { copy } from "../lib/i18n";
 
 export function GuidedTour() {
-  const lang = useAppStore((state: any) => state.lang);
+  const lang = useAppStore((state: any) => state.lang) as keyof typeof copy;
   const t = copy[lang];
   const [isMounted, setIsMounted] = useState(false);
 

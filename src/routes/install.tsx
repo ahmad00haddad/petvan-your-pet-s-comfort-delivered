@@ -9,6 +9,8 @@ export const Route = createFileRoute("/install")({
 });
 
 function InstallPage() {
+  const lang = useAppStore((state: any) => state.lang) as keyof typeof copy;
+  const t = copy[lang];
   const [isIOS, setIsIOS] = useState(false);
   const [isAndroid, setIsAndroid] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);

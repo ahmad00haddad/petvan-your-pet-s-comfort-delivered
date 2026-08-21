@@ -11,7 +11,7 @@ export const Route = createFileRoute("/login")({
 });
 
 function Login() {
-  const lang = useAppStore((state: any) => state.lang);
+  const lang = useAppStore((state: any) => state.lang) as keyof typeof copy;
   const t = copy[lang];
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
