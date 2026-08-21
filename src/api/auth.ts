@@ -5,8 +5,9 @@ export const registerUserFn = createServerFn({ method: "POST" })
   .validator((data: { email: string; name: string; password: string }) => data)
   .handler(async ({ data }) => {
     // In a real app, hash the password. For this demo we store it plain.
+    const email = data.email.trim().toLowerCase();
     const existingUser = await prisma.user.findUnique({
-      where: { email: data.email },
+      where: { email },
     });
 
     if (existingUser) {
@@ -15,7 +16,7 @@ export const registerUserFn = createServerFn({ method: "POST" })
 
     const user = await prisma.user.create({
       data: {
-        email: data.email,
+        email,
         name: data.name,
         password: data.password, // demo only
       },
@@ -28,7 +29,7 @@ export const loginUserFn = createServerFn({ method: "POST" })
   .validator((data: { email: string; password: string }) => data)
   .handler(async ({ data }) => {
     const user = await prisma.user.findUnique({
-      where: { email: data.email },
+      where: { email: data.email.trim().toLowerCase() },
     });
 
     if (!user || user.password !== data.password) {

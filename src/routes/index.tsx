@@ -163,7 +163,7 @@ function Index() {
     if (globalPetType === "Dogs") return "Hey, Dog Parent! 🐶";
     if (globalPetType === "Birds") return "Tweet Tweet! 🦜";
     if (globalPetType === "Fish") return "Glub Glub! 🐟";
-    return "Hello, my friend!";
+    return "{t.hello} {t.friend}";
   }, [globalPetType]);
 
   return (
@@ -206,8 +206,7 @@ function Index() {
             <TypewriterText text={heroText} />
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
-            The first mobile caravan specialized in pets in Jordan, specialized in providing
-            treatment and care for them.
+            {t.heroDesc}
           </p>
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
             <Link
@@ -239,7 +238,7 @@ function Index() {
 
       {/* Services */}
       <section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-        <p className="text-sm text-muted-foreground mb-6">Choose the kind of pet you own.</p>
+        <p className="text-sm text-muted-foreground mb-6">{t.chooseKind}</p>
         <div className="flex justify-center gap-6 sm:gap-10">
           {kinds.map((k) => {
             const isActive = globalPetType === k.key;
@@ -256,8 +255,8 @@ function Index() {
         </div>
 
         <h2 className="mt-20 font-display text-3xl font-extrabold text-primary">
-          Ask for services
-        </h2>
+              {t.askServices}
+            </h2>
         <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
           CHOOSE THE KIND OF SERVICES YOU NEED
         </p>
@@ -288,10 +287,8 @@ function Index() {
       >
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="font-display text-3xl font-extrabold text-primary">Shop</h2>
-          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
-            CHOOSE WHAT YOU NEED WHENEVER YOU NEED
-          </p>
+          <h2 className="font-display text-3xl font-extrabold text-primary">{t.shop}</h2>
+          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase"> {t.shopSub} </p>
 
           <div className="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10">
             {shopCats.map((c) => (
@@ -311,7 +308,7 @@ function Index() {
       {/* Adoption */}
       <section id="adopt" className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto animate-fade-in-up" style={{ animationDelay: '200ms' }}>
         <p className="text-sm text-muted-foreground mb-8">
-          Choose the kind of pet you want to adopt.
+          {t.chooseAdopt}
         </p>
         <div className="flex justify-center gap-6 sm:gap-10 mb-16">
           {kinds.map((k) => {

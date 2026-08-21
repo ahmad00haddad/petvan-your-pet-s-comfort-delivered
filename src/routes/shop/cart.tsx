@@ -4,6 +4,7 @@ import { checkoutFn } from "../../api/shop";
 import { useState } from "react";
 import { Trash2, ArrowLeft, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
+import { copy } from "../../lib/i18n";
 import * as Dialog from "@radix-ui/react-dialog";
 
 export const Route = createFileRoute("/shop/cart")({
@@ -14,6 +15,8 @@ function Cart() {
   const { cart, removeFromCart, updateQuantity, clearCart, userId } = useAppStore();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -88,7 +91,7 @@ function Cart() {
             to="/shop"
             className="rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground"
           >
-            Browse Products
+            {t.browseProducts}
           </Link>
         </div>
       ) : (
@@ -138,18 +141,18 @@ function Cart() {
           </div>
 
           <div className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-card)] h-fit">
-            <h2 className="font-display text-xl font-bold mb-4">Order Summary</h2>
+            <h2 className="font-display text-xl font-bold mb-4">{t.orderSummary}</h2>
             <div className="space-y-3 text-sm mb-6">
               <div className="flex justify-between text-muted-foreground">
-                <span>Subtotal</span>
+                <span>{t.subtotal}</span>
                 <span>{total.toFixed(2)} JOD</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
-                <span>Delivery</span>
+                <span>{t.delivery}</span>
                 <span>2.00 JOD</span>
               </div>
               <div className="border-t border-border pt-3 flex justify-between font-bold text-lg">
-                <span>Total</span>
+                <span>{t.total}</span>
                 <span>{(total + 2).toFixed(2)} JOD</span>
               </div>
             </div>
@@ -159,7 +162,7 @@ function Cart() {
                   disabled={loading}
                   className="w-full rounded-full bg-primary px-8 py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
                 >
-                  {loading ? "Processing..." : `Pay Now (${(total + 2).toFixed(2)} JOD)`}
+                  {loading ? t.processing : `Pay Now (${(total + 2).toFixed(2)} JOD)`}
                 </button>
               </Dialog.Trigger>
               <Dialog.Portal>
@@ -170,17 +173,46 @@ function Cart() {
                       <ShoppingBag className="size-8" />
                     </span>
                     <Dialog.Title className="font-display text-2xl font-bold">
-                      Confirm Purchase
+                      Checkout Details
                     </Dialog.Title>
-                    <Dialog.Description className="mt-2 text-sm text-muted-foreground mb-8">
-                      You are about to purchase <strong>{cart.length}</strong> items. The total
-                      amount including delivery is:
-                      <br />
-                      <br />
-                      <span className="font-bold text-foreground block text-2xl">
-                        {(total + 2).toFixed(2)} JOD
-                      </span>
+                    <Dialog.Description className="mt-2 text-sm text-muted-foreground mb-6">
+                      {t.enterDelivery} <strong>{cart.length}</strong> {t.itemsWord}.
                     </Dialog.Description>
+
+                    <div className="w-full text-start mb-6 space-y-4">
+                      <div>
+                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 block">{t.deliveryAddress}</label>
+                        <input 
+                          type="text" 
+                          required
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          placeholder="e.g. Mecca St, Amman" 
+                          className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 block">{t.phoneNumber}</label>
+                        <input 
+                          type="tel" 
+                          required
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder="e.g. 079xxxxxxx" 
+                          className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        />
+                      </div>
+                      <div className="pt-2 border-t border-border">
+                        <div className="flex justify-between items-center text-sm mb-1">
+                          <span className="text-muted-foreground">{t.paymentMethod}</span>
+                          <span className="font-bold">{t.cashOnDelivery}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-muted-foreground text-sm">{t.totalToPay}</span>
+                          <span className="font-bold text-xl text-primary">{(total + 2).toFixed(2)} JOD</span>
+                        </div>
+                      </div>
+                    </div>
 
                     <div className="flex w-full gap-3">
                       <Dialog.Close asChild>
@@ -190,9 +222,10 @@ function Cart() {
                       </Dialog.Close>
                       <button
                         onClick={handleCheckout}
-                        className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105"
+                        disabled={!address || !phone || loading}
+                        className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
                       >
-                        Confirm Payment
+                        {loading ? t.processing : t.confirmPayment}
                       </button>
                     </div>
                   </div>

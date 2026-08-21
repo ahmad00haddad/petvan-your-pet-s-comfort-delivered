@@ -15,6 +15,7 @@ import {
   QrCode,
 } from "lucide-react";
 import { useAppStore } from "../../lib/store";
+import { copy } from "../../lib/i18n";
 
 export const Route = createFileRoute("/pets/$petId")({
   component: PetProfile,
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/pets/$petId")({
 function PetProfile() {
   const { petId } = Route.useParams();
   const lang = useAppStore((state) => state.lang);
+  const t = copy[lang];
   const [pet, setPet] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"medical" | "vaccines">("medical");
@@ -75,12 +77,12 @@ function PetProfile() {
   if (!pet) {
     return (
       <div className="mx-auto max-w-2xl p-8 text-center min-h-[60vh] flex flex-col justify-center bg-background text-foreground">
-        <h1 className="font-display text-3xl font-bold mb-4">Pet Not Found</h1>
+        <h1 className="font-display text-3xl font-bold mb-4">{t.petNotFound}</h1>
         <p className="text-muted-foreground mb-8">
-          This pet profile doesn't exist or has been removed.
+          {t.petNotFoundDesc}
         </p>
         <Link to="/" className="text-primary hover:underline font-bold">
-          Go back home
+          {t.goBackHome}
         </Link>
       </div>
     );
@@ -155,23 +157,23 @@ function PetProfile() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <CalendarDays className="size-5 text-primary mb-2" />
-            <p className="text-xs text-muted-foreground">Age</p>
+            <p className="text-xs text-muted-foreground">{t.age}</p>
             <p className="font-bold text-sm">{ageString}</p>
           </div>
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Weight className="size-5 text-primary mb-2" />
-            <p className="text-xs text-muted-foreground">Weight</p>
+            <p className="text-xs text-muted-foreground">{t.weight}</p>
             <p className="font-bold text-sm">{pet.weight || "--"}</p>
           </div>
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Info className="size-5 text-primary mb-2" />
-            <p className="text-xs text-muted-foreground">Gender</p>
+            <p className="text-xs text-muted-foreground">{t.gender}</p>
             <p className="font-bold text-sm">{pet.gender === "M" ? "Male" : "Female"}</p>
           </div>
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Activity className="size-5 text-primary mb-2" />
-            <p className="text-xs text-muted-foreground">Status</p>
-            <p className="font-bold text-sm text-green-500">Healthy</p>
+            <p className="text-xs text-muted-foreground">{t.status}</p>
+            <p className="font-bold text-sm text-green-500">{t.healthy}</p>
           </div>
         </div>
 
@@ -181,7 +183,7 @@ function PetProfile() {
             onClick={() => setActiveTab("medical")}
             className={`pb-3 text-sm font-bold transition-colors relative ${activeTab === "medical" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
           >
-            Medical Reports
+            {t.medicalReports}
             {activeTab === "medical" && (
               <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-t-full" />
             )}
@@ -190,7 +192,7 @@ function PetProfile() {
             onClick={() => setActiveTab("vaccines")}
             className={`pb-3 text-sm font-bold transition-colors relative ${activeTab === "vaccines" ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
           >
-            Vaccinations
+            {t.vaccinations}
             {activeTab === "vaccines" && (
               <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-t-full" />
             )}
@@ -231,9 +233,9 @@ function PetProfile() {
               ) : (
                 <div className="rounded-2xl border border-dashed border-border p-12 text-center">
                   <Activity className="size-10 mx-auto text-muted-foreground/30 mb-3" />
-                  <p className="font-bold mb-1">No Medical Records</p>
+                  <p className="font-bold mb-1">{t.noMedicalRecords}</p>
                   <p className="text-xs text-muted-foreground">
-                    This pet hasn't had any clinic visits recorded yet.
+                    {t.noMedicalRecordsDesc}
                   </p>
                 </div>
               )}
@@ -255,12 +257,12 @@ function PetProfile() {
                       <div>
                         <h3 className="font-bold text-sm sm:text-base">{vac.name}</h3>
                         <p className="text-xs text-muted-foreground">
-                          Given: {new Date(vac.dateGiven).toLocaleDateString()}
+                          {t.given}: {new Date(vac.dateGiven).toLocaleDateString()}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-muted-foreground mb-1">Next Due</p>
+                      <p className="text-xs text-muted-foreground mb-1">{t.nextDue}</p>
                       <div className="rounded bg-primary/10 px-2 py-1 text-xs font-bold text-primary">
                         {new Date(vac.nextDueDate).toLocaleDateString()}
                       </div>
@@ -270,8 +272,8 @@ function PetProfile() {
               ) : (
                 <div className="rounded-2xl border border-dashed border-border p-12 text-center">
                   <Syringe className="size-10 mx-auto text-muted-foreground/30 mb-3" />
-                  <p className="font-bold mb-1">No Vaccinations</p>
-                  <p className="text-xs text-muted-foreground">No vaccination records found.</p>
+                  <p className="font-bold mb-1">{t.noVaccinations}</p>
+                  <p className="text-xs text-muted-foreground">{t.noVaccinationsDesc}</p>
                 </div>
               )}
             </div>

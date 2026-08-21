@@ -1,7 +1,9 @@
-import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link, useParams, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getOrderFn } from "../../api/services";
-import { MapPin, Star, Clock, Home, ArrowLeft } from "lucide-react";
+import { MapPin, Star, Clock, Home, ArrowLeft, Heart, CheckCircle2 } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/services/tracking/$orderId")({
   component: Tracking,
@@ -9,9 +11,14 @@ export const Route = createFileRoute("/services/tracking/$orderId")({
 
 function Tracking() {
   const { orderId } = Route.useParams();
+  const navigate = useNavigate();
   const [order, setOrder] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState("");
+  const [arrived, setArrived] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [ratingSubmitted, setRatingSubmitted] = useState(false);
 
   useEffect(() => {
     getOrderFn({ data: orderId }).then((data) => {
@@ -21,6 +28,7 @@ function Tracking() {
           const diff = new Date(data.eta).getTime() - new Date().getTime();
           if (diff <= 0) {
             setTimeLeft("Arrived");
+            setArrived(true);
           } else {
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
@@ -118,7 +126,7 @@ function Tracking() {
           </span>
           <div className="text-center sm:text-start">
             <p className="text-lg">
-              <span className="font-bold">{order.driverName}</span> is on the way!
+              <span className="font-bold">{order.driverName}</span> {arrived ? "has arrived!" : "is on the way!"}
             </p>
             <span className="flex items-center justify-center sm:justify-start mt-2 text-primary gap-1">
               {[0, 1, 2, 3].map((i) => (
@@ -130,6 +138,55 @@ function Tracking() {
           </div>
         </div>
       </div>
+
+      {/* Rating Modal */}
+      <Dialog.Root open={arrived && !ratingSubmitted} onOpenChange={() => {}}>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 animate-in fade-in duration-300" />
+          <Dialog.Content className="fixed left-[50%] top-[50%] z-50 w-full max-w-md translate-x-[-50%] translate-y-[-50%] rounded-[2.5rem] border border-border bg-card p-6 shadow-2xl sm:p-8 animate-in zoom-in-95 duration-300 text-center">
+            <span className="mx-auto grid size-16 place-items-center rounded-full bg-primary/20 text-primary mb-6">
+              <CheckCircle2 className="size-8" />
+            </span>
+            <Dialog.Title className="font-display text-2xl font-bold mb-2">
+              Service Completed!
+            </Dialog.Title>
+            <Dialog.Description className="text-sm text-muted-foreground mb-8">
+              We hope your pet enjoyed the {order.serviceType} service with {order.driverName}. Please rate your experience!
+            </Dialog.Description>
+
+            <div className="flex justify-center gap-2 mb-6">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  onClick={() => setRating(star)}
+                  className={`transition-transform hover:scale-110 focus:outline-none ${star <= rating ? "text-primary" : "text-muted"}`}
+                >
+                  <Star className="size-10 fill-current" />
+                </button>
+              ))}
+            </div>
+
+            <textarea
+              className="w-full h-24 p-4 rounded-2xl bg-secondary border-none resize-none focus:ring-2 focus:ring-primary outline-none mb-6 text-sm placeholder:text-muted-foreground/50"
+              placeholder="Leave a comment (optional)..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+
+            <button
+              disabled={rating === 0}
+              onClick={() => {
+                setRatingSubmitted(true);
+                toast.success("Thank you for your feedback!");
+                navigate({ to: "/profile" });
+              }}
+              className="w-full rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+            >
+              Submit Rating
+            </button>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </div>
   );
 }

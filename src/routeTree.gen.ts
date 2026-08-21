@@ -16,7 +16,6 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AdoptIndexRouteImport } from './routes/adopt/index'
 import { Route as PetsPetIdRouteImport } from './routes/pets/$petId'
-import { Route as PetsAddRouteImport } from './routes/pets/add'
 import { Route as ServicesBookRouteImport } from './routes/services/book'
 import { Route as ShopIndexRouteImport } from './routes/shop/index'
 import { Route as ShopCartRouteImport } from './routes/shop/cart'
@@ -57,11 +56,6 @@ const PetsPetIdRoute = PetsPetIdRouteImport.update({
   path: '/pets/$petId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PetsAddRoute = PetsAddRouteImport.update({
-  id: '/pets/add',
-  path: '/pets/add',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ServicesBookRoute = ServicesBookRouteImport.update({
   id: '/services/book',
   path: '/services/book',
@@ -90,7 +84,6 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/pets/$petId': typeof PetsPetIdRoute
-  '/pets/add': typeof PetsAddRoute
   '/services/book': typeof ServicesBookRoute
   '/shop/cart': typeof ShopCartRoute
   '/adopt/': typeof AdoptIndexRoute
@@ -104,7 +97,6 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/pets/$petId': typeof PetsPetIdRoute
-  '/pets/add': typeof PetsAddRoute
   '/services/book': typeof ServicesBookRoute
   '/shop/cart': typeof ShopCartRoute
   '/adopt': typeof AdoptIndexRoute
@@ -119,7 +111,6 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
   '/pets/$petId': typeof PetsPetIdRoute
-  '/pets/add': typeof PetsAddRoute
   '/services/book': typeof ServicesBookRoute
   '/shop/cart': typeof ShopCartRoute
   '/adopt/': typeof AdoptIndexRoute
@@ -135,7 +126,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/pets/$petId'
-    | '/pets/add'
     | '/services/book'
     | '/shop/cart'
     | '/adopt/'
@@ -149,7 +139,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/pets/$petId'
-    | '/pets/add'
     | '/services/book'
     | '/shop/cart'
     | '/adopt'
@@ -163,7 +152,6 @@ export interface FileRouteTypes {
     | '/profile'
     | '/register'
     | '/pets/$petId'
-    | '/pets/add'
     | '/services/book'
     | '/shop/cart'
     | '/adopt/'
@@ -178,7 +166,6 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
   PetsPetIdRoute: typeof PetsPetIdRoute
-  PetsAddRoute: typeof PetsAddRoute
   ServicesBookRoute: typeof ServicesBookRoute
   ShopCartRoute: typeof ShopCartRoute
   AdoptIndexRoute: typeof AdoptIndexRoute
@@ -237,13 +224,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PetsPetIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pets/add': {
-      id: '/pets/add'
-      path: '/pets/add'
-      fullPath: '/pets/add'
-      preLoaderRoute: typeof PetsAddRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/services/book': {
       id: '/services/book'
       path: '/services/book'
@@ -282,7 +262,6 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
   PetsPetIdRoute: PetsPetIdRoute,
-  PetsAddRoute: PetsAddRoute,
   ServicesBookRoute: ServicesBookRoute,
   ShopCartRoute: ShopCartRoute,
   AdoptIndexRoute: AdoptIndexRoute,

@@ -17,6 +17,8 @@ const kinds = [
 
 function Adopt() {
   const globalPetType = useAppStore((state) => state.globalPetType);
+  const lang = useAppStore((state) => state.lang);
+  const t = copy[lang];
   const setGlobalPetType = useAppStore((state) => state.setGlobalPetType);
   const [listings, setListings] = useState<any[]>([]);
   const [filter, setFilter] = useState<string | null>(null);
@@ -119,7 +121,7 @@ function Adopt() {
             }}
             className="rounded-full bg-primary px-8 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105"
           >
-            Show All Pets (Match Me)
+            {t.showAllPets}
           </button>
         </div>
       ) : (
@@ -134,7 +136,7 @@ function Adopt() {
                   <img
                     src={listing.pet.image}
                     alt={listing.pet.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-6xl">
