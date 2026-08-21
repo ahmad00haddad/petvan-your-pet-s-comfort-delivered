@@ -83,6 +83,20 @@ export const copy = {
     addToCart: (n: string) => `Add ${n} to cart`,
     cart: "Cart",
 
+    bookService: "Book a Service",
+    bookServiceDesc: "Select a mobile service to deliver comfort to your door.",
+    bookingConfirmed: "Booking Confirmed",
+    orderNotFound: "Order not found",
+    loadingTracker: "Loading tracker...",
+    estimatedArrival: "Estimated Arrival Time",
+    bookNow: "Book Now",
+    selectPet: "Select Pet",
+    selectDate: "Select Date",
+    selectTime: "Select Time",
+    notesOptional: "Notes (Optional)",
+    booking: "Booking...",
+
+
     petNotFound: "Pet Not Found",
     petNotFoundDesc: "This pet profile doesn't exist or has been removed.",
     goBackHome: "Go back home",
@@ -242,6 +256,20 @@ export const copy = {
     rights: "أحمد حداد © جميع الحقوق محفوظة.",
     addToCart: (n: string) => `أضف ${n} إلى السلة`,
     cart: "السلة",
+
+    bookService: "احجز خدمة",
+    bookServiceDesc: "اختر خدمة متنقلة لتوصيل الراحة إلى باب منزلك.",
+    bookingConfirmed: "تم تأكيد الحجز",
+    orderNotFound: "لم يتم العثور على الطلب",
+    loadingTracker: "جاري تحميل المتعقب...",
+    estimatedArrival: "الوقت المقدر للوصول",
+    bookNow: "احجز الآن",
+    selectPet: "اختر الحيوان الأليف",
+    selectDate: "اختر التاريخ",
+    selectTime: "اختر الوقت",
+    notesOptional: "ملاحظات (اختياري)",
+    booking: "جاري الحجز...",
+
 
     petNotFound: "الحيوان غير موجود",
     petNotFoundDesc: "هذا الملف الشخصي غير موجود أو تم حذفه.",

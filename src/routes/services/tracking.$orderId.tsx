@@ -46,14 +46,14 @@ function Tracking() {
   if (loading && !order)
     return (
       <div className="p-10 text-center min-h-screen flex items-center justify-center">
-        Loading tracker...
-      </div>
+          {t.loadingTracker}
+        </div>
     );
   if (!order)
     return (
       <div className="p-10 text-center min-h-screen flex items-center justify-center">
-        Order not found
-      </div>
+          {t.orderNotFound}
+        </div>
     );
 
   return (
@@ -73,13 +73,15 @@ function Tracking() {
           <Clock className="size-8" />
         </span>
 
-        <p className="font-display font-bold text-xl">{order.serviceType} Booking Confirmed</p>
+        <p className="font-display font-bold text-xl">
+          {order.serviceType} {t.bookingConfirmed}
+        </p>
         <p className="mt-2 text-sm text-muted-foreground">
           Order #{order.id.slice(-6).toUpperCase()}
         </p>
 
         <div className="my-10">
-          <p className="text-sm text-muted-foreground mb-2">Estimated Arrival Time</p>
+          <p className="text-sm text-muted-foreground mb-2">{t.estimatedArrival}</p>
           <h3 className="font-display text-5xl font-extrabold text-primary tabular-nums tracking-tighter">
             {timeLeft}
           </h3>

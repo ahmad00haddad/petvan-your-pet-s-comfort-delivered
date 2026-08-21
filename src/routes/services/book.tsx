@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useAppStore } from "../../lib/store";
+import { copy } from "../../lib/i18n";
 import { bookServiceFn } from "../../api/services";
 import { ArrowLeft, Stethoscope, Home, Scissors, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -57,10 +58,10 @@ function BookService() {
         Back to Home
       </Link>
 
-      <h1 className="font-display text-4xl font-extrabold text-primary mb-2">Book a Service</h1>
+      <h1 className="font-display text-4xl font-extrabold text-primary mb-2">{t.bookService}</h1>
       <p className="text-muted-foreground mb-10">
-        Select a mobile service to deliver comfort to your door.
-      </p>
+          {t.bookServiceDesc}
+        </p>
 
       <div className="grid gap-6 sm:grid-cols-3 mb-12">
         {services.map((s) => (
