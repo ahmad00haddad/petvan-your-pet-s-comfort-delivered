@@ -62,7 +62,7 @@ let pets: any[] = [
     breed: "Cockatiel",
     weight: "0.09 kg",
     birthDate: "2023-11-20",
-    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?w=800",
+    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     medicalReports: [],
     vaccinations: [],
   },
@@ -206,7 +206,7 @@ const adoptionListings: any[] = [
     age: "3 years",
     gender: "Male",
     description: "Talkative and colorful. Rio requires a large cage and plenty of interaction. Beautiful vibrant feathers.",
-    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?w=800",
+    image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=800",
     ownerId: "u1",
     petId: "pet_mock_3",
     type: "Birds",
@@ -232,7 +232,7 @@ const adoptionListings: any[] = [
     age: "2 years",
     gender: "Female",
     description: "Great with kids and very active. Daisy loves long walks in the park and is fully vaccinated.",
-    image: "https://images.unsplash.com/photo-1537151608804-ea2f1c1fdf4d?w=800",
+    image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800",
     ownerId: "u2",
     petId: "pet_mock_5",
     type: "Dogs",
@@ -310,7 +310,7 @@ const adoptionListings: any[] = [
     age: "5 years",
     gender: "Female",
     description: "Coco loves to sing and whistle. She comes with her large cage and toys. Needs an experienced bird owner.",
-    image: "https://images.unsplash.com/photo-1522856339183-5a704a1f0156?w=800",
+    image: "https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=800",
     ownerId: "u3",
     petId: "pet_mock_11",
     type: "Birds",
@@ -403,7 +403,7 @@ const products: any[] = [
     description: "Fully balanced, lamb protein-containing dry dog food carefully formulated by cat / dog nutritionists to meet the nutritional requirements of all adult dog breeds.",
     price: 45.0,
     category: "Food",
-    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=800",
     targetPet: "Dogs",
   },
   {
@@ -451,7 +451,7 @@ const products: any[] = [
     description: "Ultra absorbent silica gel cat litter with odor control and a light lavender scent. Lasts up to a month per bag.",
     price: 15.0,
     category: "Tools",
-    image: "https://images.unsplash.com/photo-1629897039665-21d45929fde7?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=800",
     targetPet: "Cats",
   },
   {
@@ -487,7 +487,7 @@ const products: any[] = [
     description: "Fast-acting, long-lasting flea and tick protection for cats. Kills fleas, flea eggs, lice, and ticks.",
     price: 32.50,
     category: "Medicine",
-    image: "https://images.unsplash.com/photo-1628149462153-f728c7407073?w=800",
+    image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800",
     targetPet: "Cats",
   },
   {
@@ -535,7 +535,7 @@ const products: any[] = [
     description: "Premium daily bird food for medium birds. Contains 21 vitamins and minerals for exceptional health.",
     price: 22.50,
     category: "Food",
-    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?w=800",
+    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Birds",
   },
   {
@@ -620,7 +620,7 @@ const products: any[] = [
     description: "Spacious, easy-to-clean bird cage. Designed to keep debris inside. Includes perches and food dishes.",
     price: 85.00,
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?w=800",
+    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Birds",
   },
   {
@@ -692,7 +692,7 @@ const products: any[] = [
     description: "7-day odor-free guarantee. Micro-particles seal in and destroy odors instantly.",
     price: 24.50,
     category: "Tools",
-    image: "https://images.unsplash.com/photo-1629897039665-21d45929fde7?w=800",
+    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800",
     targetPet: "Cats",
   },
   {
@@ -710,7 +710,7 @@ const products: any[] = [
 
 ,
   {
-    id: "p21",
+    id: "p31",
     name: "Hagen Vision Bird Cage",
     brand: "Hagen",
     flavor: "N/A",
@@ -718,11 +718,11 @@ const products: any[] = [
     description: "Spacious, easy-to-clean bird cage. Designed to keep debris inside. Includes perches and food dishes.",
     price: 85.00,
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1552728089-57169ab0065c?w=800",
+    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Birds",
   },
   {
-    id: "p22",
+    id: "p32",
     name: "API Stress Coat Water Conditioner",
     brand: "API",
     flavor: "N/A",
@@ -734,7 +734,7 @@ const products: any[] = [
     targetPet: "Fish",
   },
   {
-    id: "p23",
+    id: "p33",
     name: "Chuckit! Ultra Ball",
     brand: "Chuckit!",
     flavor: "N/A",
@@ -746,7 +746,7 @@ const products: any[] = [
     targetPet: "Dogs",
   },
   {
-    id: "p24",
+    id: "p34",
     name: "SmartyKat Skitter Critters",
     brand: "SmartyKat",
     flavor: "Catnip",
@@ -758,7 +758,7 @@ const products: any[] = [
     targetPet: "Cats",
   },
   {
-    id: "p25",
+    id: "p35",
     name: "Merrick Grain-Free Wet Dog Food",
     brand: "Merrick",
     flavor: "Beef & Sweet Potato",
@@ -770,7 +770,7 @@ const products: any[] = [
     targetPet: "Dogs",
   },
   {
-    id: "p26",
+    id: "p36",
     name: "Burt's Bees Itch Soothing Spray",
     brand: "Burt's Bees",
     flavor: "Honeysuckle",
@@ -782,7 +782,7 @@ const products: any[] = [
     targetPet: "Dogs",
   },
   {
-    id: "p27",
+    id: "p37",
     name: "Arm & Hammer Clump & Seal",
     brand: "Arm & Hammer",
     flavor: "N/A",
@@ -790,11 +790,11 @@ const products: any[] = [
     description: "7-day odor-free guarantee. Micro-particles seal in and destroy odors instantly.",
     price: 24.50,
     category: "Tools",
-    image: "https://images.unsplash.com/photo-1629897039665-21d45929fde7?w=800",
+    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800",
     targetPet: "Cats",
   },
   {
-    id: "p28",
+    id: "p38",
     name: "Marina LED Aquarium Kit",
     brand: "Marina",
     flavor: "N/A",
@@ -853,17 +853,29 @@ export const prisma = {
     findMany: async ({ where, include }: any) => {
       let result = adoptionListings.filter((al) => !where || al.status === where.status);
       if (include) {
+        const singular = (t: string) =>
+          t === "Cats" ? "Cat" : t === "Dogs" ? "Dog" : t === "Birds" ? "Bird" : t === "Fishes" || t === "Fish" ? "Fish" : t;
         result = result.map((al) => {
-          const u = users.find((u) => u.id === al.listerId);
+          const u = users.find((x) => x.id === (al.listerId ?? al.ownerId));
+          const linked = pets.find((p) => p.id === al.petId);
+          const pet = linked ?? {
+            id: al.petId ?? al.id,
+            name: al.name,
+            type: singular(al.type ?? ""),
+            breed: al.breed,
+            gender: al.gender === "Female" ? "F" : "M",
+            image: al.image,
+          };
           return {
             ...al,
-            pet: pets.find((p) => p.id === al.petId),
+            pet: { ...pet, type: singular(pet.type ?? "") },
             lister: u
               ? { name: u.name, email: u.email }
-              : { name: "User", email: "contact@petvan.com" },
+              : { name: "PetVan Community", email: "contact@petvan.com" },
           };
         });
       }
+
       return result;
     },
     upsert: async ({ where, create, update }: any) => {

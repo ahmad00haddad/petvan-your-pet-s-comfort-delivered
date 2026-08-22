@@ -68,7 +68,7 @@ function Adopt() {
                 >
                   <k.icon className="size-8" />
                 </span>
-                <span className="text-xs font-bold">{lang === "ar" ? (k.key === "Cat" ? "قطط" : k.key === "Dog" ? "كلاب" : k.key === "Bird" ? "طيور" : "أسماك") : `${k.key}s`}</span>
+                <span className="text-xs font-bold">{lang === "ar" ? (k.key === "Cat" ? "قطط" : k.key === "Dog" ? "كلاب" : k.key === "Bird" ? "طيور" : "أسماك") : k.key === "Fish" ? "Fish" : `${k.key}s`}</span>
               </button>
             );
           })}

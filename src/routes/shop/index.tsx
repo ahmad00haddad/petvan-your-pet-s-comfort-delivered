@@ -91,7 +91,7 @@ function Shop() {
         ))}
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
         {loading ? (
           Array.from({ length: 8 }).map((_, i) => (
             <div key={`skeleton-${i}`} className="group relative overflow-hidden rounded-3xl glass-panel p-5 flex flex-col h-[320px] shadow-[var(--shadow-card)] ring-1 ring-border">
@@ -125,31 +125,34 @@ function Shop() {
           filtered.map((p, i) => (
             <article
               key={p.id}
-              className="group relative overflow-hidden rounded-3xl glass-panel p-5 flex flex-col text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-all hover:-translate-y-2 hover:glow-primary"
+              className="group relative h-full overflow-hidden rounded-3xl glass-panel p-5 flex flex-col text-start shadow-[var(--shadow-card)] ring-1 ring-border transition-all hover:-translate-y-2 hover:glow-primary"
             >
               {/* Visual Badges */}
               {i === 0 && (
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1 rounded-full bg-red-500 px-3 py-1 text-[10px] font-bold text-primary-foreground shadow-sm">
+                <div className="absolute top-4 start-4 z-20 flex items-center gap-1 rounded-full bg-red-500 px-3 py-1 text-[10px] font-bold text-primary-foreground shadow-sm">
                   <Flame className="size-3" />
                   {t.bestSeller}
                 </div>
               )}
               {i === 2 && (
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-[10px] font-bold text-primary-foreground shadow-sm">
+                <div className="absolute top-4 start-4 z-20 flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-[10px] font-bold text-primary-foreground shadow-sm">
                   <Sparkles className="size-3" />
                   {t.newArrival}
                 </div>
               )}
 
-              <div className="grid h-40 place-items-center rounded-2xl bg-secondary mb-4 overflow-hidden relative cursor-pointer" onClick={() => { setSelectedProduct(p); setQuantity(1); }}>
-                {p.image ? (
+              <div className="relative mb-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary cursor-pointer" onClick={() => { setSelectedProduct(p); setQuantity(1); }}>
+                <div className="absolute inset-0 grid place-items-center text-primary/40">
+                  <Utensils className="size-10" />
+                </div>
+                {p.image && (
                   <img
                     src={p.image}
                     alt={p.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                ) : (
-                  <Utensils className="size-10 text-primary/70 transition-transform duration-500 group-hover:scale-110" />
                 )}
               </div>
               <h3 className="font-display text-lg font-bold line-clamp-2 cursor-pointer hover:text-primary transition-colors" onClick={() => { setSelectedProduct(p); setQuantity(1); }}>{p.name}</h3>
@@ -185,7 +188,7 @@ function Shop() {
               <div className="grid sm:grid-cols-2 gap-8">
                 <div className="rounded-3xl bg-secondary overflow-hidden aspect-square flex items-center justify-center p-4 relative max-h-[50vh]">
                   {selectedProduct.image ? (
-                    <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-contain" />
+                    <img src={selectedProduct.image} alt={selectedProduct.name} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} className="max-h-full max-w-full object-contain" />
                   ) : (
                     <Utensils className="size-20 text-muted-foreground/30" />
                   )}

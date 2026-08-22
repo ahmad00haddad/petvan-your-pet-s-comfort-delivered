@@ -37,6 +37,15 @@ import petParrot from "@/assets/pet-parrot.jpg";
 // Use fish icon if no image
 import { copy, type Lang } from "@/lib/i18n";
 
+const PARTICLES = [
+  { top: 24, left: 30, duration: 3.4 },
+  { top: 62, left: 22, duration: 4.1 },
+  { top: 38, left: 68, duration: 3.8 },
+  { top: 74, left: 58, duration: 4.4 },
+  { top: 18, left: 52, duration: 3.2 },
+  { top: 52, left: 42, duration: 4.8 },
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -191,23 +200,23 @@ function Index() {
           
           {/* Floating Particles */}
           <div className="absolute inset-0 pointer-events-none z-0">
-            {[...Array(6)].map((_, i) => (
-              <div 
-                key={i} 
+            {PARTICLES.map((particle, i) => (
+              <div
+                key={i}
                 className="absolute size-2 rounded-full bg-primary/40 animate-float"
-                style={{ 
-                  top: `${20 + Math.random() * 60}%`, 
-                  left: `${20 + Math.random() * 60}%`, 
+                style={{
+                  top: `${particle.top}%`,
+                  insetInlineStart: `${particle.left}%`,
                   animationDelay: `${i * 0.5}s`,
-                  animationDuration: `${3 + Math.random() * 2}s`
+                  animationDuration: `${particle.duration}s`,
                 }}
               />
             ))}
           </div>
         </div>
 
-        <div className="order-1 lg:order-2 lg:pl-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold text-glow h-[120px] sm:h-[140px] flex items-center">
+        <div className="order-1 lg:order-2 lg:ps-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold min-h-[110px] sm:min-h-[140px] flex items-center break-words">
             <TypewriterText text={heroText} />
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
