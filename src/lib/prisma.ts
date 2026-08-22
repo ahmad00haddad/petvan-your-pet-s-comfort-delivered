@@ -206,7 +206,7 @@ const adoptionListings: any[] = [
     age: "3 years",
     gender: "Male",
     description: "Talkative and colorful. Rio requires a large cage and plenty of interaction. Beautiful vibrant feathers.",
-    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
+    image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=800",
     ownerId: "u1",
     petId: "pet_mock_3",
     type: "Birds",
