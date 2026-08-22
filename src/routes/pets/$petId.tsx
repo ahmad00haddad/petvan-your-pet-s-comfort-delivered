@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { Check } from "lucide-react";
 import { getPetByIdFn } from "../../api/pets";
 import {
   ArrowLeft,
@@ -27,6 +28,7 @@ function PetProfile() {
   const t = copy[lang];
   const [pet, setPet] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<"medical" | "vaccines">("medical");
   const [ageString, setAgeString] = useState(lang === "ar" ? "غير محدد" : "Unknown");
 
@@ -61,7 +63,8 @@ function PetProfile() {
         .catch(console.error);
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert(lang === "ar" ? "تم نسخ الرابط!" : "Link copied to clipboard!");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -129,7 +132,7 @@ function PetProfile() {
               onClick={handleShare}
               className="grid size-10 place-items-center rounded-full bg-background/50 backdrop-blur text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
             >
-              <Share2 className="size-5" />
+              {copied ? <Check className="size-5 text-green-500" /> : <Share2 className="size-5" />}
             </button>
           </div>
         </div>

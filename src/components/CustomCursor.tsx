@@ -21,8 +21,8 @@ export function CustomCursor() {
     const checkHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
-        target.tagName.toLowerCase() === "a" ||
-        target.tagName.toLowerCase() === "button" ||
+        target.tagName?.toLowerCase() === "a" ||
+        target.tagName?.toLowerCase() === "button" ||
         target.closest("a") ||
         target.closest("button")
       ) {

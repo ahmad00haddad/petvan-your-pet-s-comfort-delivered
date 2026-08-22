@@ -21,6 +21,13 @@ function Profile() {
 
   const lang = useAppStore((state) => state.lang);
   const t = copy[lang];
+  
+  // Micro-interaction: Time of Day Greeting
+  const hour = new Date().getHours();
+  const greetingEn = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+  const greetingAr = hour < 12 ? "صباح الخير" : "مساء الخير";
+  const greeting = lang === "ar" ? greetingAr : greetingEn;
+
 
   const [user, setUser] = useState<any>(null);
   const [pets, setPets] = useState<any[]>([]);
