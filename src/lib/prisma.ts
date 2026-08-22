@@ -853,17 +853,29 @@ export const prisma = {
     findMany: async ({ where, include }: any) => {
       let result = adoptionListings.filter((al) => !where || al.status === where.status);
       if (include) {
+        const singular = (t: string) =>
+          t === "Cats" ? "Cat" : t === "Dogs" ? "Dog" : t === "Birds" ? "Bird" : t === "Fishes" || t === "Fish" ? "Fish" : t;
         result = result.map((al) => {
-          const u = users.find((u) => u.id === al.listerId);
+          const u = users.find((x) => x.id === (al.listerId ?? al.ownerId));
+          const linked = pets.find((p) => p.id === al.petId);
+          const pet = linked ?? {
+            id: al.petId ?? al.id,
+            name: al.name,
+            type: singular(al.type ?? ""),
+            breed: al.breed,
+            gender: al.gender === "Female" ? "F" : "M",
+            image: al.image,
+          };
           return {
             ...al,
-            pet: pets.find((p) => p.id === al.petId),
+            pet: { ...pet, type: singular(pet.type ?? "") },
             lister: u
               ? { name: u.name, email: u.email }
-              : { name: "User", email: "contact@petvan.com" },
+              : { name: "PetVan Community", email: "contact@petvan.com" },
           };
         });
       }
+
       return result;
     },
     upsert: async ({ where, create, update }: any) => {
