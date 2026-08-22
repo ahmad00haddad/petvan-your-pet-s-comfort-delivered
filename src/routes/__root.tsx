@@ -170,6 +170,20 @@ function RootComponent() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Micro-interaction: Smart Page Title
+  useEffect(() => {
+    const originalTitle = document.title || "PetVan";
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = lang === "ar" ? "🐶 اشتقنالك! عد إلينا" : "🐶 We miss you! Come back";
+      } else {
+        document.title = originalTitle;
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [lang]);
+
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
@@ -194,7 +208,7 @@ function RootComponent() {
             <Logo />
             <div className="hidden items-center gap-1.5 text-sm sm:flex">
               <span className="font-bold">{t.location}</span>
-              <MapPin className="size-4 text-primary" />
+              <MapPin className="size-4 text-primary animate-pulse" />
               <span className="text-muted-foreground text-xs">{t.city}</span>
             </div>
           </div>

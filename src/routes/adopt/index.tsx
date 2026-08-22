@@ -24,6 +24,12 @@ function Adopt() {
   const [listings, setListings] = useState<any[]>([]);
   const [filter, setFilter] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [heartAnim, setHeartAnim] = useState<string | null>(null);
+
+  const handleDoubleTap = (id: string) => {
+    setHeartAnim(id);
+    setTimeout(() => setHeartAnim(null), 1000);
+  };
 
   useEffect(() => {
     getAdoptionsFn().then((data) => {
@@ -131,7 +137,12 @@ function Adopt() {
               key={listing.id}
               className="group rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary"
             >
-              <div className="aspect-[4/3] bg-secondary relative">
+              <div className="aspect-[4/3] bg-secondary relative cursor-pointer" onDoubleClick={() => handleDoubleTap(listing.id)}>
+                {heartAnim === listing.id && (
+                  <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+                    <Heart className="size-24 text-red-500 fill-red-500 animate-[ping_1s_ease-out_forwards]" />
+                  </div>
+                )}
                 {listing.pet.image ? (
                   <img
                     src={listing.pet.image}

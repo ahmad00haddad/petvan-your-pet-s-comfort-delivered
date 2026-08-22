@@ -46,6 +46,25 @@ const PARTICLES = [
   { top: 52, left: 42, duration: 4.8 },
 ];
 
+function AnimatedCounter({ end, duration = 2000, suffix = "" }: { end: number, duration?: number, suffix?: string }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(ease * end));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [end, duration]);
+  return <>{count}{suffix}</>;
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -368,11 +387,11 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-0" />
         <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 text-center relative z-10">
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">10K<span className="text-3xl">+</span></h3>
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]"><AnimatedCounter end={10} suffix="K" /><span className="text-3xl">+</span></h3>
             <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'حيوان تمت خدمته' : 'Pets Served'}</p>
           </div>
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">50<span className="text-3xl">+</span></h3>
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]"><AnimatedCounter end={50} /><span className="text-3xl">+</span></h3>
             <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'طبيب بيطري متخصص' : 'Expert Vets'}</p>
           </div>
           <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '300ms' }}>

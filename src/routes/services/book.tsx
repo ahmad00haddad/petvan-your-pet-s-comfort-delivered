@@ -27,6 +27,8 @@ const services = [
 function BookService() {
   const lang = useAppStore((state: any) => state.lang);
   const t = copy[lang as keyof typeof copy];
+  const currentHour = new Date().getHours();
+  const isLate = currentHour >= 22 || currentHour <= 7;
   const [selected, setSelected] = useState(services[0]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
