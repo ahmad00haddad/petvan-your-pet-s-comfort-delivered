@@ -32,3 +32,21 @@ dist-ssr
 *.sw?
 
 /src/generated/prisma
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Local database files
+*.db
+*.db-journal
+*.sqlite
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Package managers (bun is the single source of truth)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

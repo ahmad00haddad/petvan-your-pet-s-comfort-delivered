@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
@@ -16,7 +15,7 @@ export function GuidedTour() {
 
   const startTour = () => {
     const isArabic = lang === "ar";
-    
+
     const driverObj = driver({
       showProgress: true,
       doneBtnText: isArabic ? "إنهاء" : "Done",
@@ -27,57 +26,57 @@ export function GuidedTour() {
           element: ".nav-tour",
           popover: {
             title: isArabic ? "القائمة الرئيسية" : "Main Navigation",
-            description: isArabic 
-              ? "من هنا يمكنك تصفح خدماتنا، متجرنا، أو البحث عن حيوان أليف للتبني." 
+            description: isArabic
+              ? "من هنا يمكنك تصفح خدماتنا، متجرنا، أو البحث عن حيوان أليف للتبني."
               : "Use this menu to browse our services, shop, or find a pet to adopt.",
             side: "bottom",
-            align: "start"
-          }
+            align: "start",
+          },
         },
         {
           element: ".install-tour",
           popover: {
             title: isArabic ? "تثبيت التطبيق" : "Install App",
-            description: isArabic 
+            description: isArabic
               ? "قم بتثبيت التطبيق على هاتفك للوصول السريع والإشعارات الفورية."
               : "Install the app on your phone for quick access and instant notifications.",
             side: "bottom",
-            align: "start"
-          }
+            align: "start",
+          },
         },
         {
           element: ".profile-tour",
           popover: {
             title: isArabic ? "ملفك الشخصي" : "Your Profile",
-            description: isArabic 
+            description: isArabic
               ? "أضف حيواناتك الأليفة هنا لتسهيل عملية الحجز وتتبع تاريخها الطبي."
               : "Add your pets here to make booking easier and track their medical history.",
             side: "bottom",
-            align: "start"
-          }
+            align: "start",
+          },
         },
         {
           element: ".cart-tour",
           popover: {
             title: isArabic ? "سلة المشتريات" : "Shopping Cart",
-            description: isArabic 
+            description: isArabic
               ? "طلباتك من المتجر ستظهر هنا جاهزة للدفع."
               : "Your shop orders will appear here ready for checkout.",
             side: "bottom",
-            align: "start"
-          }
+            align: "start",
+          },
         },
         {
           popover: {
             title: isArabic ? "أنت جاهز!" : "You're All Set!",
-            description: isArabic 
+            description: isArabic
               ? "استمتع بتجربة PetVan وابدأ بحجز أول خدمة لك."
               : "Enjoy your PetVan experience and book your first service.",
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
-    
+
     driverObj.drive();
   };
 

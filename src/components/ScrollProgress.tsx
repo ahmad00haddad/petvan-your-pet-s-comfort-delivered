@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 export function ScrollProgress() {
@@ -19,7 +18,7 @@ export function ScrollProgress() {
 
   return (
     <div className="fixed top-0 left-0 w-full h-1 z-[100] pointer-events-none">
-      <div 
+      <div
         className="h-full bg-primary shadow-[0_0_10px_var(--color-primary)] transition-all duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />

@@ -5,7 +5,17 @@ import { getUserFn } from "../api/auth";
 import { getMyPetsFn, deletePetFn, addPetFn } from "../api/pets";
 import { getMyOrdersFn } from "../api/orders";
 import { listForAdoptionFn } from "../api/adopt";
-import { LogOut, Plus, PawPrint, Package, Calendar, Trash2, Star, Loader2, Heart } from "lucide-react";
+import {
+  LogOut,
+  Plus,
+  PawPrint,
+  Package,
+  Calendar,
+  Trash2,
+  Star,
+  Loader2,
+  Heart,
+} from "lucide-react";
 import { copy } from "../lib/i18n";
 import { toast } from "sonner";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -21,13 +31,12 @@ function Profile() {
 
   const lang = useAppStore((state) => state.lang);
   const t = copy[lang];
-  
+
   // Micro-interaction: Time of Day Greeting
   const hour = new Date().getHours();
   const greetingEn = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
   const greetingAr = hour < 12 ? "صباح الخير" : "مساء الخير";
   const greeting = lang === "ar" ? greetingAr : greetingEn;
-
 
   const [user, setUser] = useState<any>(null);
   const [pets, setPets] = useState<any[]>([]);
@@ -53,25 +62,35 @@ function Profile() {
       getUserFn({ data: userId }),
       getMyPetsFn({ data: userId }),
       getMyOrdersFn({ data: userId }),
-    ]).then(([u, p, o]) => {
-      if (!u) {
-        toast.error(lang === "ar" ? "انتهت الجلسة. الرجاء تسجيل الدخول مجدداً." : "Session expired. Please log in again.");
-        setUserId(null); // Clear invalid ID
-        navigate({ to: "/login" });
-        return;
-      }
+    ])
+      .then(([u, p, o]) => {
+        if (!u) {
+          toast.error(
+            lang === "ar"
+              ? "انتهت الجلسة. الرجاء تسجيل الدخول مجدداً."
+              : "Session expired. Please log in again.",
+          );
+          setUserId(null); // Clear invalid ID
+          navigate({ to: "/login" });
+          return;
+        }
 
-      setUser(u);
-      setPets(p);
-      setOrders(o);
-      setLoading(false);
-    }).catch((err) => {
-      console.error("Profile load error:", err);
-      toast.error(lang === "ar" ? "فشل تحميل الملف الشخصي. الرجاء تسجيل الدخول مجدداً." : "Failed to load profile. Please log in again.");
-      setUserId(null);
-      navigate({ to: "/login" });
-      setLoading(false);
-    });
+        setUser(u);
+        setPets(p);
+        setOrders(o);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Profile load error:", err);
+        toast.error(
+          lang === "ar"
+            ? "فشل تحميل الملف الشخصي. الرجاء تسجيل الدخول مجدداً."
+            : "Failed to load profile. Please log in again.",
+        );
+        setUserId(null);
+        navigate({ to: "/login" });
+        setLoading(false);
+      });
   }, [userId, navigate, setUserId]);
 
   const handleDeletePet = async (petId: string) => {
@@ -91,7 +110,9 @@ function Profile() {
       await listForAdoptionFn({
         data: { userId: userId!, petId: listingPetId, description: adoptDescription },
       });
-      toast.success(lang === "ar" ? "تم نشر الحيوان للتبني بنجاح!" : "Pet successfully listed for adoption!");
+      toast.success(
+        lang === "ar" ? "تم نشر الحيوان للتبني بنجاح!" : "Pet successfully listed for adoption!",
+      );
       setListingPetId(null);
       setAdoptDescription("");
     } catch {
@@ -166,70 +187,81 @@ function Profile() {
           onClick={() => setAddPetModalOpen(true)}
           className="mt-6 inline-block rounded-full bg-primary px-8 py-2 text-xs font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-wider shadow-[var(--shadow-gold)]"
         >
-{t.addPet}
-</button>
+          {t.addPet}
+        </button>
       </div>
 
       {/* Stats Bar */}
-      <div className="mt-12 grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+      <div
+        className="mt-12 grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in-up"
+        style={{ animationDelay: "100ms" }}
+      >
         <div className="rounded-3xl glass-panel p-4 flex flex-col items-center justify-center transition-transform hover:-translate-y-1">
           <PawPrint className="size-6 text-primary mb-2" />
           <p className="text-2xl font-black font-display">{pets.length}</p>
-          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest mt-1">{t.petsCount}</p>
+          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest mt-1">
+            {t.petsCount}
+          </p>
         </div>
         <div className="rounded-3xl glass-panel p-4 flex flex-col items-center justify-center transition-transform hover:-translate-y-1">
           <Package className="size-6 text-primary mb-2" />
           <p className="text-2xl font-black font-display">{orders.length}</p>
-          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest mt-1">{t.ordersCount}</p>
+          <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-widest mt-1">
+            {t.ordersCount}
+          </p>
         </div>
         <div className="rounded-3xl glass-panel p-4 flex flex-col items-center justify-center transition-transform hover:-translate-y-1 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
           <Star className="size-6 text-primary mb-2 fill-primary" />
           <p className="text-2xl font-black font-display text-glow">350</p>
-          <p className="text-[10px] sm:text-xs text-primary uppercase tracking-widest mt-1 font-bold">{t.pointsCount}</p>
+          <p className="text-[10px] sm:text-xs text-primary uppercase tracking-widest mt-1 font-bold">
+            {t.pointsCount}
+          </p>
         </div>
       </div>
 
       {/* Pets */}
-      <div className="mt-16 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-        <h2 className="text-muted-foreground font-display mb-8 text-sm flex justify-center items-center gap-2"> {t.yourFamily} <PawPrint className="size-4" />
+      <div className="mt-16 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
+        <h2 className="text-muted-foreground font-display mb-8 text-sm flex justify-center items-center gap-2">
+          {" "}
+          {t.yourFamily} <PawPrint className="size-4" />
         </h2>
         <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
-        {pets.length === 0 ? (
-          <p className="text-muted-foreground text-sm">{t.noPets}</p>
-        ) : (
-          pets.map((pet) => (
-            <div key={pet.id} className="group flex flex-col items-center">
-              <Link
-                to="/pets/$petId"
-                params={{ petId: String(pet.id) }}
-                className="flex flex-col items-center"
-              >
-                <div className="size-28 sm:size-32 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-all duration-300 group-hover:scale-105 group-hover:border-primary group-hover:shadow-[0_0_20px_color-mix(in_oklch,var(--color-primary)_40%,transparent)] relative">
-                  {pet.image ? (
-                    <img src={pet.image} alt={pet.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-secondary text-4xl">
-                      <PawPrint />
-                    </div>
-                  )}
-                </div>
-                <h3 className="font-display font-bold uppercase tracking-widest">{pet.name}</h3>
-              </Link>
-              
-              <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  setListingPetId(pet.id);
-                }}
-                className="mt-3 flex items-center gap-1 text-[10px] font-bold text-muted-foreground hover:text-primary transition-colors border border-border px-3 py-1 rounded-full uppercase tracking-wider"
-              >
-                <Heart className="size-3" />
-                Adopt
-              </button>
-            </div>
-          ))
-        )}
+          {pets.length === 0 ? (
+            <p className="text-muted-foreground text-sm">{t.noPets}</p>
+          ) : (
+            pets.map((pet) => (
+              <div key={pet.id} className="group flex flex-col items-center">
+                <Link
+                  to="/pets/$petId"
+                  params={{ petId: String(pet.id) }}
+                  className="flex flex-col items-center"
+                >
+                  <div className="size-28 sm:size-32 rounded-full border-4 border-foreground/20 overflow-hidden mb-4 transition-all duration-300 group-hover:scale-105 group-hover:border-primary group-hover:shadow-[0_0_20px_color-mix(in_oklch,var(--color-primary)_40%,transparent)] relative">
+                    {pet.image ? (
+                      <img src={pet.image} alt={pet.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-secondary text-4xl">
+                        <PawPrint />
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="font-display font-bold uppercase tracking-widest">{pet.name}</h3>
+                </Link>
+
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setListingPetId(pet.id);
+                  }}
+                  className="mt-3 flex items-center gap-1 text-[10px] font-bold text-muted-foreground hover:text-primary transition-colors border border-border px-3 py-1 rounded-full uppercase tracking-wider"
+                >
+                  <Heart className="size-3" />
+                  Adopt
+                </button>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
@@ -249,7 +281,11 @@ function Profile() {
 
             <textarea
               className="w-full h-24 p-4 rounded-2xl bg-secondary border border-border resize-none focus:ring-2 focus:ring-primary outline-none mb-6 text-sm placeholder:text-muted-foreground/50"
-              placeholder={lang === "ar" ? "مثال: ودود جداً ويحب اللعب..." : "e.g. Very friendly and loves to play..."}
+              placeholder={
+                lang === "ar"
+                  ? "مثال: ودود جداً ويحب اللعب..."
+                  : "e.g. Very friendly and loves to play..."
+              }
               value={adoptDescription}
               onChange={(e) => setAdoptDescription(e.target.value)}
             ></textarea>
@@ -280,9 +316,7 @@ function Profile() {
             <h1 className="font-display text-3xl font-extrabold text-primary text-glow mb-2">
               {t.addNewPet}
             </h1>
-            <p className="text-sm text-muted-foreground mb-8">
-              {t.addNewPetDesc}
-            </p>
+            <p className="text-sm text-muted-foreground mb-8">{t.addNewPetDesc}</p>
 
             <form onSubmit={handleAddPet} className="space-y-6">
               <div className="space-y-4">
@@ -336,7 +370,10 @@ function Profile() {
 
               <div className="flex w-full gap-3 mt-8">
                 <Dialog.Close asChild>
-                  <button type="button" className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">
+                  <button
+                    type="button"
+                    className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary"
+                  >
                     Cancel
                   </button>
                 </Dialog.Close>
@@ -357,7 +394,9 @@ function Profile() {
 
       {/* Photo Section */}
       <div>
-        <h2 className="text-muted-foreground font-display mb-8 text-sm flex justify-center items-center gap-2"> {t.photo} <Plus className="size-4" />
+        <h2 className="text-muted-foreground font-display mb-8 text-sm flex justify-center items-center gap-2">
+          {" "}
+          {t.photo} <Plus className="size-4" />
         </h2>
 
         <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-3xl mx-auto">

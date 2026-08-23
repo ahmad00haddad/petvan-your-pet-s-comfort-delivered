@@ -179,7 +179,8 @@ const adoptionListings: any[] = [
     breed: "Shirazi",
     age: "2 months",
     gender: "Male",
-    description: "Playful and litter trained. Mishmish is very affectionate and loves to play with yarn.",
+    description:
+      "Playful and litter trained. Mishmish is very affectionate and loves to play with yarn.",
     image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800",
     ownerId: "u2",
     petId: "pet_mock_1",
@@ -192,7 +193,8 @@ const adoptionListings: any[] = [
     breed: "Mixed",
     age: "1 year",
     gender: "Female",
-    description: "An incredibly emotional, heartwarming rescued puppy. Lucy is very calm, looking for a loving home with a backyard. She is great with kids and deeply moving.",
+    description:
+      "An incredibly emotional, heartwarming rescued puppy. Lucy is very calm, looking for a loving home with a backyard. She is great with kids and deeply moving.",
     image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800",
     ownerId: "u3",
     petId: "pet_mock_2",
@@ -205,7 +207,8 @@ const adoptionListings: any[] = [
     breed: "Macaw",
     age: "3 years",
     gender: "Male",
-    description: "Talkative and colorful. Rio requires a large cage and plenty of interaction. Beautiful vibrant feathers.",
+    description:
+      "Talkative and colorful. Rio requires a large cage and plenty of interaction. Beautiful vibrant feathers.",
     image: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=800",
     ownerId: "u1",
     petId: "pet_mock_3",
@@ -218,7 +221,8 @@ const adoptionListings: any[] = [
     breed: "British Shorthair",
     age: "6 months",
     gender: "Male",
-    description: "Loves to sleep all day. A truly majestic cat with a calm demeanor and perfect for apartment living.",
+    description:
+      "Loves to sleep all day. A truly majestic cat with a calm demeanor and perfect for apartment living.",
     image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=800",
     ownerId: "u4",
     petId: "pet_mock_4",
@@ -231,7 +235,8 @@ const adoptionListings: any[] = [
     breed: "Beagle",
     age: "2 years",
     gender: "Female",
-    description: "Great with kids and very active. Daisy loves long walks in the park and is fully vaccinated.",
+    description:
+      "Great with kids and very active. Daisy loves long walks in the park and is fully vaccinated.",
     image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800",
     ownerId: "u2",
     petId: "pet_mock_5",
@@ -244,7 +249,8 @@ const adoptionListings: any[] = [
     breed: "Scottish Fold",
     age: "1.5 years",
     gender: "Male",
-    description: "Very gentle and loves to cuddle. Oliver had a tough start but is now looking for a forever home where he can be the center of attention.",
+    description:
+      "Very gentle and loves to cuddle. Oliver had a tough start but is now looking for a forever home where he can be the center of attention.",
     image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=800",
     ownerId: "u3",
     petId: "pet_mock_6",
@@ -257,7 +263,8 @@ const adoptionListings: any[] = [
     breed: "Cocker Spaniel",
     age: "3 years",
     gender: "Female",
-    description: "Ruby is a sweet soul who loves everyone she meets. She was rescued from a shelter and needs a family who can give her lots of love.",
+    description:
+      "Ruby is a sweet soul who loves everyone she meets. She was rescued from a shelter and needs a family who can give her lots of love.",
     image: "https://images.unsplash.com/photo-1534361960057-19889db9621e?w=800",
     ownerId: "u1",
     petId: "pet_mock_7",
@@ -270,7 +277,8 @@ const adoptionListings: any[] = [
     breed: "Guinea Pig",
     age: "6 months",
     gender: "Female",
-    description: "Peanut is a curious little guinea pig. Very vocal when it's veggie time! Needs a spacious enclosure.",
+    description:
+      "Peanut is a curious little guinea pig. Very vocal when it's veggie time! Needs a spacious enclosure.",
     image: "https://images.unsplash.com/photo-1548681528-6a5c45b66b42?w=800",
     ownerId: "u2",
     petId: "pet_mock_8",
@@ -283,7 +291,8 @@ const adoptionListings: any[] = [
     breed: "Husky Mix",
     age: "2 years",
     gender: "Male",
-    description: "High energy and extremely smart. Shadow needs an active owner who loves running or hiking. He's very loyal.",
+    description:
+      "High energy and extremely smart. Shadow needs an active owner who loves running or hiking. He's very loyal.",
     image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800",
     ownerId: "u4",
     petId: "pet_mock_9",
@@ -296,7 +305,8 @@ const adoptionListings: any[] = [
     breed: "Sphynx",
     age: "4 years",
     gender: "Female",
-    description: "Cleo is a sophisticated lady who enjoys warm blankets and sunbathing. She is incredibly affectionate and purrs loudly.",
+    description:
+      "Cleo is a sophisticated lady who enjoys warm blankets and sunbathing. She is incredibly affectionate and purrs loudly.",
     image: "https://images.unsplash.com/photo-1513245543132-31f507417b26?w=800",
     ownerId: "u1",
     petId: "pet_mock_10",
@@ -309,7 +319,8 @@ const adoptionListings: any[] = [
     breed: "Parrot",
     age: "5 years",
     gender: "Female",
-    description: "Coco loves to sing and whistle. She comes with her large cage and toys. Needs an experienced bird owner.",
+    description:
+      "Coco loves to sing and whistle. She comes with her large cage and toys. Needs an experienced bird owner.",
     image: "https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=800",
     ownerId: "u3",
     petId: "pet_mock_11",
@@ -322,7 +333,8 @@ const adoptionListings: any[] = [
     breed: "Bengal",
     age: "1 year",
     gender: "Male",
-    description: "Leo is like a mini leopard! Extremely active, loves to climb, and very intelligent. Needs lots of stimulation.",
+    description:
+      "Leo is like a mini leopard! Extremely active, loves to climb, and very intelligent. Needs lots of stimulation.",
     image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=800",
     ownerId: "u2",
     petId: "pet_mock_12",
@@ -335,7 +347,8 @@ const adoptionListings: any[] = [
     breed: "Labrador",
     age: "8 months",
     gender: "Male",
-    description: "A goofy puppy who is still growing into his paws. Buddy loves water, playing fetch, and everyone he meets.",
+    description:
+      "A goofy puppy who is still growing into his paws. Buddy loves water, playing fetch, and everyone he meets.",
     image: "https://images.unsplash.com/photo-1552053831-71594a27632d?w=800",
     ownerId: "u1",
     petId: "pet_mock_13",
@@ -348,7 +361,8 @@ const adoptionListings: any[] = [
     breed: "Goldfish",
     age: "Unknown",
     gender: "Female",
-    description: "Beautiful fantail goldfish. Needs a proper tank setup, not a bowl. Very relaxing to watch.",
+    description:
+      "Beautiful fantail goldfish. Needs a proper tank setup, not a bowl. Very relaxing to watch.",
     image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=800",
     ownerId: "u4",
     petId: "pet_mock_14",
@@ -361,13 +375,14 @@ const adoptionListings: any[] = [
     breed: "Ragdoll",
     age: "2 years",
     gender: "Male",
-    description: "Milo goes completely limp when you pick him up. He's a large, fluffy boy who just wants to be loved and brushed.",
+    description:
+      "Milo goes completely limp when you pick him up. He's a large, fluffy boy who just wants to be loved and brushed.",
     image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800",
     ownerId: "u2",
     petId: "pet_mock_15",
     type: "Cats",
     status: "AVAILABLE",
-  }
+  },
 ];
 const products: any[] = [
   {
@@ -376,10 +391,12 @@ const products: any[] = [
     brand: "Royal Canin",
     flavor: "Chicken & Turkey",
     ageGroup: "Adult (1-7 years)",
-    description: "Premium dry cat food formulated for indoor cats. Reduces stool odor, supports weight management, and limits hairball formation.",
+    description:
+      "Premium dry cat food formulated for indoor cats. Reduces stool odor, supports weight management, and limits hairball formation.",
     price: 35.99,
     category: "Food",
-    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=800",
     targetPet: "Cats",
   },
   {
@@ -388,10 +405,12 @@ const products: any[] = [
     brand: "Whiskas",
     flavor: "Tuna",
     ageGroup: "Adult",
-    description: "100% complete and balanced nutrition for your cat. Crunchy outside with a soft and meaty center.",
+    description:
+      "100% complete and balanced nutrition for your cat. Crunchy outside with a soft and meaty center.",
     price: 15.5,
     category: "Food",
-    image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=800",
     targetPet: "Cats",
   },
   {
@@ -400,10 +419,12 @@ const products: any[] = [
     brand: "Reflex",
     flavor: "Lamb & Rice",
     ageGroup: "Adult",
-    description: "Fully balanced, lamb protein-containing dry dog food carefully formulated by cat / dog nutritionists to meet the nutritional requirements of all adult dog breeds.",
+    description:
+      "Fully balanced, lamb protein-containing dry dog food carefully formulated by cat / dog nutritionists to meet the nutritional requirements of all adult dog breeds.",
     price: 45.0,
     category: "Food",
-    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=800",
     targetPet: "Dogs",
   },
   {
@@ -412,10 +433,12 @@ const products: any[] = [
     brand: "Tetra",
     flavor: "Fish Mix",
     ageGroup: "All Ages",
-    description: "Nutritionally balanced diet for optimal health, color and vitality. Clean & clear water formula.",
+    description:
+      "Nutritionally balanced diet for optimal health, color and vitality. Clean & clear water formula.",
     price: 8.99,
     category: "Food",
-    image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&q=80&w=800",
     targetPet: "Fish",
   },
   {
@@ -424,10 +447,12 @@ const products: any[] = [
     brand: "PetVan",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "A sophisticated, colorful interactive pet toy. Keeps your cat engaged for hours with safe laser tracking.",
+    description:
+      "A sophisticated, colorful interactive pet toy. Keeps your cat engaged for hours with safe laser tracking.",
     price: 12.5,
     category: "Toys",
-    image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&q=80&w=800",
     targetPet: "Cats",
   },
   {
@@ -436,10 +461,12 @@ const products: any[] = [
     brand: "Kong",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "Durable, reflective leash and comfortable harness set for large dogs. Perfect for safe night walks.",
+    description:
+      "Durable, reflective leash and comfortable harness set for large dogs. Perfect for safe night walks.",
     price: 24.0,
     category: "Tools",
-    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800",
     targetPet: "Dogs",
   },
   {
@@ -448,10 +475,12 @@ const products: any[] = [
     brand: "Sanicat",
     flavor: "Lavender",
     ageGroup: "All Ages",
-    description: "Ultra absorbent silica gel cat litter with odor control and a light lavender scent. Lasts up to a month per bag.",
+    description:
+      "Ultra absorbent silica gel cat litter with odor control and a light lavender scent. Lasts up to a month per bag.",
     price: 15.0,
     category: "Tools",
-    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=800",
     targetPet: "Cats",
   },
   {
@@ -460,10 +489,12 @@ const products: any[] = [
     brand: "Nylabone",
     flavor: "Bacon",
     ageGroup: "Puppy/Adult",
-    description: "Tough, durable chew toy for aggressive chewers. Helps clean teeth and control plaque and tartar.",
+    description:
+      "Tough, durable chew toy for aggressive chewers. Helps clean teeth and control plaque and tartar.",
     price: 9.5,
     category: "Toys",
-    image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=800",
+    image:
+      "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=800",
     targetPet: "Dogs",
   },
   {
@@ -472,8 +503,9 @@ const products: any[] = [
     brand: "Orijen",
     flavor: "Chicken, Turkey & Fish",
     ageGroup: "All Life Stages",
-    description: "Biologically appropriate dog food featuring fresh or raw free-run chicken and turkey, wild-caught fish, and cage-free eggs.",
-    price: 85.00,
+    description:
+      "Biologically appropriate dog food featuring fresh or raw free-run chicken and turkey, wild-caught fish, and cage-free eggs.",
+    price: 85.0,
     category: "Food",
     image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Dogs",
@@ -484,8 +516,9 @@ const products: any[] = [
     brand: "Frontline",
     flavor: "N/A",
     ageGroup: "Adult Cats",
-    description: "Fast-acting, long-lasting flea and tick protection for cats. Kills fleas, flea eggs, lice, and ticks.",
-    price: 32.50,
+    description:
+      "Fast-acting, long-lasting flea and tick protection for cats. Kills fleas, flea eggs, lice, and ticks.",
+    price: 32.5,
     category: "Medicine",
     image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800",
     targetPet: "Cats",
@@ -496,8 +529,9 @@ const products: any[] = [
     brand: "Kong",
     flavor: "N/A",
     ageGroup: "Adult Dogs",
-    description: "The gold standard of dog toys. Made from ultra-durable all-natural rubber. Great for stuffing with treats.",
-    price: 18.00,
+    description:
+      "The gold standard of dog toys. Made from ultra-durable all-natural rubber. Great for stuffing with treats.",
+    price: 18.0,
     category: "Toys",
     image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800",
     targetPet: "Dogs",
@@ -508,8 +542,9 @@ const products: any[] = [
     brand: "Trixie",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "Tall sisal scratching post with a plush base and a dangling toy. Protects your furniture while keeping your cat entertained.",
-    price: 45.00,
+    description:
+      "Tall sisal scratching post with a plush base and a dangling toy. Protects your furniture while keeping your cat entertained.",
+    price: 45.0,
     category: "Accessories",
     image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=800",
     targetPet: "Cats",
@@ -520,7 +555,8 @@ const products: any[] = [
     brand: "Tetra",
     flavor: "N/A",
     ageGroup: "N/A",
-    description: "Makes tap water safe for fish instantly. Neutralizes chlorine, chloramines, and heavy metals.",
+    description:
+      "Makes tap water safe for fish instantly. Neutralizes chlorine, chloramines, and heavy metals.",
     price: 12.99,
     category: "Tools",
     image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=800",
@@ -532,8 +568,9 @@ const products: any[] = [
     brand: "ZuPreem",
     flavor: "Fruit",
     ageGroup: "Adult Birds",
-    description: "Premium daily bird food for medium birds. Contains 21 vitamins and minerals for exceptional health.",
-    price: 22.50,
+    description:
+      "Premium daily bird food for medium birds. Contains 21 vitamins and minerals for exceptional health.",
+    price: 22.5,
     category: "Food",
     image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Birds",
@@ -544,8 +581,9 @@ const products: any[] = [
     brand: "Furminator",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "Reduces loose hair from shedding up to 90% on regularly shed dogs. Stainless steel edge.",
-    price: 38.00,
+    description:
+      "Reduces loose hair from shedding up to 90% on regularly shed dogs. Stainless steel edge.",
+    price: 38.0,
     category: "Tools",
     image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800",
     targetPet: "Dogs",
@@ -556,8 +594,9 @@ const products: any[] = [
     brand: "Applaws",
     flavor: "Chicken & Rice",
     ageGroup: "Adult Cats",
-    description: "100% natural wet cat food. Made with nothing more than the ingredients listed. High protein.",
-    price: 2.50,
+    description:
+      "100% natural wet cat food. Made with nothing more than the ingredients listed. High protein.",
+    price: 2.5,
     category: "Food",
     image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Cats",
@@ -568,8 +607,9 @@ const products: any[] = [
     brand: "Earthbath",
     flavor: "Vanilla & Almond",
     ageGroup: "All Ages",
-    description: "Totally natural pet shampoo. Promotes healing and relieves itching for dogs and cats with dry skin.",
-    price: 16.50,
+    description:
+      "Totally natural pet shampoo. Promotes healing and relieves itching for dogs and cats with dry skin.",
+    price: 16.5,
     category: "Tools",
     image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800",
     targetPet: "Dogs",
@@ -580,7 +620,8 @@ const products: any[] = [
     brand: "Catit",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "3L drinking fountain with triple-action filter. Encourages your cat to drink more water.",
+    description:
+      "3L drinking fountain with triple-action filter. Encourages your cat to drink more water.",
     price: 29.99,
     category: "Accessories",
     image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800",
@@ -592,8 +633,9 @@ const products: any[] = [
     brand: "Seresto",
     flavor: "N/A",
     ageGroup: "Adult Dogs",
-    description: "Provides 8 months of continuous flea and tick prevention for large dogs. Odorless and non-greasy.",
-    price: 65.00,
+    description:
+      "Provides 8 months of continuous flea and tick prevention for large dogs. Odorless and non-greasy.",
+    price: 65.0,
     category: "Medicine",
     image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800",
     targetPet: "Dogs",
@@ -604,21 +646,22 @@ const products: any[] = [
     brand: "JW Pet",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "Fun, versatile dog toy that can be used for fetching, tugging, and stuffing with treats. Made from tough rubber.",
-    price: 11.50,
+    description:
+      "Fun, versatile dog toy that can be used for fetching, tugging, and stuffing with treats. Made from tough rubber.",
+    price: 11.5,
     category: "Toys",
     image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800",
     targetPet: "Dogs",
-  }
-,
+  },
   {
     id: "p21",
     name: "Hagen Vision Bird Cage",
     brand: "Hagen",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "Spacious, easy-to-clean bird cage. Designed to keep debris inside. Includes perches and food dishes.",
-    price: 85.00,
+    description:
+      "Spacious, easy-to-clean bird cage. Designed to keep debris inside. Includes perches and food dishes.",
+    price: 85.0,
     category: "Accessories",
     image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Birds",
@@ -629,8 +672,9 @@ const products: any[] = [
     brand: "API",
     flavor: "N/A",
     ageGroup: "N/A",
-    description: "Makes tap water safe and protects fish with soothing aloe vera. Reduces stress by 40%.",
-    price: 14.50,
+    description:
+      "Makes tap water safe and protects fish with soothing aloe vera. Reduces stress by 40%.",
+    price: 14.5,
     category: "Medicine",
     image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=800",
     targetPet: "Fish",
@@ -641,7 +685,8 @@ const products: any[] = [
     brand: "Chuckit!",
     flavor: "N/A",
     ageGroup: "All Ages",
-    description: "Durable, high-bounce rubber dog ball. Floats on water and is easy to clean. Perfect for fetch.",
+    description:
+      "Durable, high-bounce rubber dog ball. Floats on water and is easy to clean. Perfect for fetch.",
     price: 7.99,
     category: "Toys",
     image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800",
@@ -654,7 +699,7 @@ const products: any[] = [
     flavor: "Catnip",
     ageGroup: "All Ages",
     description: "Pack of 3 catnip-filled mice toys. Perfectly sized to bat and carry.",
-    price: 5.50,
+    price: 5.5,
     category: "Toys",
     image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=800",
     targetPet: "Cats",
@@ -665,8 +710,9 @@ const products: any[] = [
     brand: "Merrick",
     flavor: "Beef & Sweet Potato",
     ageGroup: "Adult",
-    description: "Real deboned beef is the first ingredient. Grain-free nutrition for healthy skin and coat.",
-    price: 34.00,
+    description:
+      "Real deboned beef is the first ingredient. Grain-free nutrition for healthy skin and coat.",
+    price: 34.0,
     category: "Food",
     image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
     targetPet: "Dogs",
@@ -690,7 +736,7 @@ const products: any[] = [
     flavor: "N/A",
     ageGroup: "All Ages",
     description: "7-day odor-free guarantee. Micro-particles seal in and destroy odors instantly.",
-    price: 24.50,
+    price: 24.5,
     category: "Tools",
     image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800",
     targetPet: "Cats",
@@ -701,111 +747,13 @@ const products: any[] = [
     brand: "Marina",
     flavor: "N/A",
     ageGroup: "N/A",
-    description: "10-gallon glass aquarium kit with LED lighting and a clip-on filter. Perfect for beginners.",
-    price: 65.00,
+    description:
+      "10-gallon glass aquarium kit with LED lighting and a clip-on filter. Perfect for beginners.",
+    price: 65.0,
     category: "Accessories",
     image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=800",
     targetPet: "Fish",
-  }
-
-,
-  {
-    id: "p31",
-    name: "Hagen Vision Bird Cage",
-    brand: "Hagen",
-    flavor: "N/A",
-    ageGroup: "All Ages",
-    description: "Spacious, easy-to-clean bird cage. Designed to keep debris inside. Includes perches and food dishes.",
-    price: 85.00,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
-    targetPet: "Birds",
   },
-  {
-    id: "p32",
-    name: "API Stress Coat Water Conditioner",
-    brand: "API",
-    flavor: "N/A",
-    ageGroup: "N/A",
-    description: "Makes tap water safe and protects fish with soothing aloe vera. Reduces stress by 40%.",
-    price: 14.50,
-    category: "Medicine",
-    image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=800",
-    targetPet: "Fish",
-  },
-  {
-    id: "p33",
-    name: "Chuckit! Ultra Ball",
-    brand: "Chuckit!",
-    flavor: "N/A",
-    ageGroup: "All Ages",
-    description: "Durable, high-bounce rubber dog ball. Floats on water and is easy to clean. Perfect for fetch.",
-    price: 7.99,
-    category: "Toys",
-    image: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800",
-    targetPet: "Dogs",
-  },
-  {
-    id: "p34",
-    name: "SmartyKat Skitter Critters",
-    brand: "SmartyKat",
-    flavor: "Catnip",
-    ageGroup: "All Ages",
-    description: "Pack of 3 catnip-filled mice toys. Perfectly sized to bat and carry.",
-    price: 5.50,
-    category: "Toys",
-    image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=800",
-    targetPet: "Cats",
-  },
-  {
-    id: "p35",
-    name: "Merrick Grain-Free Wet Dog Food",
-    brand: "Merrick",
-    flavor: "Beef & Sweet Potato",
-    ageGroup: "Adult",
-    description: "Real deboned beef is the first ingredient. Grain-free nutrition for healthy skin and coat.",
-    price: 34.00,
-    category: "Food",
-    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800",
-    targetPet: "Dogs",
-  },
-  {
-    id: "p36",
-    name: "Burt's Bees Itch Soothing Spray",
-    brand: "Burt's Bees",
-    flavor: "Honeysuckle",
-    ageGroup: "All Ages",
-    description: "Natural itch soothing spray for dogs with honeysuckle. pH balanced for pets.",
-    price: 11.99,
-    category: "Medicine",
-    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800",
-    targetPet: "Dogs",
-  },
-  {
-    id: "p37",
-    name: "Arm & Hammer Clump & Seal",
-    brand: "Arm & Hammer",
-    flavor: "N/A",
-    ageGroup: "All Ages",
-    description: "7-day odor-free guarantee. Micro-particles seal in and destroy odors instantly.",
-    price: 24.50,
-    category: "Tools",
-    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800",
-    targetPet: "Cats",
-  },
-  {
-    id: "p38",
-    name: "Marina LED Aquarium Kit",
-    brand: "Marina",
-    flavor: "N/A",
-    ageGroup: "N/A",
-    description: "10-gallon glass aquarium kit with LED lighting and a clip-on filter. Perfect for beginners.",
-    price: 65.00,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=800",
-    targetPet: "Fish",
-  }
-
 ];
 
 export const prisma = {
@@ -854,7 +802,15 @@ export const prisma = {
       let result = adoptionListings.filter((al) => !where || al.status === where.status);
       if (include) {
         const singular = (t: string) =>
-          t === "Cats" ? "Cat" : t === "Dogs" ? "Dog" : t === "Birds" ? "Bird" : t === "Fishes" || t === "Fish" ? "Fish" : t;
+          t === "Cats"
+            ? "Cat"
+            : t === "Dogs"
+              ? "Dog"
+              : t === "Birds"
+                ? "Bird"
+                : t === "Fishes" || t === "Fish"
+                  ? "Fish"
+                  : t;
         result = result.map((al) => {
           const u = users.find((x) => x.id === (al.listerId ?? al.ownerId));
           const linked = pets.find((p) => p.id === al.petId);

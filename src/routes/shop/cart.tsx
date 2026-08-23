@@ -154,7 +154,6 @@ function Cart() {
                 <span>2.00 JOD</span>
               </div>
               <div className="border-t border-border pt-3 flex justify-between font-bold text-lg">
-                
                 <span>{(total + 2).toFixed(2)} JOD</span>
               </div>
             </div>
@@ -183,24 +182,30 @@ function Cart() {
 
                     <div className="w-full text-start mb-6 space-y-4">
                       <div>
-                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 block">{t.deliveryAddress}</label>
-                        <input 
-                          type="text" 
+                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 block">
+                          {t.deliveryAddress}
+                        </label>
+                        <input
+                          type="text"
                           required
                           value={address}
                           onChange={(e) => setAddress(e.target.value)}
-                          placeholder={lang === "ar" ? "مثال: شارع مكة، عمّان" : "e.g. Mecca St, Amman"} 
+                          placeholder={
+                            lang === "ar" ? "مثال: شارع مكة، عمّان" : "e.g. Mecca St, Amman"
+                          }
                           className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         />
                       </div>
                       <div>
-                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 block">{t.phoneNumber}</label>
-                        <input 
-                          type="tel" 
+                        <label className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 block">
+                          {t.phoneNumber}
+                        </label>
+                        <input
+                          type="tel"
                           required
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder={lang === "ar" ? "مثال: 079xxxxxxx" : "e.g. 079xxxxxxx"} 
+                          placeholder={lang === "ar" ? "مثال: 079xxxxxxx" : "e.g. 079xxxxxxx"}
                           className="w-full h-11 rounded-md border border-input bg-background/50 px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         />
                       </div>
@@ -211,7 +216,9 @@ function Cart() {
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-muted-foreground text-sm">{t.totalToPay}</span>
-                          <span className="font-bold text-xl text-primary">{(total + 2).toFixed(2)} JOD</span>
+                          <span className="font-bold text-xl text-primary">
+                            {(total + 2).toFixed(2)} JOD
+                          </span>
                         </div>
                       </div>
                     </div>

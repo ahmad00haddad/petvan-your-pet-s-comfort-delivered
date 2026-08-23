@@ -85,8 +85,14 @@ function Shop() {
             onClick={() => setFilter(filter === c.id ? null : c.id)}
             className={`group grid size-24 place-items-center rounded-3xl shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary ${filter === c.id ? "bg-primary text-primary-foreground scale-105" : "glass-panel text-foreground border border-border"}`}
           >
-            <c.icon className={`size-8 transition-colors ${filter === c.id ? "" : "group-hover:text-primary"}`} />
-            <span className={`text-xs font-bold mt-1 transition-colors ${filter === c.id ? "" : "group-hover:text-primary"}`}>{c.label}</span>
+            <c.icon
+              className={`size-8 transition-colors ${filter === c.id ? "" : "group-hover:text-primary"}`}
+            />
+            <span
+              className={`text-xs font-bold mt-1 transition-colors ${filter === c.id ? "" : "group-hover:text-primary"}`}
+            >
+              {c.label}
+            </span>
           </button>
         ))}
       </div>
@@ -94,7 +100,10 @@ function Shop() {
       <div className="grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
         {loading ? (
           Array.from({ length: 8 }).map((_, i) => (
-            <div key={`skeleton-${i}`} className="group relative overflow-hidden rounded-3xl glass-panel p-5 flex flex-col h-[320px] shadow-[var(--shadow-card)] ring-1 ring-border">
+            <div
+              key={`skeleton-${i}`}
+              className="group relative overflow-hidden rounded-3xl glass-panel p-5 flex flex-col h-[320px] shadow-[var(--shadow-card)] ring-1 ring-border"
+            >
               <div className="h-40 w-full rounded-2xl bg-secondary animate-pulse mb-4" />
               <div className="h-6 w-3/4 bg-secondary rounded animate-pulse mb-3" />
               <div className="h-3 w-full bg-secondary rounded animate-pulse mb-1" />
@@ -111,10 +120,8 @@ function Shop() {
               <ShoppingCart className="size-10 opacity-50" />
             </div>
             <h3 className="font-display text-2xl font-bold mb-2">{t.noItems}</h3>
-            <p className="text-muted-foreground max-w-sm mb-8">
-              {t.noItemsDesc}
-            </p>
-            <button 
+            <p className="text-muted-foreground max-w-sm mb-8">{t.noItemsDesc}</p>
+            <button
               onClick={() => setFilter(null)}
               className="rounded-full bg-primary/10 text-primary px-6 py-2 text-sm font-bold transition-colors hover:bg-primary hover:text-primary-foreground"
             >
@@ -141,7 +148,13 @@ function Shop() {
                 </div>
               )}
 
-              <div className="relative mb-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary cursor-pointer" onClick={() => { setSelectedProduct(p); setQuantity(1); }}>
+              <div
+                className="relative mb-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary cursor-pointer"
+                onClick={() => {
+                  setSelectedProduct(p);
+                  setQuantity(1);
+                }}
+              >
                 <div className="absolute inset-0 grid place-items-center text-primary/40">
                   <Utensils className="size-10" />
                 </div>
@@ -150,19 +163,32 @@ function Shop() {
                     src={p.image}
                     alt={p.name}
                     loading="lazy"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.display = "none";
+                    }}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 )}
               </div>
-              <h3 className="font-display text-lg font-bold line-clamp-2 cursor-pointer hover:text-primary transition-colors" onClick={() => { setSelectedProduct(p); setQuantity(1); }}>{p.name}</h3>
+              <h3
+                className="font-display text-lg font-bold line-clamp-2 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => {
+                  setSelectedProduct(p);
+                  setQuantity(1);
+                }}
+              >
+                {p.name}
+              </h3>
               <p className="mt-1 text-xs text-muted-foreground line-clamp-2 flex-grow">
                 {p.description}
               </p>
               <div className="mt-4 flex items-center justify-between">
                 <span className="font-display text-lg font-bold">{p.price.toFixed(2)} JOD</span>
                 <button
-                  onClick={() => { setSelectedProduct(p); setQuantity(1); }}
+                  onClick={() => {
+                    setSelectedProduct(p);
+                    setQuantity(1);
+                  }}
                   className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-110 active:scale-95"
                 >
                   <Plus className="size-5" />
@@ -174,7 +200,10 @@ function Shop() {
       </div>
 
       {/* Product Details Modal */}
-      <Dialog.Root open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
+      <Dialog.Root
+        open={!!selectedProduct}
+        onOpenChange={(open) => !open && setSelectedProduct(null)}
+      >
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 animate-in fade-in duration-300" />
           <Dialog.Content className="fixed left-[50%] top-[50%] z-50 w-full max-w-2xl translate-x-[-50%] translate-y-[-50%] rounded-[2.5rem] border border-border bg-card p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-300">
@@ -183,33 +212,43 @@ function Shop() {
                 <X className="size-5" />
               </button>
             </Dialog.Close>
-            
+
             {selectedProduct && (
               <div className="grid sm:grid-cols-2 gap-8">
                 <div className="rounded-3xl bg-secondary overflow-hidden aspect-square flex items-center justify-center p-4 relative max-h-[50vh]">
                   {selectedProduct.image ? (
-                    <img src={selectedProduct.image} alt={selectedProduct.name} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} className="max-h-full max-w-full object-contain" />
+                    <img
+                      src={selectedProduct.image}
+                      alt={selectedProduct.name}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = "none";
+                      }}
+                      className="max-h-full max-w-full object-contain"
+                    />
                   ) : (
                     <Utensils className="size-20 text-muted-foreground/30" />
                   )}
                 </div>
-                
+
                 <div className="flex flex-col">
                   <div className="mb-2">
-                    <span className="text-xs font-bold text-primary uppercase tracking-wider">{selectedProduct.brand || selectedProduct.category}</span>
+                    <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                      {selectedProduct.brand || selectedProduct.category}
+                    </span>
                   </div>
                   <Dialog.Title className="font-display text-3xl font-bold mb-4 leading-tight">
                     {selectedProduct.name}
                   </Dialog.Title>
-                  
+
                   <div className="text-3xl font-bold text-primary mb-6">
-                    {selectedProduct.price.toFixed(2)} <span className="text-sm text-foreground">JOD</span>
+                    {selectedProduct.price.toFixed(2)}{" "}
+                    <span className="text-sm text-foreground">JOD</span>
                   </div>
-                  
+
                   <Dialog.Description className="text-sm text-muted-foreground mb-6 leading-relaxed flex-grow">
                     {selectedProduct.description}
                   </Dialog.Description>
-                  
+
                   <div className="grid grid-cols-2 gap-4 mb-8 text-sm">
                     {selectedProduct.flavor && selectedProduct.flavor !== "N/A" && (
                       <div>
@@ -219,29 +258,31 @@ function Shop() {
                     )}
                     {selectedProduct.ageGroup && (
                       <div>
-                        <span className="block text-muted-foreground text-xs mb-1">{t.ageGroup}</span>
+                        <span className="block text-muted-foreground text-xs mb-1">
+                          {t.ageGroup}
+                        </span>
                         <span className="font-bold">{selectedProduct.ageGroup}</span>
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="flex items-center gap-4 mt-auto">
                     <div className="flex items-center bg-secondary rounded-full p-1">
-                      <button 
+                      <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                         className="size-10 rounded-full flex items-center justify-center hover:bg-background transition-colors font-bold"
                       >
                         -
                       </button>
                       <span className="w-10 text-center font-bold">{quantity}</span>
-                      <button 
+                      <button
                         onClick={() => setQuantity(quantity + 1)}
                         className="size-10 rounded-full flex items-center justify-center hover:bg-background transition-colors font-bold"
                       >
                         +
                       </button>
                     </div>
-                    
+
                     <button
                       onClick={() => {
                         addToCart({
@@ -252,7 +293,11 @@ function Shop() {
                           image: selectedProduct.image,
                         });
                         setSelectedProduct(null);
-                        toast.success(lang === "ar" ? `تمت إضافة ${quantity} ${selectedProduct.name} إلى السلة` : `Added ${quantity} ${selectedProduct.name} to cart`);
+                        toast.success(
+                          lang === "ar"
+                            ? `تمت إضافة ${quantity} ${selectedProduct.name} إلى السلة`
+                            : `Added ${quantity} ${selectedProduct.name} to cart`,
+                        );
                       }}
                       className="flex-1 rounded-full bg-primary py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 flex items-center justify-center gap-2"
                     >

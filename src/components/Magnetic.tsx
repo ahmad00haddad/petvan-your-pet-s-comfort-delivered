@@ -1,4 +1,3 @@
-
 import { useRef, useState, ReactNode } from "react";
 
 interface MagneticProps {
