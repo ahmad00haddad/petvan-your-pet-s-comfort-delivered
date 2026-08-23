@@ -127,7 +127,6 @@
   font-family: "Cairo", "Poppins", system-ui, sans-serif;
 }
 
-
 @layer base {
   * {
     border-color: var(--color-border);
@@ -189,10 +188,20 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translateY(-40px); opacity: 0; }
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
 }
 
 @utility animate-float {
@@ -200,9 +209,15 @@
 }
 
 @keyframes pulsingGlow {
-  0% { box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 10%, transparent); }
-  50% { box-shadow: 0 0 80px color-mix(in oklch, var(--color-primary) 30%, transparent); }
-  100% { box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 10%, transparent); }
+  0% {
+    box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 10%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 80px color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 10%, transparent);
+  }
 }
 
 @utility pulsing-glow {
@@ -250,16 +265,24 @@
   border-color: var(--color-border) !important;
 }
 
-
 @keyframes slideUp {
-  0% { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes loadingBar {
-  0% { transform: scaleX(0); }
-  50% { transform: scaleX(0.7); }
-  100% { transform: scaleX(1); }
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
-
-
-

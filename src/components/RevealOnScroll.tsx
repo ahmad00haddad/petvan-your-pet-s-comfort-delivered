@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useState, ReactNode } from "react";
 
 interface RevealProps {
@@ -24,7 +23,7 @@ export function RevealOnScroll({ children, className = "", delay = 0 }: RevealPr
       {
         threshold: 0.1,
         rootMargin: "50px",
-      }
+      },
     );
 
     if (ref.current) observer.observe(ref.current);

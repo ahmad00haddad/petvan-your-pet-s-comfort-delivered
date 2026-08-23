@@ -46,7 +46,15 @@ const PARTICLES = [
   { top: 52, left: 42, duration: 4.8 },
 ];
 
-function AnimatedCounter({ end, duration = 2000, suffix = "" }: { end: number, duration?: number, suffix?: string }) {
+function AnimatedCounter({
+  end,
+  duration = 2000,
+  suffix = "",
+}: {
+  end: number;
+  duration?: number;
+  suffix?: string;
+}) {
   const [count, setCount] = useState(0);
   useEffect(() => {
     let startTimestamp: number | null = null;
@@ -62,7 +70,12 @@ function AnimatedCounter({ end, duration = 2000, suffix = "" }: { end: number, d
     };
     window.requestAnimationFrame(step);
   }, [end, duration]);
-  return <>{count}{suffix}</>;
+  return (
+    <>
+      {count}
+      {suffix}
+    </>
+  );
 }
 
 export const Route = createFileRoute("/")({
@@ -182,16 +195,18 @@ function Index() {
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 30;
       const y = (e.clientY / window.innerHeight - 0.5) * 30;
-      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+      document.documentElement.style.setProperty("--mouse-x", `${x}px`);
+      document.documentElement.style.setProperty("--mouse-y", `${y}px`);
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const heroText = useMemo(() => {
-    if (globalPetType === "Cats") return lang === "ar" ? "أهلاً بك يا عاشق القطط! 🐱" : "Hello, Cat Lover! 🐱";
-    if (globalPetType === "Dogs") return lang === "ar" ? "مرحباً يا صاحب الكلاب! 🐶" : "Hey, Dog Parent! 🐶";
+    if (globalPetType === "Cats")
+      return lang === "ar" ? "أهلاً بك يا عاشق القطط! 🐱" : "Hello, Cat Lover! 🐱";
+    if (globalPetType === "Dogs")
+      return lang === "ar" ? "مرحباً يا صاحب الكلاب! 🐶" : "Hey, Dog Parent! 🐶";
     if (globalPetType === "Birds") return lang === "ar" ? "تغريد وفرح! 🦜" : "Tweet Tweet! 🦜";
     if (globalPetType === "Fish") return lang === "ar" ? "عالم تحت الماء! 🐟" : "Glub Glub! 🐟";
     return `${t.hello} ${t.friend}`;
@@ -205,8 +220,12 @@ function Index() {
     >
       {/* Hero */}
       <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center pt-8 px-5 sm:px-12">
-        <div className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0 transition-transform duration-300 ease-out flex items-center justify-center" style={{ transform: 'translate(calc(var(--mouse-x, 0) * -1), calc(var(--mouse-y, 0) * -1))' }}>
-          
+        <div
+          className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0 transition-transform duration-300 ease-out flex items-center justify-center"
+          style={{
+            transform: "translate(calc(var(--mouse-x, 0) * -1), calc(var(--mouse-y, 0) * -1))",
+          }}
+        >
           <div className="relative w-[300px] sm:w-[450px] aspect-square rounded-full shadow-[0_0_80px_rgba(255,255,255,0.05)] pulsing-glow overflow-hidden border-4 border-foreground/10 group">
             <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             <img
@@ -216,7 +235,7 @@ function Index() {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
           </div>
-          
+
           {/* Floating Particles */}
           <div className="absolute inset-0 pointer-events-none z-0">
             {PARTICLES.map((particle, i) => (
@@ -234,7 +253,10 @@ function Index() {
           </div>
         </div>
 
-        <div className="order-1 lg:order-2 lg:ps-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+        <div
+          className="order-1 lg:order-2 lg:ps-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up"
+          style={{ animationDelay: "100ms" }}
+        >
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold min-h-[110px] sm:min-h-[140px] flex items-center break-words">
             <TypewriterText text={heroText} />
           </h1>
@@ -245,78 +267,96 @@ function Index() {
             <Link
               to={userId ? "/profile" : "/login"}
               className="rounded-full bg-primary px-8 py-2 text-xs sm:text-sm font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-wider shadow-[0_4px_20px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]"
-            >{userId ? t.profile : t.login}</Link>
+            >
+              {userId ? t.profile : t.login}
+            </Link>
             {!userId && (
               <Link
                 to="/register"
                 className="rounded-full border border-foreground px-8 py-2 text-xs sm:text-sm font-bold text-foreground transition-colors hover:bg-foreground hover:text-background uppercase tracking-wider"
-              >{t.register}</Link>
+              >
+                {t.register}
+              </Link>
             )}
           </div>
           <p className="mt-10 text-xs text-muted-foreground uppercase tracking-wider mb-4">
-            {lang === "ar" ? "اعثر على حيوان أليف جديد وانقذه قبل أن يضيع أو يُترك وحيداً" : "FIND A NEW PET AND RESCUE IT FROM WHEN IT MIGHT BE ALONE OR LOST"}
+            {lang === "ar"
+              ? "اعثر على حيوان أليف جديد وانقذه قبل أن يضيع أو يُترك وحيداً"
+              : "FIND A NEW PET AND RESCUE IT FROM WHEN IT MIGHT BE ALONE OR LOST"}
           </p>
           <Link
             to="/adopt"
             className="rounded-full bg-primary px-8 py-2.5 text-xs font-bold text-primary-foreground transition-all hover:scale-105 hover:glow-primary uppercase tracking-widest shadow-[0_4px_20px_color-mix(in_oklch,var(--color-primary)_30%,transparent)]"
-          >{t.findAdoptFriend}</Link>
+          >
+            {t.findAdoptFriend}
+          </Link>
         </div>
       </section>
 
       {/* Services */}
       <RevealOnScroll>
-<section id="services" className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-        <p className="text-sm text-muted-foreground mb-6">{t.chooseKind}</p>
-        <div className="flex justify-center gap-6 sm:gap-10">
-          {kinds.map((k) => {
-            const isActive = globalPetType === k.key;
-            return (
-              <button
-                key={k.key}
-                onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                className={`transition-all hover:scale-110 ${isActive ? "text-primary" : "text-foreground hover:text-primary"}`}
-              >
-                <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
-              </button>
-            );
-          })}
-        </div>
+        <section
+          id="services"
+          className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up"
+          style={{ animationDelay: "300ms" }}
+        >
+          <p className="text-sm text-muted-foreground mb-6">{t.chooseKind}</p>
+          <div className="flex justify-center gap-6 sm:gap-10">
+            {kinds.map((k) => {
+              const isActive = globalPetType === k.key;
+              return (
+                <button
+                  key={k.key}
+                  onClick={() => setGlobalPetType(isActive ? null : k.key)}
+                  className={`transition-all hover:scale-110 ${isActive ? "text-primary" : "text-foreground hover:text-primary"}`}
+                >
+                  <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
+                </button>
+              );
+            })}
+          </div>
 
-        <h2 className="mt-20 font-display text-3xl font-extrabold text-primary">
-              {t.askServices}
-            </h2>
-        <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
-          {lang === "ar" ? "اختر نوع الخدمة التي تحتاجها" : "CHOOSE THE KIND OF SERVICES YOU NEED"}
-        </p>
+          <h2 className="mt-20 font-display text-3xl font-extrabold text-primary">
+            {t.askServices}
+          </h2>
+          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
+            {lang === "ar"
+              ? "اختر نوع الخدمة التي تحتاجها"
+              : "CHOOSE THE KIND OF SERVICES YOU NEED"}
+          </p>
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
-          {t.services.map((s, i) => {
-            const Icon = serviceIcons[i];
-            return (
-              <article key={s.title} className="flex flex-col items-center">
-                <span className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_rgba(255,193,7,0.3)] transition-transform hover:scale-110">
-                  <Icon className="size-8" />
-                </span>
-                <h3 className="mt-6 font-display text-base font-bold">{s.title}</h3>
-                <p className="mt-3 text-[10px] leading-relaxed text-muted-foreground max-w-[200px] text-center">
-                  {s.desc}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-</RevealOnScroll>
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
+            {t.services.map((s, i) => {
+              const Icon = serviceIcons[i];
+              return (
+                <article key={s.title} className="flex flex-col items-center">
+                  <span className="grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_rgba(255,193,7,0.3)] transition-transform hover:scale-110">
+                    <Icon className="size-8" />
+                  </span>
+                  <h3 className="mt-6 font-display text-base font-bold">{s.title}</h3>
+                  <p className="mt-3 text-[10px] leading-relaxed text-muted-foreground max-w-[200px] text-center">
+                    {s.desc}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      </RevealOnScroll>
 
       {/* Shop */}
       <section
         id="shop"
-        className="px-5 py-20 sm:px-8 bg-background border-t border-b border-border relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '100ms' }}
+        className="px-5 py-20 sm:px-8 bg-background border-t border-b border-border relative overflow-hidden animate-fade-in-up"
+        style={{ animationDelay: "100ms" }}
       >
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="font-display text-3xl font-extrabold text-primary">{t.shop}</h2>
-          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase"> {t.shopSub} </p>
+          <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
+            {" "}
+            {t.shopSub}{" "}
+          </p>
 
           <div className="mt-14 flex flex-wrap justify-center gap-6 sm:gap-10">
             {shopCats.map((c) => (
@@ -326,7 +366,9 @@ function Index() {
                 className="group w-28 h-28 glass-panel rounded-[2rem] flex flex-col items-center justify-center gap-3 transition-all hover:-translate-y-2 hover:glow-primary shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
               >
                 <c.icon className="size-8 text-foreground group-hover:text-primary transition-colors" />
-                <span className="text-[10px] font-bold text-foreground group-hover:text-primary transition-colors">{lang === "ar" ? c.labelAr : c.labelEn}</span>
+                <span className="text-[10px] font-bold text-foreground group-hover:text-primary transition-colors">
+                  {lang === "ar" ? c.labelAr : c.labelEn}
+                </span>
               </Link>
             ))}
           </div>
@@ -334,10 +376,12 @@ function Index() {
       </section>
 
       {/* Adoption */}
-      <section id="adopt" className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-        <p className="text-sm text-muted-foreground mb-8">
-          {t.chooseAdopt}
-        </p>
+      <section
+        id="adopt"
+        className="px-5 py-24 sm:px-8 text-center max-w-5xl mx-auto animate-fade-in-up"
+        style={{ animationDelay: "200ms" }}
+      >
+        <p className="text-sm text-muted-foreground mb-8">{t.chooseAdopt}</p>
         <div className="flex justify-center gap-6 sm:gap-10 mb-16">
           {kinds.map((k) => {
             const isActive = globalPetType === k.key;
@@ -386,21 +430,51 @@ function Index() {
       <section className="px-5 py-24 sm:px-8 relative overflow-hidden bg-primary/5 mt-10">
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-0" />
         <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 text-center relative z-10">
-          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]"><AnimatedCounter end={10} suffix="K" /><span className="text-3xl">+</span></h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'حيوان تمت خدمته' : 'Pets Served'}</p>
+          <div
+            className="flex flex-col items-center animate-fade-in-up"
+            style={{ animationDelay: "100ms" }}
+          >
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">
+              <AnimatedCounter end={10} suffix="K" />
+              <span className="text-3xl">+</span>
+            </h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">
+              {lang === "ar" ? "حيوان تمت خدمته" : "Pets Served"}
+            </p>
           </div>
-          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]"><AnimatedCounter end={50} /><span className="text-3xl">+</span></h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'طبيب بيطري متخصص' : 'Expert Vets'}</p>
+          <div
+            className="flex flex-col items-center animate-fade-in-up"
+            style={{ animationDelay: "200ms" }}
+          >
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">
+              <AnimatedCounter end={50} />
+              <span className="text-3xl">+</span>
+            </h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">
+              {lang === "ar" ? "طبيب بيطري متخصص" : "Expert Vets"}
+            </p>
           </div>
-          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">15<span className="text-3xl">+</span></h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'عيادة متنقلة' : 'Mobile Caravans'}</p>
+          <div
+            className="flex flex-col items-center animate-fade-in-up"
+            style={{ animationDelay: "300ms" }}
+          >
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">
+              15<span className="text-3xl">+</span>
+            </h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">
+              {lang === "ar" ? "عيادة متنقلة" : "Mobile Caravans"}
+            </p>
           </div>
-          <div className="flex flex-col items-center animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">4.9</h3>
-            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">{lang === 'ar' ? 'تقييم العملاء' : 'Client Rating'}</p>
+          <div
+            className="flex flex-col items-center animate-fade-in-up"
+            style={{ animationDelay: "400ms" }}
+          >
+            <h3 className="text-5xl lg:text-6xl font-black text-primary font-display mb-2 drop-shadow-[0_0_15px_rgba(255,193,7,0.5)]">
+              4.9
+            </h3>
+            <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground font-bold">
+              {lang === "ar" ? "تقييم العملاء" : "Client Rating"}
+            </p>
           </div>
         </div>
       </section>

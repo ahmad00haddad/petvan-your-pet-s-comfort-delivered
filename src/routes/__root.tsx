@@ -39,7 +39,9 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found | الصفحة غير موجودة</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">
+          Page not found | الصفحة غير موجودة
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -202,7 +204,9 @@ function RootComponent() {
       <Toaster position="top-center" richColors />
 
       {/* Global Header */}
-      <header className={`sticky top-0 z-50 px-5 sm:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-5 border-b-0"}`}>
+      <header
+        className={`sticky top-0 z-50 px-5 sm:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-5 border-b-0"}`}
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-6">
             <Logo />
@@ -225,11 +229,22 @@ function RootComponent() {
               </Link>
             )}
             <nav className="nav-tour hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
-              <a className="transition-colors hover:text-primary" href="/#about">{t.nav.about}</a>
-              <a className="transition-colors hover:text-primary" href="/#services">{t.nav.services}</a>
-              <a className="transition-colors hover:text-primary" href="/#help">{t.nav.help}</a>
-              <Link to="/install" className="install-tour transition-colors hover:text-primary text-primary flex items-center gap-1">
-                <Smartphone className="size-3" />{t.installApp}</Link>
+              <a className="transition-colors hover:text-primary" href="/#about">
+                {t.nav.about}
+              </a>
+              <a className="transition-colors hover:text-primary" href="/#services">
+                {t.nav.services}
+              </a>
+              <a className="transition-colors hover:text-primary" href="/#help">
+                {t.nav.help}
+              </a>
+              <Link
+                to="/install"
+                className="install-tour transition-colors hover:text-primary text-primary flex items-center gap-1"
+              >
+                <Smartphone className="size-3" />
+                {t.installApp}
+              </Link>
             </nav>
             <Link
               to="/shop/cart"
@@ -255,7 +270,9 @@ function RootComponent() {
       <button
         onClick={scrollToTop}
         className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-all duration-300 hover:scale-110 hover:glow-primary ${
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+          showScrollTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-10 pointer-events-none"
         }`}
         aria-label="Scroll to top"
       >
@@ -274,13 +291,26 @@ function RootComponent() {
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <h2 className="font-display font-bold text-lg mb-4 text-foreground">{lang === "ar" ? "روابط سريعة" : "Quick Links"}</h2>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">
+              {lang === "ar" ? "روابط سريعة" : "Quick Links"}
+            </h2>
             <nav className="flex flex-col gap-3 text-xs text-muted-foreground">
-              <a href="/#services" className="hover:text-primary transition-colors">{t.nav.services}</a>
-              <Link to="/adopt" className="hover:text-primary transition-colors">{t.adopt}</Link>
-              <Link to="/shop" className="hover:text-primary transition-colors">{t.shop}</Link>
-              <Link to="/install" className="hover:text-primary transition-colors text-primary flex items-center gap-1 justify-center">
-                <Smartphone className="size-3" />{t.installApp}</Link>
+              <a href="/#services" className="hover:text-primary transition-colors">
+                {t.nav.services}
+              </a>
+              <Link to="/adopt" className="hover:text-primary transition-colors">
+                {t.adopt}
+              </Link>
+              <Link to="/shop" className="hover:text-primary transition-colors">
+                {t.shop}
+              </Link>
+              <Link
+                to="/install"
+                className="hover:text-primary transition-colors text-primary flex items-center gap-1 justify-center"
+              >
+                <Smartphone className="size-3" />
+                {t.installApp}
+              </Link>
             </nav>
           </div>
           <div>
@@ -291,7 +321,9 @@ function RootComponent() {
             </p>
           </div>
           <div>
-            <h2 className="font-display font-bold text-lg mb-4 text-foreground">{t.socialWithUs}</h2>
+            <h2 className="font-display font-bold text-lg mb-4 text-foreground">
+              {t.socialWithUs}
+            </h2>
             <div className="flex justify-center gap-5 text-muted-foreground">
               {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
                 <a key={i} href="#top" className="transition-colors hover:text-primary">
@@ -301,9 +333,7 @@ function RootComponent() {
             </div>
           </div>
         </div>
-        <p className="mt-16 text-center text-xs text-muted-foreground/40">
-          {t.rights}
-        </p>
+        <p className="mt-16 text-center text-xs text-muted-foreground/40">{t.rights}</p>
       </footer>
     </QueryClientProvider>
   );

@@ -64,9 +64,7 @@ function BookService() {
       </Link>
 
       <h1 className="font-display text-4xl font-extrabold text-primary mb-2">{t.bookService}</h1>
-      <p className="text-muted-foreground mb-10">
-          {t.bookServiceDesc}
-        </p>
+      <p className="text-muted-foreground mb-10">{t.bookServiceDesc}</p>
 
       <div className="grid gap-6 sm:grid-cols-3 mb-12">
         {services.map((s) => (
@@ -82,8 +80,20 @@ function BookService() {
             <span className="grid size-14 place-items-center rounded-full bg-primary text-primary-foreground mb-4">
               <s.icon className="size-6" />
             </span>
-            <h3 className="font-display text-lg font-bold">{s.id === "MEDICAL" ? t.services[0].title : s.id === "HOTEL" ? t.services[1].title : t.services[2].title}</h3>
-            <p className="mt-2 text-xs text-muted-foreground flex-grow">{s.id === "MEDICAL" ? t.services[0].desc : s.id === "HOTEL" ? t.services[1].desc : t.services[2].desc}</p>
+            <h3 className="font-display text-lg font-bold">
+              {s.id === "MEDICAL"
+                ? t.services[0].title
+                : s.id === "HOTEL"
+                  ? t.services[1].title
+                  : t.services[2].title}
+            </h3>
+            <p className="mt-2 text-xs text-muted-foreground flex-grow">
+              {s.id === "MEDICAL"
+                ? t.services[0].desc
+                : s.id === "HOTEL"
+                  ? t.services[1].desc
+                  : t.services[2].desc}
+            </p>
             <span className="mt-4 font-bold text-primary">{s.price.toFixed(2)} JOD</span>
           </button>
         ))}
@@ -91,10 +101,21 @@ function BookService() {
 
       <div className="rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)] flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
-          <h2 className="font-display text-xl font-bold flex items-center">{lang === "ar" ? "المجموع" : "Total"}: {selected.price.toFixed(2)} JOD
-            <ContextHint content={lang === "ar" ? "سيتم دفع المبلغ الإجمالي نقداً عند وصول العيادة المتنقلة." : "Total amount will be paid in cash upon the arrival of the mobile clinic."} />
+          <h2 className="font-display text-xl font-bold flex items-center">
+            {lang === "ar" ? "المجموع" : "Total"}: {selected.price.toFixed(2)} JOD
+            <ContextHint
+              content={
+                lang === "ar"
+                  ? "سيتم دفع المبلغ الإجمالي نقداً عند وصول العيادة المتنقلة."
+                  : "Total amount will be paid in cash upon the arrival of the mobile clinic."
+              }
+            />
           </h2>
-          <p className="text-sm text-muted-foreground mt-1">{lang === "ar" ? "ستصل العيادة المتنقلة إلى موقعك المسجل." : "Our mobile van will arrive at your registered location."}</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            {lang === "ar"
+              ? "ستصل العيادة المتنقلة إلى موقعك المسجل."
+              : "Our mobile van will arrive at your registered location."}
+          </p>
         </div>
 
         <Dialog.Root>
@@ -113,9 +134,23 @@ function BookService() {
                 <span className="grid size-16 place-items-center rounded-full bg-primary/20 text-primary mb-4">
                   <AlertCircle className="size-8" />
                 </span>
-                <Dialog.Title className="font-display text-2xl font-bold">{lang === "ar" ? "تأكيد الحجز" : "Confirm Booking"}</Dialog.Title>
+                <Dialog.Title className="font-display text-2xl font-bold">
+                  {lang === "ar" ? "تأكيد الحجز" : "Confirm Booking"}
+                </Dialog.Title>
                 <Dialog.Description className="mt-2 text-sm text-muted-foreground mb-8">
-                  {lang === "ar" ? "هل أنت متأكد أنك تريد حجز خدمة" : "Are you sure you want to book the"} <strong>{selected.id === "MEDICAL" ? t.services[0].title : selected.id === "HOTEL" ? t.services[1].title : t.services[2].title}</strong> {lang === "ar" ? "؟ سيتم إرسال عيادة متنقلة لموقعك فوراً." : "service? A mobile van will be dispatched to your location immediately."}
+                  {lang === "ar"
+                    ? "هل أنت متأكد أنك تريد حجز خدمة"
+                    : "Are you sure you want to book the"}{" "}
+                  <strong>
+                    {selected.id === "MEDICAL"
+                      ? t.services[0].title
+                      : selected.id === "HOTEL"
+                        ? t.services[1].title
+                        : t.services[2].title}
+                  </strong>{" "}
+                  {lang === "ar"
+                    ? "؟ سيتم إرسال عيادة متنقلة لموقعك فوراً."
+                    : "service? A mobile van will be dispatched to your location immediately."}
                   <br />
                   <br />
                   <span className="font-bold text-foreground block text-lg">
@@ -125,12 +160,16 @@ function BookService() {
 
                 <div className="flex w-full gap-3">
                   <Dialog.Close asChild>
-                    <button className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">{t.cancel}</button>
+                    <button className="flex-1 rounded-full border border-border px-4 py-3 text-sm font-bold transition-colors hover:bg-secondary">
+                      {t.cancel}
+                    </button>
                   </Dialog.Close>
                   <button
                     onClick={handleBook}
                     className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105"
-                  >{lang === "ar" ? "نعم، أرسل العيادة" : "Yes, dispatch van"}</button>
+                  >
+                    {lang === "ar" ? "نعم، أرسل العيادة" : "Yes, dispatch van"}
+                  </button>
                 </div>
               </div>
             </Dialog.Content>

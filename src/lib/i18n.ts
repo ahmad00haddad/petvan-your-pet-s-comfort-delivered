@@ -85,7 +85,6 @@ export const copy = {
 
     findAdoptFriend: "FIND YOUR ADOPT FRIEND",
 
-
     welcomeBack: "Welcome Back",
     welcomeBackDesc: "Enter your details to access your account.",
     emailAddress: "Email Address",
@@ -100,7 +99,8 @@ export const copy = {
     signingUp: "Signing Up...",
     alreadyHaveAccount: "Already have an account?",
 
-    installAppDesc: "Get the full app experience. Install PetVan on your home screen for faster access, offline mode, and push notifications.",
+    installAppDesc:
+      "Get the full app experience. Install PetVan on your home screen for faster access, offline mode, and push notifications.",
     fastInstall: "Fast Installation",
     installNow: "Install App Now",
     alreadyInstalled: "App is already installed",
@@ -121,7 +121,6 @@ export const copy = {
     notesOptional: "Notes (Optional)",
     booking: "Booking...",
 
-
     petNotFound: "Pet Not Found",
     petNotFoundDesc: "This pet profile doesn't exist or has been removed.",
     goBackHome: "Go back home",
@@ -138,10 +137,10 @@ export const copy = {
     given: "Given",
     nextDue: "Next Due",
 
-
     petShop: "Pet Shop",
     noItems: "No items found",
-    noItemsDesc: "We couldn't find any products matching your current filters. Try selecting a different category.",
+    noItemsDesc:
+      "We couldn't find any products matching your current filters. Try selecting a different category.",
     clearFilters: "Clear Filters",
     bestSeller: "Best Seller",
     newArrival: "New Arrival",
@@ -173,7 +172,8 @@ export const copy = {
     yourFamily: "Your Family",
     noPets: "No pets added yet.",
     listAdoption: "List for Adoption",
-    listAdoptionDesc: "Are you sure you want to list this pet for adoption? Please provide a brief description to help them find a loving home.",
+    listAdoptionDesc:
+      "Are you sure you want to list this pet for adoption? Please provide a brief description to help them find a loving home.",
     confirmListing: "Confirm Listing",
     cancel: "Cancel",
     listing: "Listing...",
@@ -201,8 +201,7 @@ export const copy = {
     totalToPay: "Total to pay",
     processing: "Processing...",
     confirmPayment: "Confirm Payment",
-
-},
+  },
   ar: {
     dir: "rtl" as const,
     toggle: "EN",
@@ -284,7 +283,6 @@ export const copy = {
 
     findAdoptFriend: "اعثر على صديقك الجديد",
 
-
     welcomeBack: "مرحباً بعودتك",
     welcomeBackDesc: "أدخل بياناتك للوصول إلى حسابك.",
     emailAddress: "البريد الإلكتروني",
@@ -299,7 +297,8 @@ export const copy = {
     signingUp: "جاري إنشاء الحساب...",
     alreadyHaveAccount: "لديك حساب بالفعل؟",
 
-    installAppDesc: "احصل على تجربة التطبيق الكاملة. قم بتثبيت PetVan على شاشتك الرئيسية للوصول الأسرع والوضع غير المتصل والإشعارات.",
+    installAppDesc:
+      "احصل على تجربة التطبيق الكاملة. قم بتثبيت PetVan على شاشتك الرئيسية للوصول الأسرع والوضع غير المتصل والإشعارات.",
     fastInstall: "تثبيت سريع",
     installNow: "تثبيت التطبيق الآن",
     alreadyInstalled: "التطبيق مثبت بالفعل",
@@ -320,7 +319,6 @@ export const copy = {
     notesOptional: "ملاحظات (اختياري)",
     booking: "جاري الحجز...",
 
-
     petNotFound: "الحيوان غير موجود",
     petNotFoundDesc: "هذا الملف الشخصي غير موجود أو تم حذفه.",
     goBackHome: "العودة للرئيسية",
@@ -337,10 +335,10 @@ export const copy = {
     given: "تاريخ التطعيم",
     nextDue: "الجرعة القادمة",
 
-
     petShop: "متجر الحيوانات",
     noItems: "لم يتم العثور على عناصر",
-    noItemsDesc: "لم نتمكن من العثور على أي منتجات تطابق عوامل التصفية الحالية. جرب اختيار فئة مختلفة.",
+    noItemsDesc:
+      "لم نتمكن من العثور على أي منتجات تطابق عوامل التصفية الحالية. جرب اختيار فئة مختلفة.",
     clearFilters: "مسح عوامل التصفية",
     bestSeller: "الأكثر مبيعاً",
     newArrival: "وصل حديثاً",
@@ -372,7 +370,8 @@ export const copy = {
     yourFamily: "عائلتك",
     noPets: "لم يتم إضافة أي حيوانات أليفة بعد.",
     listAdoption: "عرض للتبني",
-    listAdoptionDesc: "هل أنت متأكد أنك تريد عرض هذا الحيوان للتبني؟ يرجى تقديم وصف موجز لمساعدته في العثور على منزل محب.",
+    listAdoptionDesc:
+      "هل أنت متأكد أنك تريد عرض هذا الحيوان للتبني؟ يرجى تقديم وصف موجز لمساعدته في العثور على منزل محب.",
     confirmListing: "تأكيد العرض",
     cancel: "إلغاء",
     listing: "جاري العرض...",
@@ -400,7 +399,6 @@ export const copy = {
     totalToPay: "الإجمالي للدفع",
     processing: "جاري المعالجة...",
     confirmPayment: "تأكيد الدفع",
-
   },
 };
 

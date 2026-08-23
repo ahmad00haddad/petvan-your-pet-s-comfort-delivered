@@ -72,7 +72,9 @@ function PetProfile() {
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-4 text-primary bg-background">
         <Loader2 className="size-10 animate-spin" />
-        <p className="font-bold animate-pulse text-foreground">{lang === "ar" ? "جاري تحميل الملف الشخصي..." : "Loading Profile..."}</p>
+        <p className="font-bold animate-pulse text-foreground">
+          {lang === "ar" ? "جاري تحميل الملف الشخصي..." : "Loading Profile..."}
+        </p>
       </div>
     );
   }
@@ -81,9 +83,7 @@ function PetProfile() {
     return (
       <div className="mx-auto max-w-2xl p-8 text-center min-h-[60vh] flex flex-col justify-center bg-background text-foreground">
         <h1 className="font-display text-3xl font-bold mb-4">{t.petNotFound}</h1>
-        <p className="text-muted-foreground mb-8">
-          {t.petNotFoundDesc}
-        </p>
+        <p className="text-muted-foreground mb-8">{t.petNotFoundDesc}</p>
         <Link to="/" className="text-primary hover:underline font-bold">
           {t.goBackHome}
         </Link>
@@ -96,11 +96,7 @@ function PetProfile() {
       {/* Hero Section */}
       <div className="relative h-72 sm:h-96 w-full bg-secondary">
         {pet.image ? (
-          <img
-            src={pet.image}
-            alt={pet.name}
-            className="h-full w-full object-cover"
-          />
+          <img src={pet.image} alt={pet.name} className="h-full w-full object-cover" />
         ) : (
           <div className="flex h-full items-center justify-center text-8xl">
             {pet.type === "Cats" || pet.type === "Cat"
@@ -123,7 +119,9 @@ function PetProfile() {
           </Link>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => alert(lang === "ar" ? "قريباً: رمز QR الخاص بحيوانك" : "Coming soon: Pet QR Code")}
+              onClick={() =>
+                alert(lang === "ar" ? "قريباً: رمز QR الخاص بحيوانك" : "Coming soon: Pet QR Code")
+              }
               className="grid size-10 place-items-center rounded-full bg-background/50 backdrop-blur text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               <QrCode className="size-5" />
@@ -155,7 +153,10 @@ function PetProfile() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-4xl px-5 sm:px-8 -mt-2 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+      <div
+        className="mx-auto max-w-4xl px-5 sm:px-8 -mt-2 animate-fade-in-up"
+        style={{ animationDelay: "100ms" }}
+      >
         {/* Quick Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
@@ -171,7 +172,15 @@ function PetProfile() {
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Info className="size-5 text-primary mb-2" />
             <p className="text-xs text-muted-foreground">{t.gender}</p>
-            <p className="font-bold text-sm">{pet.gender === "M" ? (lang === "ar" ? "ذكر" : "Male") : (lang === "ar" ? "أنثى" : "Female")}</p>
+            <p className="font-bold text-sm">
+              {pet.gender === "M"
+                ? lang === "ar"
+                  ? "ذكر"
+                  : "Male"
+                : lang === "ar"
+                  ? "أنثى"
+                  : "Female"}
+            </p>
           </div>
           <div className="rounded-2xl glass-panel p-4 shadow-[var(--shadow-card)] flex flex-col items-center justify-center text-center transition-all hover:-translate-y-1 hover:glow-primary">
             <Activity className="size-5 text-primary mb-2" />
@@ -217,7 +226,9 @@ function PetProfile() {
                       <Stethoscope className="size-4" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg font-display text-primary mb-1">{report.diagnosis}</h3>
+                      <h3 className="font-bold text-lg font-display text-primary mb-1">
+                        {report.diagnosis}
+                      </h3>
                       <p className="text-xs text-muted-foreground mb-4 uppercase tracking-wider font-bold">
                         {new Date(report.date).toLocaleDateString()} • {report.doctor}
                       </p>
@@ -229,7 +240,9 @@ function PetProfile() {
                         </div>
                       )}
 
-                      <p className="text-sm text-muted-foreground leading-relaxed">{report.notes}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {report.notes}
+                      </p>
                     </div>
                   </div>
                 ))
@@ -237,9 +250,7 @@ function PetProfile() {
                 <div className="rounded-2xl border border-dashed border-border p-12 text-center">
                   <Activity className="size-10 mx-auto text-muted-foreground/30 mb-3" />
                   <p className="font-bold mb-1">{t.noMedicalRecords}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {t.noMedicalRecordsDesc}
-                  </p>
+                  <p className="text-xs text-muted-foreground">{t.noMedicalRecordsDesc}</p>
                 </div>
               )}
             </div>

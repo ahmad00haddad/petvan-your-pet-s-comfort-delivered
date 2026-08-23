@@ -50,14 +50,14 @@ function Tracking() {
   if (loading && !order)
     return (
       <div className="p-10 text-center min-h-screen flex items-center justify-center">
-          {t.loadingTracker}
-        </div>
+        {t.loadingTracker}
+      </div>
     );
   if (!order)
     return (
       <div className="p-10 text-center min-h-screen flex items-center justify-center">
-          {t.orderNotFound}
-        </div>
+        {t.orderNotFound}
+      </div>
     );
 
   return (
@@ -81,7 +81,8 @@ function Tracking() {
           {order.serviceType} {t.bookingConfirmed}
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
-          {lang === 'ar' ? 'طلب رقم #' : 'Order #'}{order.id.slice(-6).toUpperCase()}
+          {lang === "ar" ? "طلب رقم #" : "Order #"}
+          {order.id.slice(-6).toUpperCase()}
         </p>
 
         <div className="my-10">
@@ -132,7 +133,14 @@ function Tracking() {
           </span>
           <div className="text-center sm:text-start">
             <p className="text-lg">
-              <span className="font-bold">{order.driverName}</span> {arrived ? (lang === "ar" ? "وصل!" : "has arrived!") : (lang === "ar" ? "في الطريق!" : "is on the way!")}
+              <span className="font-bold">{order.driverName}</span>{" "}
+              {arrived
+                ? lang === "ar"
+                  ? "وصل!"
+                  : "has arrived!"
+                : lang === "ar"
+                  ? "في الطريق!"
+                  : "is on the way!"}
             </p>
             <span className="flex items-center justify-center sm:justify-start mt-2 text-primary gap-1">
               {[0, 1, 2, 3].map((i) => (
@@ -157,7 +165,9 @@ function Tracking() {
               Service Completed!
             </Dialog.Title>
             <Dialog.Description className="text-sm text-muted-foreground mb-8">
-              {lang === 'ar' ? `نأمل أن يكون حيوانك قد استمتع بخدمة ${order.serviceType}. يرجى تقييم تجربتك!` : `We hope your pet enjoyed the ${order.serviceType} service with ${order.driverName}. Please rate your experience!`}
+              {lang === "ar"
+                ? `نأمل أن يكون حيوانك قد استمتع بخدمة ${order.serviceType}. يرجى تقييم تجربتك!`
+                : `We hope your pet enjoyed the ${order.serviceType} service with ${order.driverName}. Please rate your experience!`}
             </Dialog.Description>
 
             <div className="flex justify-center gap-2 mb-6">
@@ -174,7 +184,9 @@ function Tracking() {
 
             <textarea
               className="w-full h-24 p-4 rounded-2xl bg-secondary border-none resize-none focus:ring-2 focus:ring-primary outline-none mb-6 text-sm placeholder:text-muted-foreground/50"
-              placeholder={lang === "ar" ? "اترك تعليقاً (اختياري)..." : "Leave a comment (optional)..."}
+              placeholder={
+                lang === "ar" ? "اترك تعليقاً (اختياري)..." : "Leave a comment (optional)..."
+              }
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>

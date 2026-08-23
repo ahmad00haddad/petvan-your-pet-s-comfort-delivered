@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useAppStore } from "../lib/store";
 import { copy } from "../lib/i18n";
@@ -28,8 +27,12 @@ export function Preloader() {
     >
       <div className="relative overflow-hidden">
         <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-tight flex items-center">
-          <span className="text-foreground translate-y-0 animate-[slideUp_1s_ease_forwards]">Pet</span>
-          <span className="text-primary translate-y-0 animate-[slideUp_1s_ease_0.2s_forwards]">Van</span>
+          <span className="text-foreground translate-y-0 animate-[slideUp_1s_ease_forwards]">
+            Pet
+          </span>
+          <span className="text-primary translate-y-0 animate-[slideUp_1s_ease_0.2s_forwards]">
+            Van
+          </span>
         </h1>
       </div>
       <div className="mt-8 h-[2px] w-48 overflow-hidden bg-secondary rounded-full">
