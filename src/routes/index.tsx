@@ -147,7 +147,7 @@ function TypewriterText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <span className="inline-block relative">
+    <span className="inline-block relative text-gold">
       {displayedText}
       <span className="absolute -right-2 top-0 bottom-0 w-[3px] bg-primary animate-pulse" />
     </span>
@@ -257,7 +257,7 @@ function Index() {
           className="order-1 lg:order-2 lg:ps-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up"
           style={{ animationDelay: "100ms" }}
         >
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold min-h-[110px] sm:min-h-[140px] flex items-center break-words">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight min-h-[110px] sm:min-h-[140px] flex items-center break-words">
             <TypewriterText text={heroText} />
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
