@@ -147,7 +147,7 @@ function TypewriterText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <span className="inline-block relative">
+    <span className="inline-block relative text-gold">
       {displayedText}
       <span className="absolute -right-2 top-0 bottom-0 w-[3px] bg-primary animate-pulse" />
     </span>
@@ -219,14 +219,14 @@ function Index() {
       className={`min-h-screen bg-background text-foreground pb-20 ${lang === "ar" ? "font-arabic" : "font-sans"}`}
     >
       {/* Hero */}
-      <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[600px] items-center pt-8 px-5 sm:px-12">
+      <section className="relative overflow-hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-8 py-10 px-5 sm:px-12">
         <div
-          className="relative order-2 lg:order-1 h-[400px] sm:h-[600px] w-full mt-12 lg:mt-0 transition-transform duration-300 ease-out flex items-center justify-center"
+          className="relative order-2 lg:order-1 w-full mt-10 lg:mt-0 py-6 transition-transform duration-300 ease-out flex items-center justify-center"
           style={{
             transform: "translate(calc(var(--mouse-x, 0) * -1), calc(var(--mouse-y, 0) * -1))",
           }}
         >
-          <div className="relative w-[300px] sm:w-[450px] aspect-square rounded-full shadow-[0_0_80px_rgba(255,255,255,0.05)] pulsing-glow overflow-hidden border-4 border-foreground/10 group">
+          <div className="relative w-[260px] sm:w-[380px] lg:w-[440px] aspect-square rounded-full shadow-[0_0_80px_rgba(255,255,255,0.05)] pulsing-glow overflow-hidden border-4 border-foreground/10 group">
             <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             <img
               key={globalPetType || "default"}
@@ -257,7 +257,7 @@ function Index() {
           className="order-1 lg:order-2 lg:ps-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up"
           style={{ animationDelay: "100ms" }}
         >
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-gold min-h-[110px] sm:min-h-[140px] flex items-center break-words">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight min-h-[110px] sm:min-h-[140px] flex items-center break-words">
             <TypewriterText text={heroText} />
           </h1>
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -297,7 +297,7 @@ function Index() {
       <RevealOnScroll>
         <section
           id="services"
-          className="px-5 py-24 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up"
+          className="px-5 py-16 sm:px-8 text-center max-w-4xl mx-auto animate-fade-in-up"
           style={{ animationDelay: "300ms" }}
         >
           <p className="text-sm text-muted-foreground mb-6">{t.chooseKind}</p>
@@ -308,15 +308,15 @@ function Index() {
                 <button
                   key={k.key}
                   onClick={() => setGlobalPetType(isActive ? null : k.key)}
-                  className={`transition-all hover:scale-110 ${isActive ? "text-primary" : "text-foreground hover:text-primary"}`}
+                  className={`grid size-16 sm:size-20 place-items-center rounded-full transition-all hover:scale-105 ${isActive ? "bg-primary text-primary-foreground shadow-[var(--shadow-gold)] ring-4 ring-primary/20" : "glass-panel border border-border text-foreground hover:border-primary hover:text-primary"}`}
                 >
-                  <k.icon className="w-10 h-10 sm:w-14 sm:h-14" strokeWidth={1.5} />
+                  <k.icon className="size-8 sm:size-10" strokeWidth={1.5} />
                 </button>
               );
             })}
           </div>
 
-          <h2 className="mt-20 font-display text-3xl font-extrabold text-primary">
+          <h2 className="mt-16 font-display text-3xl font-extrabold text-primary">
             {t.askServices}
           </h2>
           <p className="mt-2 text-[10px] tracking-widest text-muted-foreground uppercase">
@@ -325,7 +325,7 @@ function Index() {
               : "CHOOSE THE KIND OF SERVICES YOU NEED"}
           </p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-6">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6">
             {t.services.map((s, i) => {
               const Icon = serviceIcons[i];
               return (
