@@ -1,4 +1,3 @@
-import { SpotlightCard } from "../../components/SpotlightCard";
 import { Magnetic } from "../../components/Magnetic";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
@@ -18,6 +17,7 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import { toast } from "sonner";
 import { copy } from "../../lib/i18n";
+import { SpotlightCard } from "../../components/SpotlightCard";
 
 export const Route = createFileRoute("/shop/")({
   component: Shop,

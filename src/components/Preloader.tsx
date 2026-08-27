@@ -26,7 +26,10 @@ export function Preloader() {
       }`}
     >
       <div className="relative overflow-hidden">
-        <div aria-hidden className="font-display text-5xl md:text-7xl font-extrabold tracking-tight flex items-center">
+        <div
+          aria-hidden
+          className="font-display text-5xl md:text-7xl font-extrabold tracking-tight flex items-center"
+        >
           <span className="text-foreground translate-y-0 animate-[slideUp_1s_ease_forwards]">
             Pet
           </span>

@@ -10,6 +10,7 @@ import {
 import { useEffect, useState, type ReactNode } from "react";
 import Lenis from "@studio-freight/lenis";
 import { MessageCircle } from "lucide-react";
+import { Magnetic } from "../components/Magnetic";
 import { Toaster } from "sonner";
 import { Home, Search, Calendar, User, Smartphone, ArrowUp } from "lucide-react";
 
@@ -177,18 +178,21 @@ function RootComponent() {
   // Phase 1: Lenis Smooth Scroll & Battery Saver
   useEffect(() => {
     let lenis: Lenis | null = null;
-    
+
     // Battery saver check
     let useSmooth = true;
-    if ('getBattery' in navigator) {
-      (navigator as any).getBattery().then((battery: any) => {
-        if (battery.level < 0.2 && !battery.charging) {
-          useSmooth = false; // Disable heavy animations on low battery
-          document.body.classList.add('low-battery');
-        } else {
-          initLenis();
-        }
-      }).catch(() => initLenis());
+    if ("getBattery" in navigator) {
+      (navigator as any)
+        .getBattery()
+        .then((battery: any) => {
+          if (battery.level < 0.2 && !battery.charging) {
+            useSmooth = false; // Disable heavy animations on low battery
+            document.body.classList.add("low-battery");
+          } else {
+            initLenis();
+          }
+        })
+        .catch(() => initLenis());
     } else {
       initLenis();
     }
@@ -209,7 +213,6 @@ function RootComponent() {
       if (lenis) lenis.destroy();
     };
   }, []);
-
 
   // Micro-interaction: Smart Page Title
   useEffect(() => {
@@ -318,7 +321,6 @@ function RootComponent() {
         <ArrowUp className="size-5" />
       </button>
 
-
       {/* Floating Smart WhatsApp */}
       <a
         href="https://wa.me/962799256345"
@@ -329,7 +331,9 @@ function RootComponent() {
         }`}
       >
         <MessageCircle className="size-6 shrink-0" />
-        <span className={`overflow-hidden transition-all duration-500 whitespace-nowrap ${scrolled && !showScrollTop ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 hidden"}`}>
+        <span
+          className={`overflow-hidden transition-all duration-500 whitespace-nowrap ${scrolled && !showScrollTop ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 hidden"}`}
+        >
           {lang === "ar" ? "تواصل معنا" : "Contact Us"}
         </span>
       </a>

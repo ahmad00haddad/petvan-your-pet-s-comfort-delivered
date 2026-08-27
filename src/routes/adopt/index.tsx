@@ -1,4 +1,5 @@
 import { copy } from "../../lib/i18n";
+import { ScrambleText } from "../../components/ScrambleText";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { getAdoptionsFn } from "../../api/adopt";

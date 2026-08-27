@@ -292,3 +292,7 @@
   50% { transform: rotateY(90deg) scale(1.1); }
   100% { transform: rotateY(0deg); }
 }
+
+@keyframes marquee {
+  to { transform: translateX(calc(-50% - 2rem)); }
+}
