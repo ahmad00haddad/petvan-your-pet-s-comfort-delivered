@@ -4,6 +4,7 @@ import { checkoutFn } from "../../api/shop";
 import { useState } from "react";
 import { Trash2, ArrowLeft, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
+import { vibrate } from "../../lib/utils";
 import { copy } from "../../lib/i18n";
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -230,7 +231,7 @@ function Cart() {
                         </button>
                       </Dialog.Close>
                       <button
-                        onClick={handleCheckout}
+                        onClick={() => { vibrate(50); handleCheckout(); }}
                         disabled={!address || !phone || loading}
                         className="flex-1 rounded-full bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-gold)] transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none"
                       >

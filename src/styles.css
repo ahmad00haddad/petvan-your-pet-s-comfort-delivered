@@ -286,3 +286,9 @@
     transform: scaleX(1);
   }
 }
+
+@keyframes flip {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg) scale(1.1); }
+  100% { transform: rotateY(0deg); }
+}

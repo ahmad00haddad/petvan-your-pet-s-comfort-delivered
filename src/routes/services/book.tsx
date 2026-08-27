@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAppStore } from "../../lib/store";
 import { copy } from "../../lib/i18n";
 import { bookServiceFn } from "../../api/services";
+import { vibrate } from "../../lib/utils";
 import { ArrowLeft, Stethoscope, Home, Scissors, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import * as Dialog from "@radix-ui/react-dialog";

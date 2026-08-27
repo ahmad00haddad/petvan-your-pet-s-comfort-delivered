@@ -8,6 +8,8 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
+import Lenis from "@studio-freight/lenis";
+import { MessageCircle } from "lucide-react";
 import { Toaster } from "sonner";
 import { Home, Search, Calendar, User, Smartphone, ArrowUp } from "lucide-react";
 
@@ -172,6 +174,43 @@ function RootComponent() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Phase 1: Lenis Smooth Scroll & Battery Saver
+  useEffect(() => {
+    let lenis: Lenis | null = null;
+    
+    // Battery saver check
+    let useSmooth = true;
+    if ('getBattery' in navigator) {
+      (navigator as any).getBattery().then((battery: any) => {
+        if (battery.level < 0.2 && !battery.charging) {
+          useSmooth = false; // Disable heavy animations on low battery
+          document.body.classList.add('low-battery');
+        } else {
+          initLenis();
+        }
+      }).catch(() => initLenis());
+    } else {
+      initLenis();
+    }
+
+    function initLenis() {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+      function raf(time: number) {
+        lenis?.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    return () => {
+      if (lenis) lenis.destroy();
+    };
+  }, []);
+
+
   // Micro-interaction: Smart Page Title
   useEffect(() => {
     const originalTitle = document.title || "PetVan";
@@ -278,6 +317,22 @@ function RootComponent() {
       >
         <ArrowUp className="size-5" />
       </button>
+
+
+      {/* Floating Smart WhatsApp */}
+      <a
+        href="https://wa.me/962799256345"
+        target="_blank"
+        rel="noreferrer"
+        className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white p-3 rounded-full font-bold transition-all duration-500 shadow-lg shadow-[#25D366]/20 hover:scale-110 hover:shadow-xl ${
+          scrolled && !showScrollTop ? "w-auto px-5" : "w-12 h-12 justify-center"
+        }`}
+      >
+        <MessageCircle className="size-6 shrink-0" />
+        <span className={`overflow-hidden transition-all duration-500 whitespace-nowrap ${scrolled && !showScrollTop ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 hidden"}`}>
+          {lang === "ar" ? "تواصل معنا" : "Contact Us"}
+        </span>
+      </a>
 
       {/* Global Footer */}
       <footer id="about" className="bg-background px-5 py-16 mt-20">
