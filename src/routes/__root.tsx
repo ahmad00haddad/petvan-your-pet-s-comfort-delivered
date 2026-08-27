@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-// @ts-ignore
+// @ts-expect-error
 import Lenis from "@studio-freight/lenis";
 import { MessageCircle } from "lucide-react";
 import { Magnetic } from "../components/Magnetic";
