@@ -147,11 +147,12 @@ function TypewriterText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <span className="inline-block relative text-gold">
+    <span className="relative inline text-gold">
       {displayedText}
-      <span className="absolute -right-2 top-0 bottom-0 w-[3px] bg-primary animate-pulse" />
+      <span className="ms-1 inline-block h-[0.9em] w-[3px] translate-y-[0.1em] bg-primary align-middle animate-pulse" />
     </span>
   );
+
 }
 
 function Logo() {
