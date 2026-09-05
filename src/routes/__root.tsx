@@ -12,7 +12,7 @@ import Lenis from "@studio-freight/lenis";
 import { MessageCircle } from "lucide-react";
 import { Magnetic } from "../components/Magnetic";
 import { Toaster } from "sonner";
-import { Home, Search, Calendar, User, Smartphone, ArrowUp } from "lucide-react";
+import { Smartphone, ArrowUp, Languages, Menu, X } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
