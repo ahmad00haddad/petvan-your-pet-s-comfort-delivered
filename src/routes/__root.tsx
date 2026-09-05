@@ -170,10 +170,13 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const userId = useAppStore((state) => state.userId);
   const lang = useAppStore((state) => state.lang);
+  const setLang = useAppStore((state) => state.setLang);
   const t = copy[lang];
 
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
 
   // Phase 1: Lenis Smooth Scroll & Battery Saver
   useEffect(() => {
