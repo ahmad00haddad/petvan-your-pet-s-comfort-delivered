@@ -1,87 +1,65 @@
-# PetVan
+<div align="center">
+  <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/truck.svg" width="80" alt="PetVan Logo" />
+  <h1>🚐 PetVan</h1>
+  <p><strong>Your Pet's Comfort Delivered | راحة أليفك واصلة لعندك</strong></p>
+  <p>Jordan's First Premium Mobile Vet, Grooming, and Pet Shop Platform.</p>
+</div>
 
-Mobile veterinary clinic, grooming, pet shop and adoption platform for Jordan (Amman & Irbid).
-Bilingual (English / Arabic with RTL), dark theme, PWA-ready.
+---
 
-> Product description, service catalogue and marketing copy live in [`docs/PRODUCT.md`](docs/PRODUCT.md).
-> Contribution rules for AI agents live in [`CLAUDE.md`](CLAUDE.md) and [`AGENTS.md`](AGENTS.md).
+## 📖 About PetVan
 
-## Stack
+**PetVan** is a cutting-edge web application designed to revolutionize pet care in Jordan (Amman & Irbid). We bring the veterinary clinic, the grooming salon, and the pet supply store directly to your doorstep inside a fully-equipped, luxurious mobile van. 
 
-| Area      | Technology                                             |
-| --------- | ------------------------------------------------------ |
-| Framework | TanStack Start v1 (React 19, SSR)                      |
-| Router    | TanStack Router — file-based, `src/routes/`            |
-| Build     | Vite 8 + Nitro (Cloudflare Workers target)             |
-| Styling   | Tailwind CSS v4 via `src/styles.css` (`@theme` tokens) |
-| UI        | shadcn/ui + Radix + lucide-react                       |
-| Data      | Prisma schema in `prisma/`, server fns in `src/api/`   |
-| State     | Zustand (`src/lib/store.ts`)                           |
-| i18n      | `src/lib/i18n.ts` (`copy[lang]`)                       |
+Built with a **dark, glassmorphism design** and **cinematic micro-interactions**, PetVan offers a world-class user experience that reflects the premium quality of the care we provide to your furry friends.
 
-**Package manager: `bun`.** `npm install` is not supported — it fails to resolve the
-native rolldown binding used by Vite 8.
+## ✨ Key Features
 
-## Getting started
+- **🩺 Mobile Clinic & Salon Booking:** Schedule a van visit to your home for medical checkups, vaccinations, or a full spa day for your pet.
+- **🛍️ Premium Pet Shop:** Browse and purchase high-quality pet food, toys, and accessories with a smooth e-commerce experience.
+- **🐾 Adoption Platform:** A dedicated space to rescue and adopt pets.
+- **🌍 Bilingual & Native RTL:** Flawless English and Arabic (Right-to-Left) experiences, remembering your preference instantly.
+- **🎭 Cinematic UX/UI:** 
+  - **Smooth Scrolling:** Powered by Lenis for buttery smooth navigation.
+  - **Awwwards-Level Micro-interactions:** Magnetic buttons, 3D tilt cards, GSAP-like staggered reveals, and spotlight hover effects.
+  - **Haptic Feedback:** Native vibration feedback on mobile devices for a tactile experience.
+- **📱 Mobile-First:** Designed to look and feel like a native iOS/Android app.
 
-```bash
-bun install
-cp .env.example .env
-bun run dev        # http://localhost:5173
-```
+## 🛠️ Technology Stack
 
-## Scripts
+PetVan is built on the bleeding edge of modern web development:
 
-| Command             | Description                          |
-| ------------------- | ------------------------------------ |
-| `bun run dev`       | Dev server with HMR                  |
-| `bun run build`     | Production build into `.output/`     |
-| `bun run preview`   | Serve the production build           |
-| `bun run lint`      | ESLint (includes Prettier as a rule) |
-| `bun run format`    | Prettier write                       |
-| `bunx tsc --noEmit` | Typecheck                            |
+- **Framework:** TanStack Start v1 (React 19, SSR)
+- **Routing:** TanStack Router (File-based routing)
+- **Styling:** Tailwind CSS v4 + Radix UI
+- **Animations:** Lenis (Smooth Scroll), CSS 3D Transforms, Custom Keyframes
+- **State Management:** Zustand
+- **Build/Deploy:** Vite + Cloudflare Workers (Nitro)
 
-## Before pushing
+## 🚀 Quick Start
 
-CI (`.github/workflows/ci.yml`) runs these on every push and pull request; run them locally first:
+To run the project locally without needing a cloud database (we use a mock data engine for the UI showcase):
 
 ```bash
-bunx tsc --noEmit
-bun run lint
-bun run build
+# 1. Clone the repository
+git clone https://github.com/ahmad00haddad/petvan-your-pet-s-comfort-delivered.git
+
+# 2. Navigate to the project directory
+cd petvan-your-pet-s-comfort-delivered
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
+npm run dev
 ```
 
-## Project layout
+Visit `http://localhost:3000` to experience PetVan.
 
-```
-src/
-  api/        server functions (createServerFn) — the only place that touches the DB
-  routes/     file-based routes; path must match createFileRoute("...")
-  components/ shared components; components/ui = shadcn primitives
-  lib/        store.ts (Zustand), i18n.ts (all UI strings), prisma.ts (DB client)
-  styles.css  Tailwind v4 theme tokens
-prisma/       schema.prisma + seed.ts
-public/       manifest.json, sw.js, robots.txt, favicon
-docs/         product documentation
-```
+## 🤝 Contributing
+Please read [`docs/PRODUCT.md`](docs/PRODUCT.md) for product guidelines and [`CLAUDE.md`](CLAUDE.md) for AI agent coding rules before contributing.
 
-Do not hand-edit `src/routeTree.gen.ts` — it is generated by the dev server / build.
-
-## Environment variables
-
-See [`.env.example`](.env.example). `.env` is git-ignored and must never be committed.
-
-## Deployment
-
-`bun run build` produces a Nitro Cloudflare Workers bundle in `.output/`:
-
-```bash
-bunx nitro deploy --prebuilt
-```
-
-Secrets in production are provided through Cloudflare Secrets, not `.env`.
-
-## Status
-
-This project is under active hardening for production. See the roadmap in
-[`docs/ROADMAP.md`](docs/ROADMAP.md).
+---
+<div align="center">
+  <i>Made with ❤️ for Pets in Jordan.</i>
+</div>
