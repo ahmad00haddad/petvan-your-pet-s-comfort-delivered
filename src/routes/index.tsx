@@ -180,16 +180,8 @@ function Index() {
     getProductsFn().then(setDbProducts);
   }, []);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("petvan-lang") as Lang;
-    if (saved === "ar" || saved === "en") setLang(saved);
-  }, [setLang]);
 
-  useEffect(() => {
-    localStorage.setItem("petvan-lang", lang);
-    document.documentElement.lang = lang;
-    document.documentElement.dir = t.dir;
-  }, [lang, t.dir]);
+
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
