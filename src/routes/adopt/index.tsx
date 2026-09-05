@@ -163,8 +163,9 @@ function Adopt() {
           {filtered.map((listing) => (
             <figure
               key={listing.id}
-              className="group rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary"
+              className="group flex h-full flex-col rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary"
             >
+
               <div
                 className="aspect-[4/3] bg-secondary relative cursor-pointer"
                 onDoubleClick={() => handleDoubleTap(listing.id)}
@@ -191,7 +192,7 @@ function Adopt() {
                           : "🐟"}
                   </div>
                 )}
-                <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-md rounded-full px-3 py-1 text-xs font-bold">
+                <div className="absolute top-4 end-4 bg-background/80 backdrop-blur-md rounded-full px-3 py-1 text-xs font-bold">
                   {listing.pet.gender === "M"
                     ? lang === "ar"
                       ? "♂ ذكر"
@@ -201,13 +202,14 @@ function Adopt() {
                       : "♀ Female"}
                 </div>
               </div>
-              <figcaption className="p-6">
+              <figcaption className="flex flex-1 flex-col p-6">
                 <h3 className="font-display text-2xl font-bold mb-1">{listing.pet.name}</h3>
                 <p className="text-sm font-medium text-primary mb-4">{listing.pet.type}</p>
-                <p className="text-sm text-muted-foreground mb-6 line-clamp-3">
+                <p className="mb-6 h-[3.75rem] overflow-hidden text-sm leading-5 text-muted-foreground line-clamp-3">
                   {listing.description}
                 </p>
-                <div className="flex items-center justify-between border-t border-border pt-4">
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+
                   <div className="flex items-center gap-2">
                     <div className="size-8 rounded-full bg-secondary flex items-center justify-center font-bold text-xs">
                       {listing.lister.name.charAt(0)}

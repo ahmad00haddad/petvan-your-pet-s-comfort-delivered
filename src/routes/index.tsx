@@ -1,5 +1,3 @@
-import { SpotlightCard } from "../components/SpotlightCard";
-import { ScrambleText } from "../components/ScrambleText";
 import { RevealOnScroll } from "../components/RevealOnScroll";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAppStore } from "../lib/store";
@@ -27,7 +25,6 @@ import {
   Mail,
   LogOut,
   Calendar,
-  Languages,
   Smartphone,
 } from "lucide-react";
 import heroDog from "@/assets/hero-dog.jpg";
@@ -35,7 +32,7 @@ import petCat from "@/assets/pet-cat.jpg";
 import petRabbit from "@/assets/pet-rabbit.jpg";
 import petParrot from "@/assets/pet-parrot.jpg";
 // Use fish icon if no image
-import { copy, type Lang } from "@/lib/i18n";
+import { copy } from "@/lib/i18n";
 
 const PARTICLES = [
   { top: 24, left: 30, duration: 3.4 },
@@ -147,11 +144,12 @@ function TypewriterText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <span className="inline-block relative text-gold">
+    <span className="relative inline text-gold">
       {displayedText}
-      <span className="absolute -right-2 top-0 bottom-0 w-[3px] bg-primary animate-pulse" />
+      <span className="ms-1 inline-block h-[0.9em] w-[3px] translate-y-[0.1em] bg-primary align-middle animate-pulse" />
     </span>
   );
+
 }
 
 function Logo() {
@@ -169,7 +167,6 @@ function Index() {
   const userId = useAppStore((state) => state.userId);
   const cart = useAppStore((state) => state.cart);
   const lang = useAppStore((state) => state.lang);
-  const setLang = useAppStore((state) => state.setLang);
   const globalPetType = useAppStore((state) => state.globalPetType);
   const setGlobalPetType = useAppStore((state) => state.setGlobalPetType);
   const t = copy[lang];
@@ -180,16 +177,8 @@ function Index() {
     getProductsFn().then(setDbProducts);
   }, []);
 
-  useEffect(() => {
-    const saved = localStorage.getItem("petvan-lang") as Lang;
-    if (saved === "ar" || saved === "en") setLang(saved);
-  }, [setLang]);
 
-  useEffect(() => {
-    localStorage.setItem("petvan-lang", lang);
-    document.documentElement.lang = lang;
-    document.documentElement.dir = t.dir;
-  }, [lang, t.dir]);
+
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -257,9 +246,10 @@ function Index() {
           className="order-1 lg:order-2 lg:ps-16 relative z-10 text-center lg:text-start flex flex-col items-center lg:items-start animate-fade-in-up"
           style={{ animationDelay: "100ms" }}
         >
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight min-h-[110px] sm:min-h-[140px] flex items-center break-words">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-[1.25] tracking-tight break-words py-2 min-h-[3.5em] sm:min-h-[2.5em]">
             <TypewriterText text={heroText} />
           </h1>
+
           <p className="mt-6 max-w-sm text-sm sm:text-base text-muted-foreground leading-relaxed">
             {t.heroDesc}
           </p>

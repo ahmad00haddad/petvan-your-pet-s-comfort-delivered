@@ -12,7 +12,7 @@ import Lenis from "@studio-freight/lenis";
 import { MessageCircle } from "lucide-react";
 import { Magnetic } from "../components/Magnetic";
 import { Toaster } from "sonner";
-import { Home, Search, Calendar, User, Smartphone, ArrowUp } from "lucide-react";
+import { Smartphone, ArrowUp, Languages, Menu, X } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -170,10 +170,13 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const userId = useAppStore((state) => state.userId);
   const lang = useAppStore((state) => state.lang);
+  const setLang = useAppStore((state) => state.setLang);
   const t = copy[lang];
 
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
 
   // Phase 1: Lenis Smooth Scroll & Battery Saver
   useEffect(() => {
@@ -247,29 +250,19 @@ function RootComponent() {
 
       {/* Global Header */}
       <header
-        className={`sticky top-0 z-50 px-5 sm:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-5 border-b-0"}`}
+        className={`sticky top-0 z-50 px-4 sm:px-8 lg:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-4 border-b-0"}`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-6">
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+          <div className="flex min-w-0 items-center gap-4 sm:gap-6">
             <Logo />
-            <div className="hidden items-center gap-1.5 text-sm sm:flex">
+            <div className="hidden min-w-0 items-center gap-1.5 text-sm md:flex">
               <span className="font-bold">{t.location}</span>
-              <MapPin className="size-4 text-primary animate-pulse" />
-              <span className="text-muted-foreground text-xs">{t.city}</span>
+              <MapPin className="size-4 shrink-0 text-primary" />
+              <span className="truncate text-muted-foreground text-xs">{t.city}</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-8">
-            {userId && (
-              <Link to="/profile" className="profile-tour hidden sm:block">
-                <div className="grid size-8 place-items-center rounded-full bg-secondary text-primary font-bold overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
-                    alt="User"
-                  />
-                </div>
-              </Link>
-            )}
+          <div className="flex items-center gap-3 sm:gap-5 lg:gap-7">
             <nav className="nav-tour hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
               <a className="transition-colors hover:text-primary" href="/#about">
                 {t.nav.about}
@@ -288,16 +281,83 @@ function RootComponent() {
                 {t.installApp}
               </Link>
             </nav>
+
+            <button
+              onClick={() => setLang(lang === "ar" ? "en" : "ar")}
+              className="flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors hover:border-primary hover:text-primary"
+              aria-label="Change language"
+            >
+              <Languages className="size-4" />
+              {lang === "ar" ? "EN" : "ع"}
+            </button>
+
+            {userId && (
+              <Link to="/profile" className="profile-tour hidden sm:block">
+                <div className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-secondary text-primary font-bold">
+                  <img
+                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
+                    alt="User"
+                    className="size-full object-cover"
+                  />
+                </div>
+              </Link>
+            )}
+
             <Link
               to="/shop/cart"
-              className="cart-tour relative transition-colors hover:text-primary"
+              className="cart-tour relative shrink-0 transition-colors hover:text-primary"
               aria-label="Cart"
             >
               <ShoppingCart className="size-5" />
             </Link>
+
+            <button
+              onClick={() => setMenuOpen((o) => !o)}
+              className="shrink-0 lg:hidden"
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            </button>
           </div>
         </div>
+
+        {menuOpen && (
+          <nav className="mx-auto mt-3 grid max-w-7xl gap-1 rounded-2xl border border-border bg-card p-3 text-sm font-bold uppercase tracking-wider lg:hidden">
+            <a className="rounded-xl px-3 py-2 hover:text-primary" href="/#about" onClick={() => setMenuOpen(false)}>
+              {t.nav.about}
+            </a>
+            <a className="rounded-xl px-3 py-2 hover:text-primary" href="/#services" onClick={() => setMenuOpen(false)}>
+              {t.nav.services}
+            </a>
+            <a className="rounded-xl px-3 py-2 hover:text-primary" href="/#help" onClick={() => setMenuOpen(false)}>
+              {t.nav.help}
+            </a>
+            <Link to="/shop" className="rounded-xl px-3 py-2 hover:text-primary" onClick={() => setMenuOpen(false)}>
+              {t.shop}
+            </Link>
+            <Link to="/adopt" className="rounded-xl px-3 py-2 hover:text-primary" onClick={() => setMenuOpen(false)}>
+              {t.adopt}
+            </Link>
+            <Link
+              to={userId ? "/profile" : "/login"}
+              className="rounded-xl px-3 py-2 hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              {userId ? t.profile : t.login}
+            </Link>
+            <Link
+              to="/install"
+              className="flex items-center gap-2 rounded-xl px-3 py-2 text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Smartphone className="size-4" />
+              {t.installApp}
+            </Link>
+          </nav>
+        )}
       </header>
+
 
       <main className="min-h-screen animate-fade-in-up">
         <Preloader />
@@ -311,7 +371,7 @@ function RootComponent() {
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-all duration-300 hover:scale-110 hover:glow-primary ${
+        className={`fixed bottom-24 end-5 z-40 p-3 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-all duration-300 hover:scale-110 hover:glow-primary ${
           showScrollTop
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-10 pointer-events-none"
@@ -321,26 +381,22 @@ function RootComponent() {
         <ArrowUp className="size-5" />
       </button>
 
-      {/* Floating Smart WhatsApp */}
+      {/* Floating WhatsApp */}
       <a
         href="https://wa.me/962799256345"
         target="_blank"
         rel="noreferrer"
-        className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white p-3 rounded-full font-bold transition-all duration-500 shadow-lg shadow-[#25D366]/20 hover:scale-110 hover:shadow-xl ${
-          scrolled && !showScrollTop ? "w-auto px-5" : "w-12 h-12 justify-center"
-        }`}
+        className="fixed bottom-6 end-5 z-40 grid size-12 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/20 transition-transform hover:scale-110"
+        aria-label="WhatsApp"
       >
         <MessageCircle className="size-6 shrink-0" />
-        <span
-          className={`overflow-hidden transition-all duration-500 whitespace-nowrap ${scrolled && !showScrollTop ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 hidden"}`}
-        >
-          {lang === "ar" ? "تواصل معنا" : "Contact Us"}
-        </span>
       </a>
 
+
       {/* Global Footer */}
-      <footer id="about" className="bg-background px-5 py-16 mt-20">
-        <div className="mx-auto grid max-w-5xl gap-12 text-center sm:grid-cols-3">
+      <footer id="about" className="border-t border-border/60 bg-background px-5 py-16 mt-20">
+        <div className="mx-auto grid max-w-6xl gap-12 text-center sm:grid-cols-2 lg:grid-cols-4">
+
           <div>
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">{t.aboutUs}</h2>
             <p className="text-xs leading-relaxed text-muted-foreground max-w-[250px] mx-auto">
