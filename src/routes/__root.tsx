@@ -371,7 +371,7 @@ function RootComponent() {
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 p-3 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-all duration-300 hover:scale-110 hover:glow-primary ${
+        className={`fixed bottom-24 end-5 z-40 p-3 rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-gold)] transition-all duration-300 hover:scale-110 hover:glow-primary ${
           showScrollTop
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-10 pointer-events-none"
@@ -381,22 +381,17 @@ function RootComponent() {
         <ArrowUp className="size-5" />
       </button>
 
-      {/* Floating Smart WhatsApp */}
+      {/* Floating WhatsApp */}
       <a
         href="https://wa.me/962799256345"
         target="_blank"
         rel="noreferrer"
-        className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white p-3 rounded-full font-bold transition-all duration-500 shadow-lg shadow-[#25D366]/20 hover:scale-110 hover:shadow-xl ${
-          scrolled && !showScrollTop ? "w-auto px-5" : "w-12 h-12 justify-center"
-        }`}
+        className="fixed bottom-6 end-5 z-40 grid size-12 place-items-center rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/20 transition-transform hover:scale-110"
+        aria-label="WhatsApp"
       >
         <MessageCircle className="size-6 shrink-0" />
-        <span
-          className={`overflow-hidden transition-all duration-500 whitespace-nowrap ${scrolled && !showScrollTop ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 hidden"}`}
-        >
-          {lang === "ar" ? "تواصل معنا" : "Contact Us"}
-        </span>
       </a>
+
 
       {/* Global Footer */}
       <footer id="about" className="bg-background px-5 py-16 mt-20">
