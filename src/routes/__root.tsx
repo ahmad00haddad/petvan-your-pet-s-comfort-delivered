@@ -247,29 +247,19 @@ function RootComponent() {
 
       {/* Global Header */}
       <header
-        className={`sticky top-0 z-50 px-5 sm:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-5 border-b-0"}`}
+        className={`sticky top-0 z-50 px-4 sm:px-8 lg:px-12 transition-all duration-300 ${scrolled ? "glass-panel shadow-md py-3 border-b border-border/50" : "bg-transparent py-4 border-b-0"}`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-6">
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+          <div className="flex min-w-0 items-center gap-4 sm:gap-6">
             <Logo />
-            <div className="hidden items-center gap-1.5 text-sm sm:flex">
+            <div className="hidden min-w-0 items-center gap-1.5 text-sm md:flex">
               <span className="font-bold">{t.location}</span>
-              <MapPin className="size-4 text-primary animate-pulse" />
-              <span className="text-muted-foreground text-xs">{t.city}</span>
+              <MapPin className="size-4 shrink-0 text-primary" />
+              <span className="truncate text-muted-foreground text-xs">{t.city}</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-8">
-            {userId && (
-              <Link to="/profile" className="profile-tour hidden sm:block">
-                <div className="grid size-8 place-items-center rounded-full bg-secondary text-primary font-bold overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
-                    alt="User"
-                  />
-                </div>
-              </Link>
-            )}
+          <div className="flex items-center gap-3 sm:gap-5 lg:gap-7">
             <nav className="nav-tour hidden items-center gap-6 text-[11px] font-bold tracking-widest lg:flex uppercase">
               <a className="transition-colors hover:text-primary" href="/#about">
                 {t.nav.about}
@@ -288,16 +278,83 @@ function RootComponent() {
                 {t.installApp}
               </Link>
             </nav>
+
+            <button
+              onClick={() => setLang(lang === "ar" ? "en" : "ar")}
+              className="flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors hover:border-primary hover:text-primary"
+              aria-label="Change language"
+            >
+              <Languages className="size-4" />
+              {lang === "ar" ? "EN" : "ع"}
+            </button>
+
+            {userId && (
+              <Link to="/profile" className="profile-tour hidden sm:block">
+                <div className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-secondary text-primary font-bold">
+                  <img
+                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop"
+                    alt="User"
+                    className="size-full object-cover"
+                  />
+                </div>
+              </Link>
+            )}
+
             <Link
               to="/shop/cart"
-              className="cart-tour relative transition-colors hover:text-primary"
+              className="cart-tour relative shrink-0 transition-colors hover:text-primary"
               aria-label="Cart"
             >
               <ShoppingCart className="size-5" />
             </Link>
+
+            <button
+              onClick={() => setMenuOpen((o) => !o)}
+              className="shrink-0 lg:hidden"
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            </button>
           </div>
         </div>
+
+        {menuOpen && (
+          <nav className="mx-auto mt-3 grid max-w-7xl gap-1 rounded-2xl border border-border bg-card p-3 text-sm font-bold uppercase tracking-wider lg:hidden">
+            <a className="rounded-xl px-3 py-2 hover:text-primary" href="/#about" onClick={() => setMenuOpen(false)}>
+              {t.nav.about}
+            </a>
+            <a className="rounded-xl px-3 py-2 hover:text-primary" href="/#services" onClick={() => setMenuOpen(false)}>
+              {t.nav.services}
+            </a>
+            <a className="rounded-xl px-3 py-2 hover:text-primary" href="/#help" onClick={() => setMenuOpen(false)}>
+              {t.nav.help}
+            </a>
+            <Link to="/shop" className="rounded-xl px-3 py-2 hover:text-primary" onClick={() => setMenuOpen(false)}>
+              {t.shop}
+            </Link>
+            <Link to="/adopt" className="rounded-xl px-3 py-2 hover:text-primary" onClick={() => setMenuOpen(false)}>
+              {t.adopt}
+            </Link>
+            <Link
+              to={userId ? "/profile" : "/login"}
+              className="rounded-xl px-3 py-2 hover:text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              {userId ? t.profile : t.login}
+            </Link>
+            <Link
+              to="/install"
+              className="flex items-center gap-2 rounded-xl px-3 py-2 text-primary"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Smartphone className="size-4" />
+              {t.installApp}
+            </Link>
+          </nav>
+        )}
       </header>
+
 
       <main className="min-h-screen animate-fade-in-up">
         <Preloader />
