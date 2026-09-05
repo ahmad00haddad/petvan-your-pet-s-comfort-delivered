@@ -163,8 +163,9 @@ function Adopt() {
           {filtered.map((listing) => (
             <figure
               key={listing.id}
-              className="group rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary"
+              className="group flex h-full flex-col rounded-3xl border border-border glass-panel overflow-hidden shadow-[var(--shadow-card)] transition-all hover:-translate-y-2 hover:glow-primary"
             >
+
               <div
                 className="aspect-[4/3] bg-secondary relative cursor-pointer"
                 onDoubleClick={() => handleDoubleTap(listing.id)}
