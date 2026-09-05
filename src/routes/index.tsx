@@ -27,7 +27,6 @@ import {
   Mail,
   LogOut,
   Calendar,
-  Languages,
   Smartphone,
 } from "lucide-react";
 import heroDog from "@/assets/hero-dog.jpg";
@@ -35,7 +34,7 @@ import petCat from "@/assets/pet-cat.jpg";
 import petRabbit from "@/assets/pet-rabbit.jpg";
 import petParrot from "@/assets/pet-parrot.jpg";
 // Use fish icon if no image
-import { copy, type Lang } from "@/lib/i18n";
+import { copy } from "@/lib/i18n";
 
 const PARTICLES = [
   { top: 24, left: 30, duration: 3.4 },
@@ -170,7 +169,6 @@ function Index() {
   const userId = useAppStore((state) => state.userId);
   const cart = useAppStore((state) => state.cart);
   const lang = useAppStore((state) => state.lang);
-  const setLang = useAppStore((state) => state.setLang);
   const globalPetType = useAppStore((state) => state.globalPetType);
   const setGlobalPetType = useAppStore((state) => state.setGlobalPetType);
   const t = copy[lang];
