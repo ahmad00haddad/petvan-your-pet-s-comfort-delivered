@@ -394,8 +394,9 @@ function RootComponent() {
 
 
       {/* Global Footer */}
-      <footer id="about" className="bg-background px-5 py-16 mt-20">
-        <div className="mx-auto grid max-w-5xl gap-12 text-center sm:grid-cols-3">
+      <footer id="about" className="border-t border-border/60 bg-background px-5 py-16 mt-20">
+        <div className="mx-auto grid max-w-6xl gap-12 text-center sm:grid-cols-2 lg:grid-cols-4">
+
           <div>
             <h2 className="font-display font-bold text-lg mb-4 text-foreground">{t.aboutUs}</h2>
             <p className="text-xs leading-relaxed text-muted-foreground max-w-[250px] mx-auto">
